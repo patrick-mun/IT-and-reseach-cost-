@@ -325,8 +325,9 @@ a:hover {
 /* Paragraphe de contexte explicatif (prose destinée à l'évaluateur) */
 .contextText {
     color: var(--colorInk);
-    max-width: 70ch;
+    max-width: 100ch;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 /* Encart d'information mis en évidence (point crucial, à retenir) */
