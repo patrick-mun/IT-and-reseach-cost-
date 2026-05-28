@@ -40,6 +40,7 @@
                     <li class="navItem"><a class="navLink" href="#humain">Ressources humaines</a></li>
                     <li class="navItem"><a class="navLink" href="#ia">Intégration IA</a></li>
                     <li class="navItem"><a class="navLink" href="#budget">Budget</a></li>
+                    <li class="navItem"><a class="navLink" href="#conclusion">Conclusion</a></li>
                 </ul>
             </nav>
         </div>
@@ -134,6 +135,28 @@
                         <rect class="flowBox flowBoxOutput" x="160" y="312" width="440" height="40" rx="8"></rect>
                         <text class="flowBoxTextLight" x="380" y="337">Référentiel variants + imputation + phasage réunionnais</text>
                     </svg>
+                </div>
+
+                <!-- Contexte explicatif des trois couches -->
+                <p class="contextText">
+                    La première couche génotype 2500 individus représentatifs de
+                    La Réunion sur puce SNP : elle décrit la structure de la
+                    population (composantes principales, proportions d'ascendance).
+                    La deuxième couche ajoute 100 familles nucléaires, indispensables
+                    pour reconstruire les haplotypes par phasage. La troisième couche
+                    sélectionne 350 individus pour un séquençage complet (WGS), qui
+                    sert de vérité de terrain pour découvrir les variants et imputer
+                    le reste de la cohorte.
+                </p>
+                <div class="calloutBox">
+                    <span class="calloutIcon" aria-hidden="true">✓</span>
+                    <p class="calloutText">
+                        <strong>Point structurant du budget :</strong> le séquençage
+                        WGS des 350 individus est pris en charge gratuitement par le
+                        consortium POPgen. Le coût biologique restant pour le
+                        laboratoire porte donc essentiellement sur le génotypage SNP
+                        des ~2800 puces.
+                    </p>
                 </div>
 
                 <!-- Tableau des chiffres clés -->
@@ -267,6 +290,16 @@
                     Le génotypage iScan constitue le principal coût biologique.
                     Trois scénarios mutuellement exclusifs selon la situation de
                     l'instrument au CHU.
+                </p>
+                <p class="contextText">
+                    Le choix entre ces trois scénarios dépend de l'équipement déjà
+                    disponible au CHU et de la stratégie à long terme. La
+                    sous-traitance (scénario 1) est la plus rapide mais ne laisse
+                    aucun actif au laboratoire. L'utilisation d'un iScan existant
+                    (scénario 2) est la moins chère pour ce projet. L'acquisition d'un
+                    iScan neuf (scénario 3) coûte le plus cher ici, mais l'instrument
+                    s'amortit sur les projets futurs. Sélectionnez un onglet pour
+                    détailler chaque scénario.
                 </p>
 
                 <!-- Onglets de scénarios pilotés par le fichier JS -->
@@ -454,6 +487,36 @@
                     charges patronales comprises (~43% du brut). Trois propositions de
                     montage d'équipe.
                 </p>
+                <p class="contextText">
+                    Les trois propositions partagent une équipe socle invariante,
+                    pilotée par un coordinateur scientifique (IR2) qui valide les
+                    analyses génomiques et encadre les profils juniors. Elles se
+                    distinguent par les leviers d'optimisation budgétaire mobilisés :
+                    stages et CDD pour la proposition 1, alternance et thèse CIFRE
+                    pour les propositions 2 et 3. Plus l'optimisation est poussée,
+                    plus le coût baisse, mais plus la charge de supervision et la
+                    complexité administrative augmentent.
+                </p>
+                <div class="calloutBox">
+                    <span class="calloutIcon" aria-hidden="true">★</span>
+                    <p class="calloutText">
+                        <strong>Recommandation :</strong> la proposition 2
+                        (alternance + CIFRE) offre le meilleur équilibre coût/risque.
+                        L'alternance des moins de 26 ans est quasi-exonérée de charges
+                        patronales et la subvention ANRT de 14 000 €/an réduit de
+                        moitié le coût du doctorant.
+                    </p>
+                </div>
+                <div class="calloutBox calloutBoxWarn">
+                    <span class="calloutIcon" aria-hidden="true">!</span>
+                    <p class="calloutText">
+                        <strong>Condition bloquante :</strong> le dispositif CIFRE
+                        impose un partenaire privé (startup génomique, laboratoire
+                        d'analyses ou éditeur logiciel médical). Sans partenaire, le
+                        doctorat CIFRE est remplacé par un contrat doctoral classique
+                        (+23 000 € sur trois ans).
+                    </p>
+                </div>
 
                 <!-- Cartes de propositions RH -->
                 <div class="propositionGrid">
@@ -565,6 +628,17 @@
                     Quatre modules d'IA valorisent cliniquement le référentiel
                     génomique réunionnais.
                 </p>
+                <p class="contextText">
+                    L'IA intervient en surcouche du référentiel : une fois les
+                    variants réunionnais catalogués et leurs fréquences locales
+                    établies, ces modules transforment la donnée brute en aide à la
+                    décision clinique. L'enjeu central est la recalibration sur la
+                    population réunionnaise : les modèles génériques, entraînés sur
+                    des cohortes majoritairement européennes, perdent en précision sur
+                    une population métissée. Chaque module est donc évalué par rapport
+                    à une cible mesurable (par exemple AUC ≥ 0,85 pour la
+                    pathogénicité).
+                </p>
 
                 <div class="cardGrid">
                     <article class="moduleCard">
@@ -645,6 +719,15 @@
                     Combinaison optimale : scénario génotypage 2 (iScan existant) +
                     proposition RH 2 → environ 1 107 000 € sur 36 mois.
                 </p>
+                <p class="contextText">
+                    Le budget total se compose de trois grands postes : le génotypage
+                    SNP (coût biologique principal), l'infrastructure informatique
+                    (serveurs de calcul et stockage) et les ressources humaines
+                    (35 à 43% du total). Le séquençage WGS, pris en charge par POPgen,
+                    n'apparaît qu'à 0 €. Le tableau ci-dessous croise chaque scénario
+                    de génotypage avec la proposition RH recommandée ; une contingence
+                    de 10% couvre les aléas.
+                </p>
 
                 <!-- Carte de mise en avant du budget optimal -->
                 <div class="highlightBox">
@@ -692,6 +775,139 @@
                     <li class="milestoneItem"><span class="milestoneMonth">M30</span> Modules IA 3+4 opérationnels</li>
                     <li class="milestoneItem"><span class="milestoneMonth">M34</span> Portail web clinique en production</li>
                     <li class="milestoneItem"><span class="milestoneMonth">M36</span> Validation clinique + publication</li>
+                </ul>
+
+                <!-- Métriques de succès -->
+                <h3 class="subHeading">Métriques de succès</h3>
+                <p class="contextText">
+                    Le projet est jugé sur des cibles vérifiables, couvrant aussi bien
+                    la collecte des données que la performance des modèles et leur
+                    adoption clinique.
+                </p>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Métrique</th>
+                                <th scope="col">Cible</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Collecte</td><td>≥ 2500 individus</td><td>Représentativité géo-ancestrale validée</td></tr>
+                            <tr><td>Sélection WGS</td><td>350 WGS</td><td>Sélection stricte ou hybride 322+28</td></tr>
+                            <tr><td>Couverture variants</td><td>MAF ≥ 1% fiable</td><td>Seuil opérationnel première génération</td></tr>
+                            <tr><td>AUC pathogénicité</td><td>≥ 0,85</td><td>Module 1 sur jeu de validation local</td></tr>
+                            <tr><td>Latence API</td><td>&lt; 500 ms</td><td>Requêtes cliniques en production</td></tr>
+                            <tr><td>Publications</td><td>≥ 3 articles</td><td>Peer-reviewed, année 2</td></tr>
+                            <tr><td>Adoption clinique</td><td>≥ 5 centres</td><td>Intégration diagnostique CHU + partenaires</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Analyse des risques -->
+                <h3 class="subHeading">Analyse des risques</h3>
+                <p class="contextText">
+                    Les principaux risques portent sur les délais d'accès aux panels
+                    témoins, la représentativité de l'échantillon et le recrutement
+                    des profils bioinformatiques. Chacun fait l'objet d'une mesure de
+                    mitigation explicite.
+                </p>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Risque</th>
+                                <th scope="col">Probabilité</th>
+                                <th scope="col">Impact</th>
+                                <th scope="col">Mitigation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Délai accès panels EGA (DAC)</td>
+                                <td><span class="levelBadge levelBadgeHigh">Élevée</span></td>
+                                <td>4-12 semaines de retard Ph.0</td>
+                                <td>Socle 1000G public en repli</td>
+                            </tr>
+                            <tr>
+                                <td>Biais représentativité EFS</td>
+                                <td><span class="levelBadge levelBadgeMid">Modérée</span></td>
+                                <td>Résultats biaisés</td>
+                                <td>Audit EFS préalable (vs INSEE)</td>
+                            </tr>
+                            <tr>
+                                <td>Défaillance iScan</td>
+                                <td><span class="levelBadge levelBadgeLow">Faible</span></td>
+                                <td>Downtime 1-2 semaines</td>
+                                <td>SLA Illumina + plateforme de secours</td>
+                            </tr>
+                            <tr>
+                                <td>Qualité ADN dégradée</td>
+                                <td><span class="levelBadge levelBadgeMid">Modérée</span></td>
+                                <td>Taux d'échec génotypage ↑</td>
+                                <td>+5% réplicats, QC post-extraction</td>
+                            </tr>
+                            <tr>
+                                <td>Datadrift modèles IA</td>
+                                <td><span class="levelBadge levelBadgeMid">Modérée</span></td>
+                                <td>Perte de précision dans le temps</td>
+                                <td>Monitoring + réentraînement semestriel</td>
+                            </tr>
+                            <tr>
+                                <td>Recrutement bioinformaticiens</td>
+                                <td><span class="levelBadge levelBadgeHigh">Élevée</span></td>
+                                <td>Délai M2-M3</td>
+                                <td>Partenariats INSERM / université</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION CONCLUSION                                        -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock" id="conclusion">
+            <div class="sectionInner">
+                <h2 class="sectionTitle">Conclusion</h2>
+                <p class="contextText">
+                    Le projet Génome Réunion constitue la première base de données
+                    génomiques locale adaptée à la population réunionnaise. Il combine
+                    une architecture scientifique en trois couches, un budget maîtrisé
+                    grâce à la gratuité du séquençage WGS, et une surcouche d'IA qui
+                    en assure la valorisation clinique.
+                </p>
+                <ul class="conclusionList">
+                    <li class="conclusionItem">
+                        <span class="conclusionMark" aria-hidden="true">✓</span>
+                        <p class="conclusionText">
+                            Le génotypage iScan (~226-265 K€ selon le scénario) est le
+                            principal coût biologique ; le WGS POPgen est gratuit.
+                        </p>
+                    </li>
+                    <li class="conclusionItem">
+                        <span class="conclusionMark" aria-hidden="true">✓</span>
+                        <p class="conclusionText">
+                            Les ressources humaines (372-452 K€ charges comprises)
+                            représentent 35 à 43% du budget total selon la proposition.
+                        </p>
+                    </li>
+                    <li class="conclusionItem">
+                        <span class="conclusionMark" aria-hidden="true">✓</span>
+                        <p class="conclusionText">
+                            La combinaison optimale (iScan existant + proposition RH 2)
+                            ramène le budget à environ 1 107 000 € sur 36 mois.
+                        </p>
+                    </li>
+                    <li class="conclusionItem">
+                        <span class="conclusionMark" aria-hidden="true">✓</span>
+                        <p class="conclusionText">
+                            L'IA valorise le référentiel sur trois axes cliniques :
+                            pathogénicité, pharmacogénétique et risque polygénique.
+                        </p>
+                    </li>
                 </ul>
             </div>
         </section>
