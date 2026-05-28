@@ -296,18 +296,16 @@
                 <h2 class="sectionTitle">Besoins matériels</h2>
                 <p class="sectionIntro">
                     Le génotypage iScan constitue le principal coût biologique.
-                    Trois scénarios mutuellement exclusifs selon la situation de
-                    l'instrument au CHU.
+                    Deux scénarios mutuellement exclusifs, le CHU ne disposant pas
+                    d'iScan en propre.
                 </p>
                 <p class="contextText">
-                    Le choix entre ces trois scénarios dépend de l'équipement déjà
-                    disponible au CHU et de la stratégie à long terme. La
-                    sous-traitance (scénario 1) est la plus rapide mais ne laisse
-                    aucun actif au laboratoire. L'utilisation d'un iScan existant
-                    (scénario 2) est la moins chère pour ce projet. L'acquisition d'un
-                    iScan neuf (scénario 3) coûte le plus cher ici, mais l'instrument
-                    s'amortit sur les projets futurs. Sélectionnez un onglet pour
-                    détailler chaque scénario.
+                    Le choix entre ces deux scénarios dépend de la stratégie à long
+                    terme du CHU. La sous-traitance (scénario 1) est la plus rapide,
+                    la moins chère pour ce projet, mais ne laisse aucun actif au
+                    laboratoire. L'acquisition d'un iScan neuf (scénario 2) coûte le
+                    plus cher ici, mais l'instrument s'amortit sur les projets futurs.
+                    Sélectionnez un onglet pour détailler chaque scénario.
                 </p>
 
                 <!-- Onglets de scénarios pilotés par le fichier JS -->
@@ -319,11 +317,7 @@
                         </button>
                         <button class="scenarioTab" type="button"
                                 role="tab" aria-selected="false" data-scenario="2">
-                            Scénario 2 · iScan existant
-                        </button>
-                        <button class="scenarioTab" type="button"
-                                role="tab" aria-selected="false" data-scenario="3">
-                            Scénario 3 · iScan à acquérir
+                            Scénario 2 · iScan à acquérir
                         </button>
                     </div>
 
@@ -352,26 +346,6 @@
                     <!-- Panneau scénario 2 -->
                     <div class="scenarioPanel" role="tabpanel" data-scenario="2" hidden>
                         <p class="scenarioDesc">
-                            L'instrument est déjà en place. Le CHU achète uniquement
-                            les consommables directement chez Illumina.
-                        </p>
-                        <div class="tableScroll">
-                            <table class="dataTable">
-                                <thead>
-                                    <tr><th scope="col">Poste</th><th scope="col">Quantité</th><th scope="col">Tarif</th><th scope="col">Total</th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td>Puces GDA-8 (volume ≥ 500)</td><td>2940</td><td>~65 €/éch.</td><td>191 100 €</td></tr>
-                                    <tr><td>Réactifs chimie Infinium</td><td>2940</td><td>~12 €/éch.</td><td>35 300 €</td></tr>
-                                    <tr class="dataTableTotal"><td>Total scénario 2</td><td>—</td><td>—</td><td>~226 000 €</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- Panneau scénario 3 -->
-                    <div class="scenarioPanel" role="tabpanel" data-scenario="3" hidden>
-                        <p class="scenarioDesc">
                             Le CHU n'a pas d'iScan et souhaite l'internaliser durablement.
                             L'instrument amortit son coût sur les projets futurs.
                         </p>
@@ -385,8 +359,8 @@
                                     <tr><td>AutoLoader 2.x + ILASS</td><td>70 000 €</td></tr>
                                     <tr><td>Installation + qualification IQ/OQ/PQ</td><td>15 000 €</td></tr>
                                     <tr><td>Maintenance 1ère année</td><td>18 000 €</td></tr>
-                                    <tr><td>Consommables (idem scénario 2)</td><td>226 000 €</td></tr>
-                                    <tr class="dataTableTotal"><td>Total scénario 3</td><td>~479 000 €</td></tr>
+                                    <tr><td>Consommables (puces GDA-8 + réactifs Infinium)</td><td>226 000 €</td></tr>
+                                    <tr class="dataTableTotal"><td>Total scénario 2</td><td>~479 000 €</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -450,13 +424,13 @@
                     </svg>
                 </div>
 
-                <!-- Graphique SVG : comparaison du coût matériel des trois scénarios -->
-                <!-- Totaux = génotypage GDA-8 + iScan (Sc.3) + infrastructure IT, -->
+                <!-- Graphique SVG : comparaison du coût matériel des deux scénarios -->
+                <!-- Totaux = génotypage GDA-8 + iScan (Sc.2) + infrastructure IT, -->
                 <!-- alignés sur le tableau récapitulatif du budget.               -->
                 <h3 class="subHeading">Coût matériel total par scénario</h3>
                 <div class="chartWrapper">
                     <svg class="barChartSvg" viewBox="0 0 640 300" role="img"
-                         aria-label="Comparaison du budget matériel total des trois scénarios">
+                         aria-label="Comparaison du budget matériel total des deux scénarios">
 
                         <!-- Axe horizontal de base -->
                         <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
@@ -468,24 +442,19 @@
                         <text class="chartGridLabel" x="50" y="159">500K</text>
 
                         <!-- Barre scénario 1 : 599K€ (génotypage 265 + IT 334) -->
-                        <rect class="barRect barRectOne" x="120" y="136" width="100" height="114"></rect>
-                        <text class="barValue" x="170" y="126">599K€</text>
-                        <text class="barLabel" x="170" y="270">Sc.1 Sous-traitance</text>
+                        <rect class="barRect barRectOne" x="170" y="136" width="120" height="114"></rect>
+                        <text class="barValue" x="230" y="126">599K€</text>
+                        <text class="barLabel" x="230" y="270">Sc.1 Sous-traitance</text>
 
-                        <!-- Barre scénario 2 : 560K€ (génotypage 226 + IT 334) -->
-                        <rect class="barRect barRectTwo" x="290" y="144" width="100" height="106"></rect>
-                        <text class="barValue" x="340" y="134">560K€</text>
-                        <text class="barLabel" x="340" y="270">Sc.2 iScan existant</text>
-
-                        <!-- Barre scénario 3 : 813K€ (génotypage 226 + iScan 253 + IT 334) -->
-                        <rect class="barRect barRectThree" x="460" y="95" width="100" height="155"></rect>
-                        <text class="barValue" x="510" y="85">813K€</text>
-                        <text class="barLabel" x="510" y="270">Sc.3 iScan à acquérir</text>
+                        <!-- Barre scénario 2 : 813K€ (génotypage 226 + iScan 253 + IT 334) -->
+                        <rect class="barRect barRectThree" x="380" y="95" width="120" height="155"></rect>
+                        <text class="barValue" x="440" y="85">813K€</text>
+                        <text class="barLabel" x="440" y="270">Sc.2 iScan à acquérir</text>
                     </svg>
                 </div>
                 <p class="contextText">
                     Ces totaux n'additionnent que les postes strictement matériels :
-                    génotypage GDA-8, système iScan (scénario 3 uniquement) et
+                    génotypage GDA-8, système iScan (scénario 2 uniquement) et
                     infrastructure informatique (334 K€). Ils sont ainsi directement
                     raccord avec le tableau récapitulatif du budget. Les coûts RH, la
                     prestation web et la contingence s'ajoutent ensuite pour atteindre
@@ -734,8 +703,8 @@
             <div class="sectionInner">
                 <h2 class="sectionTitle">Chronogramme et budget</h2>
                 <p class="sectionIntro">
-                    Combinaison optimale : scénario génotypage 2 (iScan existant) +
-                    proposition RH 2 → environ 1 107 000 € sur 36 mois.
+                    Combinaison optimale : sous-traitance (scénario 1) +
+                    proposition RH 2 → environ 1 150 000 € sur 36 mois.
                 </p>
                 <p class="contextText">
                     Le budget total se compose de trois grands postes : le génotypage
@@ -750,9 +719,9 @@
                 <!-- Carte de mise en avant du budget optimal -->
                 <div class="highlightBox">
                     <p class="highlightLabel">Budget optimal recommandé</p>
-                    <p class="highlightValue">~1 107 000 €</p>
+                    <p class="highlightValue">~1 150 000 €</p>
                     <p class="highlightDetail">
-                        iScan existant + alternance/CIFRE · WGS POPgen gratuit · sur 36 mois
+                        Sous-traitance + alternance/CIFRE · WGS POPgen gratuit · sur 36 mois
                     </p>
                 </div>
 
@@ -764,19 +733,18 @@
                             <tr>
                                 <th scope="col">Catégorie</th>
                                 <th scope="col">Sc.1 Sous-traité</th>
-                                <th scope="col">Sc.2 iScan existant</th>
-                                <th scope="col">Sc.3 iScan à acquérir</th>
+                                <th scope="col">Sc.2 iScan à acquérir</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>Génotypage GDA-8</td><td>265 000 €</td><td>226 000 €</td><td>226 000 €</td></tr>
-                            <tr><td>Système iScan</td><td>0 €</td><td>0 €</td><td>253 000 €</td></tr>
-                            <tr><td>Infrastructure IT</td><td>334 000 €</td><td>334 000 €</td><td>334 000 €</td></tr>
-                            <tr><td>WGS POPgen</td><td>0 €</td><td>0 €</td><td>0 €</td></tr>
-                            <tr><td>RH Prop. 2 (CC)</td><td>411 000 €</td><td>411 000 €</td><td>411 000 €</td></tr>
-                            <tr><td>Prestation web + formation</td><td>35 000 €</td><td>35 000 €</td><td>35 000 €</td></tr>
-                            <tr><td>Contingence (10%)</td><td>104 500 €</td><td>100 600 €</td><td>125 900 €</td></tr>
-                            <tr class="dataTableTotal"><td>Total</td><td>~1 150 000 €</td><td>~1 107 000 €</td><td>~1 385 000 €</td></tr>
+                            <tr><td>Génotypage GDA-8</td><td>265 000 €</td><td>226 000 €</td></tr>
+                            <tr><td>Système iScan</td><td>0 €</td><td>253 000 €</td></tr>
+                            <tr><td>Infrastructure IT</td><td>334 000 €</td><td>334 000 €</td></tr>
+                            <tr><td>WGS POPgen</td><td>0 €</td><td>0 €</td></tr>
+                            <tr><td>RH Prop. 2 (CC)</td><td>411 000 €</td><td>411 000 €</td></tr>
+                            <tr><td>Prestation web + formation</td><td>35 000 €</td><td>35 000 €</td></tr>
+                            <tr><td>Contingence (10%)</td><td>104 500 €</td><td>125 900 €</td></tr>
+                            <tr class="dataTableTotal"><td>Total</td><td>~1 150 000 €</td><td>~1 385 000 €</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -916,8 +884,8 @@
                     <li class="conclusionItem">
                         <span class="conclusionMark" aria-hidden="true">✓</span>
                         <p class="conclusionText">
-                            La combinaison optimale (iScan existant + proposition RH 2)
-                            ramène le budget à environ 1 107 000 € sur 36 mois.
+                            La combinaison optimale (sous-traitance + proposition RH 2)
+                            ramène le budget à environ 1 150 000 € sur 36 mois.
                         </p>
                     </li>
                     <li class="conclusionItem">
