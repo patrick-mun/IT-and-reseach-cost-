@@ -385,38 +385,6 @@
                     </div>
                 </div>
 
-                <!-- Graphique SVG : comparaison du coût des trois scénarios -->
-                <h3 class="subHeading">Coût matériel total par scénario</h3>
-                <div class="chartWrapper">
-                    <svg class="barChartSvg" viewBox="0 0 640 300" role="img"
-                         aria-label="Comparaison du budget matériel total des trois scénarios">
-
-                        <!-- Axe horizontal de base -->
-                        <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
-
-                        <!-- Graduations de référence (en K€) -->
-                        <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
-                        <text class="chartGridLabel" x="50" y="64">1000K</text>
-                        <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
-                        <text class="chartGridLabel" x="50" y="159">500K</text>
-
-                        <!-- Barre scénario 1 : 724K€ -> hauteur proportionnelle -->
-                        <rect class="barRect barRectOne" x="120" y="113" width="100" height="137"></rect>
-                        <text class="barValue" x="170" y="103">724K€</text>
-                        <text class="barLabel" x="170" y="270">Sc.1 Sous-traitance</text>
-
-                        <!-- Barre scénario 2 : 685K€ -->
-                        <rect class="barRect barRectTwo" x="290" y="120" width="100" height="130"></rect>
-                        <text class="barValue" x="340" y="110">685K€</text>
-                        <text class="barLabel" x="340" y="270">Sc.2 iScan existant</text>
-
-                        <!-- Barre scénario 3 : 938K€ -->
-                        <rect class="barRect barRectThree" x="460" y="72" width="100" height="178"></rect>
-                        <text class="barValue" x="510" y="62">938K€</text>
-                        <text class="barLabel" x="510" y="270">Sc.3 iScan à acquérir</text>
-                    </svg>
-                </div>
-
                 <!-- Infrastructure informatique -->
                 <h3 class="subHeading">Infrastructure informatique</h3>
                 <div class="tableScroll">
@@ -473,6 +441,48 @@
                         <text class="chartXLabel" x="590" y="270">Phase 4+</text>
                     </svg>
                 </div>
+
+                <!-- Graphique SVG : comparaison du coût matériel des trois scénarios -->
+                <!-- Totaux = génotypage GDA-8 + iScan (Sc.3) + infrastructure IT, -->
+                <!-- alignés sur le tableau récapitulatif du budget.               -->
+                <h3 class="subHeading">Coût matériel total par scénario</h3>
+                <div class="chartWrapper">
+                    <svg class="barChartSvg" viewBox="0 0 640 300" role="img"
+                         aria-label="Comparaison du budget matériel total des trois scénarios">
+
+                        <!-- Axe horizontal de base -->
+                        <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
+
+                        <!-- Graduations de référence (en K€) -->
+                        <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
+                        <text class="chartGridLabel" x="50" y="64">1000K</text>
+                        <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
+                        <text class="chartGridLabel" x="50" y="159">500K</text>
+
+                        <!-- Barre scénario 1 : 599K€ (génotypage 265 + IT 334) -->
+                        <rect class="barRect barRectOne" x="120" y="136" width="100" height="114"></rect>
+                        <text class="barValue" x="170" y="126">599K€</text>
+                        <text class="barLabel" x="170" y="270">Sc.1 Sous-traitance</text>
+
+                        <!-- Barre scénario 2 : 560K€ (génotypage 226 + IT 334) -->
+                        <rect class="barRect barRectTwo" x="290" y="144" width="100" height="106"></rect>
+                        <text class="barValue" x="340" y="134">560K€</text>
+                        <text class="barLabel" x="340" y="270">Sc.2 iScan existant</text>
+
+                        <!-- Barre scénario 3 : 813K€ (génotypage 226 + iScan 253 + IT 334) -->
+                        <rect class="barRect barRectThree" x="460" y="95" width="100" height="155"></rect>
+                        <text class="barValue" x="510" y="85">813K€</text>
+                        <text class="barLabel" x="510" y="270">Sc.3 iScan à acquérir</text>
+                    </svg>
+                </div>
+                <p class="contextText">
+                    Ces totaux n'additionnent que les postes strictement matériels :
+                    génotypage GDA-8, système iScan (scénario 3 uniquement) et
+                    infrastructure informatique (334 K€). Ils sont ainsi directement
+                    raccord avec le tableau récapitulatif du budget. Les coûts RH, la
+                    prestation web et la contingence s'ajoutent ensuite pour atteindre
+                    le budget total du projet.
+                </p>
             </div>
         </section>
 
