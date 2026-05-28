@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projet Génome Réunion — plan de mise en place d'une structure AI : besoins matériels, humains et intégration de l'IA.">
+    <title>Projet Génome Réunion — Structure AI</title>
+
+    <!-- Feuille de style externe (aucun CSS inline) -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- ============================================================= -->
+    <!-- BARRE DE NAVIGATION                                           -->
+    <!-- ============================================================= -->
+    <header class="siteHeader">
+        <div class="navContainer">
+
+            <!-- Logo / titre court du projet -->
+            <a class="navBrand" href="#hero">
+                <span class="navBrandMark">GR</span>
+                <span class="navBrandText">Génome Réunion</span>
+            </a>
+
+            <!-- Bouton d'ouverture du menu sur mobile -->
+            <button class="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span class="navToggleBar"></span>
+                <span class="navToggleBar"></span>
+                <span class="navToggleBar"></span>
+            </button>
+
+            <!-- Liens d'ancrage vers les sections -->
+            <nav class="navMenu">
+                <ul class="navList">
+                    <li class="navItem"><a class="navLink" href="#architecture">Architecture</a></li>
+                    <li class="navItem"><a class="navLink" href="#phases">Phases</a></li>
+                    <li class="navItem"><a class="navLink" href="#materiel">Matériel</a></li>
+                    <li class="navItem"><a class="navLink" href="#humain">Ressources humaines</a></li>
+                    <li class="navItem"><a class="navLink" href="#ia">Intégration IA</a></li>
+                    <li class="navItem"><a class="navLink" href="#budget">Budget</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ========================================================= -->
+        <!-- SECTION HÉROS / CONTEXTE                                  -->
+        <!-- ========================================================= -->
+        <section class="heroSection" id="hero">
+            <div class="heroContent">
+                <p class="heroEyebrow">Évaluation des besoins matériels et humains · Mai 2026</p>
+                <h1 class="heroTitle">Projet Génome Réunion</h1>
+                <p class="heroSubtitle">
+                    Plan de mise en place d'une structure AI pour la création du
+                    premier référentiel génomique local de la population réunionnaise.
+                </p>
+                <p class="heroLead">
+                    Une réponse à la sous-représentation des populations non-européennes
+                    dans les bases internationales (gnomAD, 1000&nbsp;Genomes).
+                </p>
+                <div class="heroActions">
+                    <a class="buttonPrimary" href="#architecture">Découvrir l'architecture</a>
+                    <a class="buttonSecondary" href="#budget">Voir le budget</a>
+                </div>
+            </div>
+
+            <!-- Illustration SVG décorative : empilement des trois couches -->
+            <div class="heroVisual">
+                <svg class="heroLayersSvg" viewBox="0 0 320 280" role="img"
+                     aria-label="Schéma des trois couches du référentiel">
+                    <!-- Couche 1 : 2500 génotypages -->
+                    <ellipse class="layerEllipse layerEllipseBase" cx="160" cy="210" rx="140" ry="40"></ellipse>
+                    <text class="layerLabel" x="160" y="215">2500 génotypages SNP</text>
+                    <!-- Couche 2 : 100 familles -->
+                    <ellipse class="layerEllipse layerEllipseMid" cx="160" cy="140" rx="105" ry="32"></ellipse>
+                    <text class="layerLabel" x="160" y="145">100 familles nucléaires</text>
+                    <!-- Couche 3 : 350 WGS -->
+                    <ellipse class="layerEllipse layerEllipseTop" cx="160" cy="75" rx="70" ry="26"></ellipse>
+                    <text class="layerLabel" x="160" y="80">350 WGS (POPgen)</text>
+                </svg>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION ARCHITECTURE / CHIFFRES CLÉS                      -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock" id="architecture">
+            <div class="sectionInner">
+                <h2 class="sectionTitle">Architecture de la solution</h2>
+                <p class="sectionIntro">
+                    La méthodologie repose sur trois couches complémentaires.
+                    Le séquençage WGS des 350 individus est pris en charge par le
+                    consortium POPgen — son coût pour le laboratoire est nul.
+                </p>
+
+                <!-- Schéma de flux du référentiel en SVG -->
+                <div class="flowWrapper">
+                    <svg class="flowSvg" viewBox="0 0 760 360" role="img"
+                         aria-label="Flux de construction du référentiel génomique">
+
+                        <!-- Étape 1 : génotypage -->
+                        <rect class="flowBox flowBoxInput" x="40" y="20" width="300" height="60" rx="8"></rect>
+                        <text class="flowBoxText" x="190" y="46">2500 individus · puce GDA-8</text>
+                        <text class="flowBoxSub" x="190" y="66">1,9M SNP</text>
+
+                        <!-- Étape 1 bis : familles -->
+                        <rect class="flowBox flowBoxInput" x="420" y="20" width="300" height="60" rx="8"></rect>
+                        <text class="flowBoxText" x="570" y="46">100 familles nucléaires</text>
+                        <text class="flowBoxSub" x="570" y="66">~300 individus SNP</text>
+
+                        <!-- Flèches descendantes -->
+                        <line class="flowArrow" x1="190" y1="80" x2="190" y2="120"></line>
+                        <line class="flowArrow" x1="570" y1="80" x2="570" y2="120"></line>
+
+                        <!-- Étape 2 : analyses -->
+                        <rect class="flowBox flowBoxProcess" x="180" y="120" width="400" height="56" rx="8"></rect>
+                        <text class="flowBoxText" x="380" y="146">PCA · ADMIXTURE · IBD · ROH</text>
+                        <text class="flowBoxSub" x="380" y="166">Sélection hybride géo-ancestrale</text>
+
+                        <line class="flowArrow" x1="380" y1="176" x2="380" y2="216"></line>
+
+                        <!-- Étape 3 : WGS POPgen -->
+                        <rect class="flowBox flowBoxFree" x="200" y="216" width="360" height="56" rx="8"></rect>
+                        <text class="flowBoxText" x="380" y="242">350 WGS sélectionnés → POPgen</text>
+                        <text class="flowBoxSubFree" x="380" y="262">Séquençage GRATUIT (0 €)</text>
+
+                        <line class="flowArrow" x1="380" y1="272" x2="380" y2="312"></line>
+
+                        <!-- Étape 4 : référentiel -->
+                        <rect class="flowBox flowBoxOutput" x="160" y="312" width="440" height="40" rx="8"></rect>
+                        <text class="flowBoxTextLight" x="380" y="337">Référentiel variants + imputation + phasage réunionnais</text>
+                    </svg>
+                </div>
+
+                <!-- Tableau des chiffres clés -->
+                <h3 class="subHeading">Chiffres clés du projet</h3>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Paramètre</th>
+                                <th scope="col">Valeur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Cohorte populationnelle</td><td>2500 individus</td></tr>
+                            <tr><td>Module familial</td><td>100 familles (~300 individus)</td></tr>
+                            <tr><td>Sélection WGS</td><td>350 individus</td></tr>
+                            <tr><td>Séquençage WGS</td><td>POPgen — coût 0 €</td></tr>
+                            <tr><td>Puce SNP</td><td>GDA-8, ~1,9M SNP (Illumina)</td></tr>
+                            <tr><td>Total génotypages</td><td>~2800 puces</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Composantes de la plateforme sous forme de cartes -->
+                <h3 class="subHeading">Composantes de la plateforme</h3>
+                <div class="cardGrid">
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Génotypage</h4>
+                        <p class="featureCardText">Puce GDA-8 via iScan (Illumina).</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Analyse génomique</h4>
+                        <p class="featureCardText">PCA, ADMIXTURE, IBD, ROH — PLINK2, KING, SHAPEIT.</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Sélection WGS</h4>
+                        <p class="featureCardText">Score hybride géo-ancestral S_div (pipeline Python).</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Pipelines bioinfo</h4>
+                        <p class="featureCardText">QC, alignement, calling — Nextflow / Snakemake.</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Base de données</h4>
+                        <p class="featureCardText">Variants, métadonnées, fréquences — PostgreSQL + MongoDB.</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Interface clinique</h4>
+                        <p class="featureCardText">Portail web et API — React + FastAPI.</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Modules IA</h4>
+                        <p class="featureCardText">Pathogénicité, PGx, admixture, risque — PyTorch + TensorFlow.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION PHASES                                            -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock sectionAlt" id="phases">
+            <div class="sectionInner">
+                <h2 class="sectionTitle">Phases de mise en place</h2>
+                <p class="sectionIntro">
+                    Six phases s'enchaînent et se chevauchent sur 36 mois, des panels
+                    témoins jusqu'au portail web clinique.
+                </p>
+
+                <!-- Frise verticale des phases -->
+                <ol class="timelineList">
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 0</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Panels témoins</h3>
+                            <p class="timelineMeta">Semaines 1-12 · parallèle</p>
+                            <p class="timelineText">Accès et harmonisation des panels témoins (1000G, EGA, MGUA…).</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 1</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Validation externe</h3>
+                            <p class="timelineMeta">Semaines 1-10</p>
+                            <p class="timelineText">Validation externe et simulation sur 1000G high-coverage.</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 2</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Cohorte Réunion SNP</h3>
+                            <p class="timelineMeta">Semaines 11-20</p>
+                            <p class="timelineText">QC des 2500, PCA / ADMIXTURE puis sélection des 350 WGS.</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 3</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Module familial</h3>
+                            <p class="timelineMeta">Parallèle à la phase 2</p>
+                            <p class="timelineText">100 familles nucléaires + phasage haplotypique réunionnais.</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 4</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">WGS POPgen</h3>
+                            <p class="timelineMeta">Mois 6-12</p>
+                            <p class="timelineText">Séquençage POPgen, traitement et base de données variants.</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 5</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Modules IA & portail</h3>
+                            <p class="timelineMeta">Mois 8-18</p>
+                            <p class="timelineText">Modules IA, portail web et validation clinique.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION BESOINS MATÉRIELS                                 -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock" id="materiel">
+            <div class="sectionInner">
+                <h2 class="sectionTitle">Besoins matériels</h2>
+                <p class="sectionIntro">
+                    Le génotypage iScan constitue le principal coût biologique.
+                    Trois scénarios mutuellement exclusifs selon la situation de
+                    l'instrument au CHU.
+                </p>
+
+                <!-- Onglets de scénarios pilotés par le fichier JS -->
+                <div class="scenarioTabs">
+                    <div class="scenarioTabList" role="tablist" aria-label="Scénarios de génotypage">
+                        <button class="scenarioTab scenarioTabActive" type="button"
+                                role="tab" aria-selected="true" data-scenario="1">
+                            Scénario 1 · Sous-traitance
+                        </button>
+                        <button class="scenarioTab" type="button"
+                                role="tab" aria-selected="false" data-scenario="2">
+                            Scénario 2 · iScan existant
+                        </button>
+                        <button class="scenarioTab" type="button"
+                                role="tab" aria-selected="false" data-scenario="3">
+                            Scénario 3 · iScan à acquérir
+                        </button>
+                    </div>
+
+                    <!-- Panneau scénario 1 -->
+                    <div class="scenarioPanel scenarioPanelActive" role="tabpanel" data-scenario="1">
+                        <p class="scenarioDesc">
+                            Le prestataire (CNG Évry, GenomEast, CNRGH…) fournit tout :
+                            puces, réactifs, hybridation, scan et extraction IDAT.
+                            Le CHU ne paie qu'à la facture.
+                        </p>
+                        <div class="tableScroll">
+                            <table class="dataTable">
+                                <thead>
+                                    <tr><th scope="col">Poste</th><th scope="col">Quantité</th><th scope="col">Tarif</th><th scope="col">Total</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>GDA-8 — cohorte populationnelle</td><td>2500</td><td>~90 €/éch.</td><td>225 000 €</td></tr>
+                                    <tr><td>GDA-8 — module familial</td><td>300</td><td>~90 €/éch.</td><td>27 000 €</td></tr>
+                                    <tr><td>Réplicats QC (+5%)</td><td>140</td><td>~90 €/éch.</td><td>12 600 €</td></tr>
+                                    <tr class="dataTableTotal"><td>Total scénario 1</td><td>2940</td><td>—</td><td>~265 000 €</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panneau scénario 2 -->
+                    <div class="scenarioPanel" role="tabpanel" data-scenario="2" hidden>
+                        <p class="scenarioDesc">
+                            L'instrument est déjà en place. Le CHU achète uniquement
+                            les consommables directement chez Illumina.
+                        </p>
+                        <div class="tableScroll">
+                            <table class="dataTable">
+                                <thead>
+                                    <tr><th scope="col">Poste</th><th scope="col">Quantité</th><th scope="col">Tarif</th><th scope="col">Total</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Puces GDA-8 (volume ≥ 500)</td><td>2940</td><td>~65 €/éch.</td><td>191 100 €</td></tr>
+                                    <tr><td>Réactifs chimie Infinium</td><td>2940</td><td>~12 €/éch.</td><td>35 300 €</td></tr>
+                                    <tr class="dataTableTotal"><td>Total scénario 2</td><td>—</td><td>—</td><td>~226 000 €</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panneau scénario 3 -->
+                    <div class="scenarioPanel" role="tabpanel" data-scenario="3" hidden>
+                        <p class="scenarioDesc">
+                            Le CHU n'a pas d'iScan et souhaite l'internaliser durablement.
+                            L'instrument amortit son coût sur les projets futurs.
+                        </p>
+                        <div class="tableScroll">
+                            <table class="dataTable">
+                                <thead>
+                                    <tr><th scope="col">Poste</th><th scope="col">Coût</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>iScan System (scanner neuf)</td><td>150 000 €</td></tr>
+                                    <tr><td>AutoLoader 2.x + ILASS</td><td>70 000 €</td></tr>
+                                    <tr><td>Installation + qualification IQ/OQ/PQ</td><td>15 000 €</td></tr>
+                                    <tr><td>Maintenance 1ère année</td><td>18 000 €</td></tr>
+                                    <tr><td>Consommables (idem scénario 2)</td><td>226 000 €</td></tr>
+                                    <tr class="dataTableTotal"><td>Total scénario 3</td><td>~479 000 €</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphique SVG : comparaison du coût des trois scénarios -->
+                <h3 class="subHeading">Coût matériel total par scénario</h3>
+                <div class="chartWrapper">
+                    <svg class="barChartSvg" viewBox="0 0 640 300" role="img"
+                         aria-label="Comparaison du budget matériel total des trois scénarios">
+
+                        <!-- Axe horizontal de base -->
+                        <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
+
+                        <!-- Graduations de référence (en K€) -->
+                        <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
+                        <text class="chartGridLabel" x="50" y="64">1000K</text>
+                        <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
+                        <text class="chartGridLabel" x="50" y="159">500K</text>
+
+                        <!-- Barre scénario 1 : 724K€ -> hauteur proportionnelle -->
+                        <rect class="barRect barRectOne" x="120" y="113" width="100" height="137"></rect>
+                        <text class="barValue" x="170" y="103">724K€</text>
+                        <text class="barLabel" x="170" y="270">Sc.1 Sous-traitance</text>
+
+                        <!-- Barre scénario 2 : 685K€ -->
+                        <rect class="barRect barRectTwo" x="290" y="120" width="100" height="130"></rect>
+                        <text class="barValue" x="340" y="110">685K€</text>
+                        <text class="barLabel" x="340" y="270">Sc.2 iScan existant</text>
+
+                        <!-- Barre scénario 3 : 938K€ -->
+                        <rect class="barRect barRectThree" x="460" y="72" width="100" height="178"></rect>
+                        <text class="barValue" x="510" y="62">938K€</text>
+                        <text class="barLabel" x="510" y="270">Sc.3 iScan à acquérir</text>
+                    </svg>
+                </div>
+
+                <!-- Infrastructure informatique -->
+                <h3 class="subHeading">Infrastructure informatique</h3>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr><th scope="col">Composant</th><th scope="col">Qté</th><th scope="col">Total</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Serveurs CPU (analyse QC/PCA)</td><td>2</td><td>16 000 €</td></tr>
+                            <tr><td>Serveurs HPC GPU (pipelines)</td><td>4</td><td>100 000 €</td></tr>
+                            <tr><td>Serveurs GPU A100 (IA/ML)</td><td>2</td><td>80 000 €</td></tr>
+                            <tr><td>Stockage NVMe 100TB (NAS)</td><td>2</td><td>60 000 €</td></tr>
+                            <tr><td>Réseau 10/25Gbps + switch</td><td>1</td><td>18 000 €</td></tr>
+                            <tr><td>UPS + climatisation</td><td>1</td><td>20 000 €</td></tr>
+                            <tr><td>Sécurité + sauvegarde offsite</td><td>1</td><td>15 000 €</td></tr>
+                            <tr><td>Logiciels + licences</td><td>1</td><td>25 000 €</td></tr>
+                            <tr class="dataTableTotal"><td>Total infrastructure IT</td><td>—</td><td>334 000 €</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Graphique SVG : évolution du stockage -->
+                <h3 class="subHeading">Évolution du stockage (TB)</h3>
+                <div class="chartWrapper">
+                    <svg class="lineChartSvg" viewBox="0 0 640 300" role="img"
+                         aria-label="Courbe d'évolution du stockage par phase">
+
+                        <!-- Axes -->
+                        <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
+                        <line class="chartAxis" x1="60" y1="40" x2="60" y2="250"></line>
+
+                        <!-- Lignes de grille horizontales -->
+                        <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
+                        <text class="chartGridLabel" x="50" y="64">100</text>
+                        <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
+                        <text class="chartGridLabel" x="50" y="159">50</text>
+
+                        <!-- Courbe d'évolution -->
+                        <polyline class="lineSeries"
+                                  points="110,246 230,231 350,193 470,136 590,60"></polyline>
+
+                        <!-- Points de données -->
+                        <circle class="linePoint" cx="110" cy="246" r="5"></circle>
+                        <circle class="linePoint" cx="230" cy="231" r="5"></circle>
+                        <circle class="linePoint" cx="350" cy="193" r="5"></circle>
+                        <circle class="linePoint" cx="470" cy="136" r="5"></circle>
+                        <circle class="linePoint" cx="590" cy="60" r="5"></circle>
+
+                        <!-- Étiquettes de l'axe horizontal -->
+                        <text class="chartXLabel" x="110" y="270">Phase 0</text>
+                        <text class="chartXLabel" x="230" y="270">Phase 1</text>
+                        <text class="chartXLabel" x="350" y="270">Phase 2</text>
+                        <text class="chartXLabel" x="470" y="270">Phase 3</text>
+                        <text class="chartXLabel" x="590" y="270">Phase 4+</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION RESSOURCES HUMAINES                               -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock sectionAlt" id="humain">
+            <div class="sectionInner">
+                <h2 class="sectionTitle">Ressources humaines</h2>
+                <p class="sectionIntro">
+                    Projet de 36 mois. Tous les coûts sont exprimés en coût employeur,
+                    charges patronales comprises (~43% du brut). Trois propositions de
+                    montage d'équipe.
+                </p>
+
+                <!-- Cartes de propositions RH -->
+                <div class="propositionGrid">
+                    <article class="propositionCard">
+                        <h3 class="propositionTitle">Proposition 1</h3>
+                        <p class="propositionSubtitle">Stages + CDD + contrat doctoral</p>
+                        <p class="propositionPrice">452 000 €</p>
+                        <p class="propositionDelta">−20% vs référence</p>
+                        <p class="propositionText">
+                            Montage le plus simple, sans délai administratif particulier.
+                            Stagiaires Epitech convertis en CDD IE1.
+                        </p>
+                    </article>
+
+                    <article class="propositionCard propositionCardFeatured">
+                        <span class="propositionBadge">Recommandée</span>
+                        <h3 class="propositionTitle">Proposition 2</h3>
+                        <p class="propositionSubtitle">Alternance + CIFRE</p>
+                        <p class="propositionPrice">411 000 €</p>
+                        <p class="propositionDelta">−28% vs référence</p>
+                        <p class="propositionText">
+                            Meilleur équilibre coût/risque. Alternance quasi-exonérée de
+                            charges et CIFRE subventionné par l'ANRT (14 000 €/an).
+                        </p>
+                    </article>
+
+                    <article class="propositionCard">
+                        <h3 class="propositionTitle">Proposition 3</h3>
+                        <p class="propositionSubtitle">Maximum alternance</p>
+                        <p class="propositionPrice">372 000 €</p>
+                        <p class="propositionDelta">−34% vs référence</p>
+                        <p class="propositionText">
+                            Budget minimal : trois alternants + CIFRE + coordinateur à
+                            80% ETP. Supervision intensive requise.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- Graphique SVG : répartition du budget RH (Proposition 2) -->
+                <h3 class="subHeading">Répartition du budget RH — Proposition 2</h3>
+                <div class="chartWrapper">
+                    <svg class="hbarChartSvg" viewBox="0 0 640 280" role="img"
+                         aria-label="Répartition du budget RH de la proposition 2 par poste">
+
+                        <!-- Coordinateur IR2 : 48% -->
+                        <text class="hbarLabel" x="10" y="42">Coordinateur IR2</text>
+                        <rect class="hbarTrack" x="230" y="26" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillOne" x="230" y="26" width="182" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="420" y="42">197 340 € · 48%</text>
+
+                        <!-- Doctorant CIFRE : 23% -->
+                        <text class="hbarLabel" x="10" y="92">Doctorant CIFRE</text>
+                        <rect class="hbarTrack" x="230" y="76" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillTwo" x="230" y="76" width="87" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="325" y="92">95 292 € · 23%</text>
+
+                        <!-- Alternant Data Engineer : 16% -->
+                        <text class="hbarLabel" x="10" y="142">Alternant Data Eng.</text>
+                        <rect class="hbarTrack" x="230" y="126" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillThree" x="230" y="126" width="61" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="299" y="142">65 150 € · 16%</text>
+
+                        <!-- Alternant IA : 11% -->
+                        <text class="hbarLabel" x="10" y="192">Alternant IA</text>
+                        <rect class="hbarTrack" x="230" y="176" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillFour" x="230" y="176" width="42" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="280" y="192">43 300 € · 11%</text>
+
+                        <!-- Stage DevOps : 2% -->
+                        <text class="hbarLabel" x="10" y="242">Stage DevOps</text>
+                        <rect class="hbarTrack" x="230" y="226" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillFive" x="230" y="226" width="9" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="247" y="242">9 540 € · 2%</text>
+                    </svg>
+                </div>
+
+                <!-- Tableau comparatif des propositions -->
+                <h3 class="subHeading">Comparaison des propositions</h3>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Critère</th>
+                                <th scope="col">Référence</th>
+                                <th scope="col">Prop. 1</th>
+                                <th scope="col">Prop. 2</th>
+                                <th scope="col">Prop. 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Coût total CC</td><td>567 000 €</td><td>452 000 €</td><td>411 000 €</td><td>372 000 €</td></tr>
+                            <tr><td>Réduction</td><td>—</td><td>−20%</td><td>−28%</td><td>−34%</td></tr>
+                            <tr><td>Complexité admin.</td><td>Faible</td><td>Faible</td><td>Modérée</td><td>Élevée</td></tr>
+                            <tr><td>Risque supervision</td><td>Faible</td><td>Modéré</td><td>Modéré</td><td>Élevé</td></tr>
+                            <tr><td>Délai de démarrage</td><td>1-2 mois</td><td>1-2 mois</td><td>2-3 mois</td><td>3-4 mois</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION INTÉGRATION IA                                    -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock" id="ia">
+            <div class="sectionInner">
+                <h2 class="sectionTitle">Intégration de l'IA</h2>
+                <p class="sectionIntro">
+                    Quatre modules d'IA valorisent cliniquement le référentiel
+                    génomique réunionnais.
+                </p>
+
+                <div class="cardGrid">
+                    <article class="moduleCard">
+                        <span class="moduleNumber">01</span>
+                        <h3 class="moduleTitle">Pathogénicité des variants</h3>
+                        <p class="moduleText">
+                            Graph Neural Networks entraînés sur ClinVar, COSMIC et
+                            variants locaux. Cible : AUC ≥ 0,85.
+                        </p>
+                    </article>
+                    <article class="moduleCard">
+                        <span class="moduleNumber">02</span>
+                        <h3 class="moduleTitle">Pharmacogénétique × admixture</h3>
+                        <p class="moduleText">
+                            Random Forest + XGBoost sur CYP2C19, CYP2D6, CYP3A4/5,
+                            SLCO1B1. Recommandation thérapeutique personnalisée.
+                        </p>
+                    </article>
+                    <article class="moduleCard">
+                        <span class="moduleNumber">03</span>
+                        <h3 class="moduleTitle">Analyse d'admixture</h3>
+                        <p class="moduleText">
+                            Autoencoders + clustering HDBSCAN sur scores ADMIXTURE,
+                            PCA, IBD et ROH. Profils par individu.
+                        </p>
+                    </article>
+                    <article class="moduleCard">
+                        <span class="moduleNumber">04</span>
+                        <h3 class="moduleTitle">Polygenic Risk Score</h3>
+                        <p class="moduleText">
+                            PRS recalibrés localement (diabète T2, HTA, cardiopathies)
+                            pour une prévention stratifiée.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- Pile technique IA -->
+                <h3 class="subHeading">Stack technique IA / MLOps</h3>
+                <div class="stackGrid">
+                    <div class="stackColumn">
+                        <h4 class="stackColumnTitle">Frameworks</h4>
+                        <ul class="stackList">
+                            <li class="stackTag">PyTorch 2.x</li>
+                            <li class="stackTag">TensorFlow 2.x</li>
+                            <li class="stackTag">scikit-learn</li>
+                            <li class="stackTag">XGBoost</li>
+                        </ul>
+                    </div>
+                    <div class="stackColumn">
+                        <h4 class="stackColumnTitle">MLOps</h4>
+                        <ul class="stackList">
+                            <li class="stackTag">MLflow</li>
+                            <li class="stackTag">Kubeflow</li>
+                            <li class="stackTag">ONNX Runtime</li>
+                            <li class="stackTag">Prometheus + Grafana</li>
+                        </ul>
+                    </div>
+                    <div class="stackColumn">
+                        <h4 class="stackColumnTitle">Déploiement</h4>
+                        <ul class="stackList">
+                            <li class="stackTag">Docker + Kubernetes</li>
+                            <li class="stackTag">GitLab CI/CD</li>
+                            <li class="stackTag">FastAPI + React</li>
+                            <li class="stackTag">ELK Stack</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION BUDGET                                            -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock sectionAlt" id="budget">
+            <div class="sectionInner">
+                <h2 class="sectionTitle">Chronogramme et budget</h2>
+                <p class="sectionIntro">
+                    Combinaison optimale : scénario génotypage 2 (iScan existant) +
+                    proposition RH 2 → environ 1 107 000 € sur 36 mois.
+                </p>
+
+                <!-- Carte de mise en avant du budget optimal -->
+                <div class="highlightBox">
+                    <p class="highlightLabel">Budget optimal recommandé</p>
+                    <p class="highlightValue">~1 107 000 €</p>
+                    <p class="highlightDetail">
+                        iScan existant + alternance/CIFRE · WGS POPgen gratuit · sur 36 mois
+                    </p>
+                </div>
+
+                <!-- Tableau récapitulatif (Proposition RH 2) -->
+                <h3 class="subHeading">Récapitulatif — Proposition RH 2</h3>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Catégorie</th>
+                                <th scope="col">Sc.1 Sous-traité</th>
+                                <th scope="col">Sc.2 iScan existant</th>
+                                <th scope="col">Sc.3 iScan à acquérir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Génotypage GDA-8</td><td>265 000 €</td><td>226 000 €</td><td>226 000 €</td></tr>
+                            <tr><td>Système iScan</td><td>0 €</td><td>0 €</td><td>253 000 €</td></tr>
+                            <tr><td>Infrastructure IT</td><td>334 000 €</td><td>334 000 €</td><td>334 000 €</td></tr>
+                            <tr><td>WGS POPgen</td><td>0 €</td><td>0 €</td><td>0 €</td></tr>
+                            <tr><td>RH Prop. 2 (CC)</td><td>411 000 €</td><td>411 000 €</td><td>411 000 €</td></tr>
+                            <tr><td>Prestation web + formation</td><td>35 000 €</td><td>35 000 €</td><td>35 000 €</td></tr>
+                            <tr><td>Contingence (10%)</td><td>104 500 €</td><td>100 600 €</td><td>125 900 €</td></tr>
+                            <tr class="dataTableTotal"><td>Total</td><td>~1 150 000 €</td><td>~1 107 000 €</td><td>~1 385 000 €</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Jalons clés -->
+                <h3 class="subHeading">Jalons clés</h3>
+                <ul class="milestoneList">
+                    <li class="milestoneItem"><span class="milestoneMonth">M3</span> Infrastructure IT opérationnelle</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M5</span> Génotypage des 2500 individus lancé</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M9</span> Liste 350 WGS gelée → envoi POPgen</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M14</span> Module familial phasé + haplotypes</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M22</span> Premiers VCF/BAM + base variants v1</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M26</span> Modules IA 1+2 validés (AUC ≥ 0,85)</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M30</span> Modules IA 3+4 opérationnels</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M34</span> Portail web clinique en production</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M36</span> Validation clinique + publication</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================= -->
+    <!-- PIED DE PAGE                                                  -->
+    <!-- ============================================================= -->
+    <footer class="siteFooter">
+        <div class="footerInner">
+            <p class="footerTitle">Projet Génome Réunion</p>
+            <p class="footerText">
+                Première base de données génomiques locale adaptée à la population
+                réunionnaise.
+            </p>
+            <p class="footerMeta">
+                Document généré : Mai 2026 · Basé sur METHODOLOGY_selection_V3_5 + Projet Génome PMU
+            </p>
+        </div>
+    </footer>
+
+    <!-- Script externe (aucun JS inline) -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
