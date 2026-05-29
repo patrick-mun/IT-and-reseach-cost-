@@ -51,83 +51,109 @@
     <main>
 
         <!-- ========================================================= -->
-        <!-- SECTION HÉROS / CONTEXTE                                  -->
+        <!-- PAGE DE GARDE DU DOSSIER                                  -->
         <!-- ========================================================= -->
-        <section class="heroSection" id="hero">
-            <div class="heroContent">
-                <p class="heroEyebrow">Évaluation des besoins matériels et humains · Mai 2026</p>
-                <h1 class="heroTitle">Projet Génome Réunion</h1>
-                <p class="heroSubtitle">
-                    Plan de mise en place pour la création du
-                    premier référentiel génomique local de la population réunionnaise.
-                </p>
-                <p class="heroLead">
-                    Une réponse à la sous-représentation des populations non-européennes
-                    dans les bases internationales (gnomAD, 1000&nbsp;Genomes).
-                </p>
-                <!-- Synthèse décisionnelle pour l'évaluateur -->
-                <div class="decisionSummary">
-                    <h2 class="decisionSummaryTitle">En bref — ce que ce document vous demande</h2>
-                    <p class="decisionSummaryIntro">Le projet nécessite une décision sur trois points :</p>
-                    <ol class="decisionList">
-                        <li><strong>Génotypage</strong> — sous-traiter <span class="decisionCost">(265 000 €)</span> ou acquérir un iScan <span class="decisionCost">(479 000 €)</span> ?</li>
-                        <li><strong>Infrastructure IT</strong> — cloud hybride OPEX <span class="decisionCost">(270 000 €)</span> ou on-premise CAPEX <span class="decisionCost">(334 000 €)</span> ?</li>
-                        <li><strong>Ressources humaines</strong> — quelle proposition de montage d'équipe retenir ?</li>
-                    </ol>
-                    <table class="decisionTable">
-                        <thead>
-                            <tr>
-                                <th>Scénario</th>
-                                <th>Génotypage</th>
-                                <th>Infrastructure</th>
-                                <th>Budget total 36 mois</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="decisionRowOptimal">
-                                <td><strong>Optimal</strong></td>
-                                <td>Sous-traitance</td>
-                                <td>Cloud hybride</td>
-                                <td><strong>~1 403 000 €</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Maximal</strong></td>
-                                <td>iScan neuf</td>
-                                <td>On-premise</td>
-                                <td><strong>~1 709 000 €</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p class="decisionNote">Le séquençage WGS des 350 individus est pris en charge gratuitement par POPgen.</p>
+        <section class="coverPage" id="hero">
+
+            <!-- En-tête : type de document, titre, objet + visuel -->
+            <div class="coverTop">
+                <div class="coverHeading">
+                    <p class="coverDocType">Dossier de faisabilité · Évaluation des besoins</p>
+                    <h1 class="coverTitle">Projet Génome Réunion</h1>
+                    <p class="coverSubtitle">
+                        Mise en place du premier référentiel génomique local
+                        de la population réunionnaise.
+                    </p>
+                    <p class="coverContext">
+                        Une réponse à la sous-représentation des populations non-européennes
+                        dans les bases internationales (gnomAD, 1000&nbsp;Genomes).
+                    </p>
                 </div>
 
-                <div class="heroActions">
-                    <a class="buttonPrimary" href="#architecture">Découvrir l'architecture</a>
-                    <a class="buttonSecondary" href="#budget">Voir le budget</a>
+                <!-- Visuel : entonnoir du référentiel (du général au sélectionné) -->
+                <div class="coverVisual">
+                    <svg class="heroLayersSvg" viewBox="0 0 320 280" role="img"
+                         aria-label="Schéma des trois couches du référentiel">
+                        <!-- Étape 1 : 2500 génotypages — la plus large, en haut -->
+                        <ellipse class="layerEllipse layerEllipseBase" cx="160" cy="70" rx="140" ry="40"></ellipse>
+                        <text class="layerLabel" x="160" y="75">2500 génotypages SNP</text>
+                        <!-- Étape 2 : 100 familles — intermédiaire -->
+                        <ellipse class="layerEllipse layerEllipseMid" cx="160" cy="148" rx="105" ry="32"></ellipse>
+                        <text class="layerLabel" x="160" y="153">100 familles nucléaires</text>
+                        <!-- Étape 3 : 350 WGS — la plus petite, en bas -->
+                        <ellipse class="layerEllipse layerEllipseTop" cx="160" cy="215" rx="70" ry="26"></ellipse>
+                        <text class="layerLabel" x="160" y="220">350 WGS (POPgen)</text>
+                    </svg>
                 </div>
-
-                <!-- Bannière lien externe vers la présentation complète du projet -->
-                <a class="projectBanner" href="https://patrick-mun.github.io/genome_reunion/" target="_blank" rel="noopener">
-                    <span class="projectBannerLabel">Voir la présentation complète du projet</span>
-                    <span class="projectBannerArrow" aria-hidden="true">→</span>
-                </a>
             </div>
 
-            <!-- Illustration SVG décorative : entonnoir du référentiel (du général au sélectionné) -->
-            <div class="heroVisual">
-                <svg class="heroLayersSvg" viewBox="0 0 320 280" role="img"
-                     aria-label="Schéma des trois couches du référentiel">
-                    <!-- Étape 1 : 2500 génotypages — la plus large, en haut -->
-                    <ellipse class="layerEllipse layerEllipseBase" cx="160" cy="70" rx="140" ry="40"></ellipse>
-                    <text class="layerLabel" x="160" y="75">2500 génotypages SNP</text>
-                    <!-- Étape 2 : 100 familles — intermédiaire -->
-                    <ellipse class="layerEllipse layerEllipseMid" cx="160" cy="148" rx="105" ry="32"></ellipse>
-                    <text class="layerLabel" x="160" y="153">100 familles nucléaires</text>
-                    <!-- Étape 3 : 350 WGS — la plus petite, en bas -->
-                    <ellipse class="layerEllipse layerEllipseTop" cx="160" cy="215" rx="70" ry="26"></ellipse>
-                    <text class="layerLabel" x="160" y="220">350 WGS (POPgen)</text>
-                </svg>
+            <!-- Métadonnées du dossier -->
+            <dl class="coverMeta">
+                <div class="coverMetaItem">
+                    <dt>Objet</dt>
+                    <dd>Besoins matériels, humains et intégration de l'IA</dd>
+                </div>
+                <div class="coverMetaItem">
+                    <dt>Date</dt>
+                    <dd>Mai 2026</dd>
+                </div>
+                <div class="coverMetaItem">
+                    <dt>Durée du projet</dt>
+                    <dd>36 mois</dd>
+                </div>
+                <div class="coverMetaItem">
+                    <dt>Séquençage WGS</dt>
+                    <dd>Pris en charge par POPgen (0 €)</dd>
+                </div>
+            </dl>
+
+            <!-- Synthèse décisionnelle pour l'évaluateur -->
+            <div class="decisionSummary">
+                <h2 class="decisionSummaryTitle">En bref — ce que ce document vous demande</h2>
+                <p class="decisionSummaryIntro">Le projet nécessite une décision sur trois points :</p>
+                <ol class="decisionList">
+                    <li><strong>Génotypage</strong> — sous-traiter <span class="decisionCost">(265 000 €)</span> ou acquérir un iScan <span class="decisionCost">(479 000 €)</span> ?</li>
+                    <li><strong>Infrastructure IT</strong> — cloud hybride OPEX <span class="decisionCost">(270 000 €)</span> ou on-premise CAPEX <span class="decisionCost">(334 000 €)</span> ?</li>
+                    <li><strong>Ressources humaines</strong> — quelle proposition de montage d'équipe retenir ?</li>
+                </ol>
+                <table class="decisionTable">
+                    <thead>
+                        <tr>
+                            <th>Scénario</th>
+                            <th>Génotypage</th>
+                            <th>Infrastructure</th>
+                            <th>Budget total 36 mois</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="decisionRowOptimal">
+                            <td><strong>Optimal</strong></td>
+                            <td>Sous-traitance</td>
+                            <td>Cloud hybride</td>
+                            <td><strong>~1 403 000 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maximal</strong></td>
+                            <td>iScan neuf</td>
+                            <td>On-premise</td>
+                            <td><strong>~1 709 000 €</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="decisionNote">Le séquençage WGS des 350 individus est pris en charge gratuitement par POPgen.</p>
             </div>
+
+            <!-- Navigation interne du dossier -->
+            <div class="heroActions">
+                <a class="buttonPrimary" href="#architecture">Méthodologie</a>
+                <a class="buttonSecondary" href="#budget">Budget détaillé</a>
+            </div>
+
+            <!-- Bannière lien externe vers la présentation complète du projet -->
+            <a class="projectBanner" href="https://patrick-mun.github.io/genome_reunion/" target="_blank" rel="noopener">
+                <span class="projectBannerLabel">Voir la présentation complète du projet</span>
+                <span class="projectBannerArrow" aria-hidden="true">→</span>
+            </a>
         </section>
 
         <!-- ========================================================= -->

@@ -162,44 +162,77 @@ a:hover {
 
 
 /* -----------------------------------------------------------------
-   4. SECTION HÉROS
+   4. PAGE DE GARDE DU DOSSIER
    ----------------------------------------------------------------- */
-.heroSection {
+.coverPage {
     max-width: var(--maxWidth);
     margin: 0 auto;
-    padding: 4rem 1.25rem;
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 2.5rem;
-    align-items: center;
+    padding: 3.5rem 1.25rem 4rem;
 }
 
-.heroEyebrow {
+/* En-tête : titre à gauche, visuel à droite */
+.coverTop {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding-bottom: 1.75rem;
+    border-bottom: 2px solid var(--colorBorder);
+}
+
+.coverDocType {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--colorAccent);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
 }
 
-.heroTitle {
+.coverTitle {
     font-size: 2.8rem;
     line-height: 1.1;
     color: var(--colorPrimaryDark);
-    margin-bottom: 1rem;
+    margin-bottom: 0.85rem;
 }
 
-.heroSubtitle {
-    font-size: 1.25rem;
+.coverSubtitle {
+    font-size: 1.2rem;
     color: var(--colorInk);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
 }
 
-.heroLead {
+.coverContext {
     color: var(--colorMuted);
-    margin-bottom: 1.75rem;
-    max-width: 38ch;
+    max-width: 46ch;
+}
+
+.coverVisual {
+    display: flex;
+    justify-content: center;
+}
+
+/* Métadonnées du dossier (objet, date, durée…) */
+.coverMeta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    padding: 1.5rem 0 2rem;
+}
+
+.coverMetaItem dt {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 700;
+    color: var(--colorMuted);
+    margin-bottom: 0.25rem;
+}
+
+.coverMetaItem dd {
+    font-size: 0.95rem;
+    color: var(--colorInk);
+    font-weight: 600;
 }
 
 /* Encart de synthèse décisionnelle dans le hero */
@@ -370,11 +403,6 @@ a:hover {
 .buttonSecondary:hover {
     background-color: var(--colorSurfaceAlt);
     text-decoration: none;
-}
-
-.heroVisual {
-    display: flex;
-    justify-content: center;
 }
 
 .heroLayersSvg {
@@ -1138,14 +1166,24 @@ a:hover {
         height: 36px;
     }
 
-    /* Le héros passe en une seule colonne */
-    .heroSection {
+    /* La page de garde passe en une seule colonne */
+    .coverTop {
         grid-template-columns: 1fr;
-        padding: 3rem 1.25rem;
+        gap: 1.5rem;
     }
 
-    .heroTitle {
+    .coverMeta {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .coverTitle {
         font-size: 2.2rem;
+    }
+
+    /* Visuel réduit et placé après le titre */
+    .coverVisual .heroLayersSvg {
+        max-width: 260px;
     }
 
     /* Affichage du bouton hamburger */
