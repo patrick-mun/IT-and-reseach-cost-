@@ -327,6 +327,7 @@ a:hover {
     color: var(--colorInk);
     max-width: 70ch;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 /* Encart d'information mis en évidence (point crucial, à retenir) */
