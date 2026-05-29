@@ -279,6 +279,37 @@ a:hover {
     font-style: italic;
 }
 
+/* Bannière lien vers la présentation externe du projet */
+.projectBanner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+    padding: 0.9rem 1.25rem;
+    background-color: var(--colorPrimaryDark);
+    border-radius: var(--radius);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+}
+
+.projectBanner:hover {
+    background-color: var(--colorPrimary);
+    text-decoration: none;
+    color: #fff;
+}
+
+.projectBannerArrow {
+    font-size: 1.1rem;
+    transition: transform 0.15s ease;
+}
+
+.projectBanner:hover .projectBannerArrow {
+    transform: translateX(4px);
+}
+
 .heroActions {
     display: flex;
     gap: 0.85rem;
