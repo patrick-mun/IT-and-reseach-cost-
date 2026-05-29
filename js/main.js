@@ -146,10 +146,9 @@
             });
         });
 
-        // Cas d'un accès direct via une URL contenant déjà une ancre.
-        if (window.location.hash) {
-            openTargetSection(window.location.hash);
-        }
+        // Volontairement, on n'ouvre PAS la section au chargement même si
+        // l'URL contient une ancre : la page doit toujours s'afficher
+        // entièrement repliée.
     }
 
     /* -------------------------------------------------------------
