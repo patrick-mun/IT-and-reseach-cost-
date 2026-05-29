@@ -476,6 +476,24 @@ a:hover {
     margin-bottom: 2rem;
 }
 
+/* Consigne indiquant que les sections sont dépliables */
+.foldHint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--colorMuted);
+    text-align: center;
+}
+
+.foldHintIcon {
+    color: var(--colorAccent);
+    font-size: 1rem;
+}
+
 /* ---- Sections repliables (accordéon natif <details>) ---- */
 /* L'alternance de fond (sectionAlt) sépare déjà les sections :
    une fine bordure suffit comme repère. */
