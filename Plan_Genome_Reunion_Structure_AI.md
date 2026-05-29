@@ -1,5 +1,5 @@
 # PROJET GÉNOME RÉUNION
-## Plan de mise en place d'une structure AI
+## Plan de mise en place économique
 **Évaluation des besoins en matériels et personnels** | *Mai 2026*
 
 ---
