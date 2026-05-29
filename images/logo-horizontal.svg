@@ -13,6 +13,6 @@
     <circle cx="84" cy="24" r="2.6" fill="#1E6E8C" stroke="none"></circle>
     <circle cx="84" cy="40" r="2.6" fill="#E8654A" stroke="none"></circle>
   </g>
-  <text x="132" y="56" font-weight="700" font-size="31" letter-spacing="0.2" fill="#0F3A56">Génome <tspan font-weight="500">Réunion</tspan></text>
-  <text x="133" y="76" font-weight="600" font-size="10.5" letter-spacing="3.4" fill="#1E6E8C">RÉFÉRENTIEL GÉNOMIQUE · LA RÉUNION</text>
+  <text x="132" y="56" font-weight="700" font-size="48" letter-spacing="0.2" fill="#0F3A56">Génome <tspan font-weight="500">Réunion</tspan></text>
+  <text x="133" y="76" font-weight="600" font-size="14" letter-spacing="3.4" fill="#1E6E8C">RÉFÉRENTIEL GÉNOMIQUE · LA RÉUNION</text>
 </svg>
