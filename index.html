@@ -388,6 +388,81 @@
                     </table>
                 </div>
 
+                <!-- Alternative : infrastructure cloud hybride -->
+                <h3 class="subHeading">Alternative : infrastructure cloud hybride</h3>
+                <p class="contextText">
+                    L'infrastructure ci-dessus peut être portée dans le cloud plutôt
+                    qu'achetée en propre. Pour des données génomiques (données de santé),
+                    la contrainte structurante est réglementaire : l'hébergement doit
+                    être assuré par un prestataire certifié HDS (Hébergeur de Données de
+                    Santé) et les données rester dans l'Union européenne.
+                </p>
+                <p class="contextText">
+                    Le modèle recommandé est hybride : stockage HDS souverain pour les
+                    données sensibles et calcul GPU mobilisé à la demande (burst) pour
+                    les entraînements IA, plutôt que d'immobiliser des serveurs souvent
+                    inactifs. Ce modèle transforme un investissement (CAPEX) en charges
+                    récurrentes (OPEX).
+                </p>
+
+                <!-- Détail du coût cloud hybride sur 36 mois -->
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr><th scope="col">Poste</th><th scope="col">Détail</th><th scope="col">Coût (36 mois)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Stockage HDS + sauvegarde</td><td>~100-120 TB, souverain certifié HDS</td><td>~90 000 €</td></tr>
+                            <tr><td>Compute CPU + base de données managée</td><td>VMs permanentes (QC, PCA, portail, BD)</td><td>~55 000 €</td></tr>
+                            <tr><td>Compute GPU à la demande</td><td>Entraînements IA + pipelines (burst)</td><td>~40 000 €</td></tr>
+                            <tr><td>Sécurité, conformité HDS, support</td><td>—</td><td>~25 000 €</td></tr>
+                            <tr><td>Logiciels + licences</td><td>—</td><td>~25 000 €</td></tr>
+                            <tr><td>Poste local minimal</td><td>Postes de travail + cache NAS</td><td>~20 000 €</td></tr>
+                            <tr><td>Réseau + egress</td><td>Transferts, accès cliniciens</td><td>~15 000 €</td></tr>
+                            <tr class="dataTableTotal"><td>Total cloud hybride</td><td>—</td><td>~270 000 €</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Graphique SVG : comparaison CAPEX on-premise vs OPEX cloud -->
+                <!-- Échelle : 400K à y=60, 200K à y=155, base 0 à y=250 (0,475 px/K€). -->
+                <div class="chartWrapper">
+                    <svg class="barChartSvg" viewBox="0 0 640 300" role="img"
+                         aria-label="Comparaison du coût d'infrastructure on-premise et cloud hybride">
+
+                        <!-- Axe horizontal de base -->
+                        <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
+
+                        <!-- Graduations de référence (en K€) -->
+                        <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
+                        <text class="chartGridLabel" x="50" y="64">400K</text>
+                        <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
+                        <text class="chartGridLabel" x="50" y="159">200K</text>
+
+                        <!-- On-premise (CAPEX) : 334 K€ -->
+                        <rect class="barRect barRectOne" x="170" y="91" width="120" height="159"></rect>
+                        <text class="barValue" x="230" y="81">334 K€</text>
+                        <text class="barLabel" x="230" y="270">On-premise (CAPEX)</text>
+
+                        <!-- Cloud hybride (OPEX) : 270 K€ -->
+                        <rect class="barRect barRectTwo" x="380" y="122" width="120" height="128"></rect>
+                        <text class="barValue" x="440" y="112">270 K€</text>
+                        <text class="barLabel" x="440" y="270">Cloud hybride (OPEX)</text>
+                    </svg>
+                </div>
+
+                <div class="calloutBox">
+                    <span class="calloutIcon" aria-hidden="true">💡</span>
+                    <p class="calloutText">
+                        <strong>Impact budget :</strong> retenir le cloud hybride
+                        (~270 000 €) à la place de l'infrastructure on-premise
+                        (334 000 €) réduit le sous-total de 64 000 €, soit −70 400 €
+                        une fois la contingence de 10% appliquée. Le budget optimal
+                        passe d'environ 1 474 000 € à <strong>~1 403 000 €</strong>.
+                        Les tableaux du budget conservent l'hypothèse on-premise par défaut.
+                    </p>
+                </div>
+
                 <!-- Graphique SVG : évolution du stockage -->
                 <h3 class="subHeading">Évolution du stockage (TB)</h3>
                 <div class="chartWrapper">

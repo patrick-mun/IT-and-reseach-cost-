@@ -248,7 +248,7 @@ Ce modèle transforme un investissement (CAPEX) en charges récurrentes (OPEX) :
 | Conformité HDS | À construire et maintenir | Incluse dans l'offre |
 | Coût récurrent à reconduire | Maintenance seule | ✅ Intégralité chaque année |
 
-> 💡 **Impact budget :** en retenant le cloud hybride (~270 000 €) à la place de l'infrastructure on-premise (334 000 €), le budget optimal passe d'environ **1 474 000 €** à **~1 410 000 €** (−64 K€). Les tableaux du §7 conservent l'hypothèse on-premise par défaut.
+> 💡 **Impact budget :** en retenant le cloud hybride (~270 000 €) à la place de l'infrastructure on-premise (334 000 €), le sous-total baisse de 64 000 €, soit −70 400 € sur le total une fois la contingence de 10% appliquée. Le budget optimal passe ainsi d'environ **1 474 000 €** à **~1 403 000 €**. Les tableaux du §7 conservent l'hypothèse on-premise par défaut.
 
 ### 4.4 Coûts biologiques (extraction + conservation)
 
