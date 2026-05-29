@@ -216,7 +216,41 @@ Le CHU souhaite internaliser durablement le génotypage.
 > - Base de données variants + sauvegardes : ~30 TB
 > - **Total recommandé : 100-120 TB**
 
-### 4.3 Coûts biologiques (extraction + conservation)
+### 4.3 Alternative : infrastructure cloud hybride
+
+L'infrastructure de la §4.2 peut être portée dans le cloud plutôt qu'achetée en propre. Pour un projet manipulant des données génomiques (données de santé), la contrainte structurante n'est pas technique mais réglementaire : l'hébergement doit être assuré par un prestataire **certifié HDS (Hébergeur de Données de Santé)** et les données rester dans l'Union européenne (RGPD + souveraineté). Cela oriente vers un cloud souverain (OVHcloud, Scaleway) ou les offres HDS en région UE des hyperscalers.
+
+Le modèle recommandé est **hybride** : les données brutes sensibles et les résultats sont conservés sur un stockage HDS souverain (en complément du CRB pour le biologique), tandis que la puissance de calcul GPU est mobilisée **à la demande** (burst) pour les entraînements IA et les pipelines, plutôt que d'immobiliser des serveurs souvent inactifs. Un poste local minimal (postes de travail + cache des jeux de données actifs) complète le dispositif.
+
+Ce modèle transforme un investissement (CAPEX) en charges récurrentes (OPEX) : pas d'achat initial lourd, mais un coût mensuel à reconduire à chaque renouvellement, et une vigilance sur les **frais de sortie de données (egress)**, souvent sous-estimés.
+
+> *Estimations en ordre de grandeur, basées sur les tarifs publics de cloud souverain HDS (OVHcloud / Scaleway). À confirmer par devis.*
+
+| Poste | Détail | Coût estimé (36 mois) |
+|-------|--------|----------------------|
+| Stockage HDS + sauvegarde | ~100-120 TB, souverain certifié HDS | ~90 000 € |
+| Compute CPU + base de données managée | VMs permanentes (QC, PCA, portail, BD) | ~55 000 € |
+| Compute GPU à la demande | Entraînements IA + pipelines (burst) | ~40 000 € |
+| Sécurité, conformité HDS, support managé | — | ~25 000 € |
+| Logiciels + licences | — | ~25 000 € |
+| Poste local minimal | Postes de travail + cache NAS | ~20 000 € |
+| Réseau + egress | Transferts, accès cliniciens | ~15 000 € |
+| **TOTAL cloud hybride** | | **~270 000 €** |
+
+**Comparaison on-premise vs cloud hybride**
+
+| Critère | On-premise (§4.2, achat) | Cloud hybride HDS |
+|---------|--------------------------|-------------------|
+| Coût sur 36 mois | ~334 000 € (CAPEX) | ~270 000 € (OPEX) |
+| Investissement initial | Élevé | Quasi nul |
+| Actif durable après projet | ✅ Matériel possédé | ❌ Rien à l'issue |
+| Élasticité (pics de calcul) | Limitée | ✅ Forte |
+| Conformité HDS | À construire et maintenir | Incluse dans l'offre |
+| Coût récurrent à reconduire | Maintenance seule | ✅ Intégralité chaque année |
+
+> 💡 **Impact budget :** en retenant le cloud hybride (~270 000 €) à la place de l'infrastructure on-premise (334 000 €), le budget optimal passe d'environ **1 474 000 €** à **~1 410 000 €** (−64 K€). Les tableaux du §7 conservent l'hypothèse on-premise par défaut.
+
+### 4.4 Coûts biologiques (extraction + conservation)
 
 | Poste | Détail | Coût |
 |-------|--------|------|
@@ -225,7 +259,7 @@ Le CHU souhaite internaliser durablement le génotypage.
 
 > *Le temps opérateur (réception, extraction, QC, préparation des envois) est porté par le technicien de laboratoire à 100% listé en partie RH (§5).*
 
-### 4.4 Évolution des besoins matériels — graphique texte
+### 4.5 Évolution des besoins matériels — graphique texte
 
 ```
 BUDGET MATÉRIEL PAR PHASE (K€)
