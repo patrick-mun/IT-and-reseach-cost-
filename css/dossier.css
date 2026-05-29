@@ -1,0 +1,359 @@
+/* =================================================================
+   PROJET GÉNOME RÉUNION — DOSSIER COMPLET IMPRIMABLE
+   Feuille de style propre à la version détaillée (dossier.html).
+   Elle vient EN COMPLÉMENT de styles.css, qui fournit déjà :
+     - les variables de couleur (:root)
+     - les composants réutilisés (dataTable, calloutBox, chartWrapper,
+       cartes, frises, classes des graphiques SVG…)
+   Organisation :
+     1. Barre d'outils (écran uniquement)
+     2. Mise en page du document
+     3. Page de garde et sommaire
+     4. Sections numérotées
+     5. Graphiques SVG additionnels (Gantt, effectif, timeline IA)
+     6. Format imprimable (@media print)
+   ================================================================= */
+
+
+/* -----------------------------------------------------------------
+   1. BARRE D'OUTILS (boutons « Imprimer » et retour) — écran seul
+   ----------------------------------------------------------------- */
+.docToolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--colorSurface);
+    border-bottom: 1px solid var(--colorBorder);
+    box-shadow: var(--shadowSoft);
+}
+
+.docToolbarInner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0.6rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.docToolBack {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--colorMuted);
+}
+
+.docToolBack:hover {
+    color: var(--colorPrimary);
+    text-decoration: none;
+}
+
+.docToolPrint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.2rem;
+    background-color: var(--colorPrimary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.docToolPrint:hover {
+    background-color: var(--colorPrimaryDark);
+}
+
+
+/* -----------------------------------------------------------------
+   2. MISE EN PAGE DU DOCUMENT
+   ----------------------------------------------------------------- */
+.docPage {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+}
+
+
+/* -----------------------------------------------------------------
+   3. PAGE DE GARDE ET SOMMAIRE
+   ----------------------------------------------------------------- */
+.docCover {
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--colorBorder);
+    margin-bottom: 2rem;
+}
+
+.docCoverLogo {
+    height: 64px;
+    width: auto;
+    margin-bottom: 1.5rem;
+}
+
+.docCoverDocType {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--colorAccent);
+    margin-bottom: 0.75rem;
+}
+
+.docTitle {
+    font-size: 2.6rem;
+    line-height: 1.1;
+    color: var(--colorPrimaryDark);
+    margin-bottom: 0.6rem;
+}
+
+.docSubtitle {
+    font-size: 1.15rem;
+    color: var(--colorInk);
+    margin-bottom: 1.5rem;
+}
+
+.docMetaGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.docMetaItem dt {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 700;
+    color: var(--colorMuted);
+    margin-bottom: 0.25rem;
+}
+
+.docMetaItem dd {
+    font-size: 0.95rem;
+    color: var(--colorInk);
+    font-weight: 600;
+}
+
+/* Sommaire cliquable */
+.docToc {
+    background-color: var(--colorSurfaceAlt);
+    border: 1px solid var(--colorBorder);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.docTocTitle {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--colorPrimaryDark);
+    margin-bottom: 1rem;
+}
+
+.docTocList {
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+    counter-reset: tocCounter;
+}
+
+.docTocItem {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+}
+
+.docTocLink {
+    color: var(--colorInk);
+    font-weight: 500;
+}
+
+.docTocLink:hover {
+    color: var(--colorPrimary);
+}
+
+.docTocNum {
+    flex: 0 0 1.5rem;
+    font-weight: 700;
+    color: var(--colorAccent);
+}
+
+
+/* -----------------------------------------------------------------
+   4. SECTIONS NUMÉROTÉES
+   ----------------------------------------------------------------- */
+.docSection {
+    margin-bottom: 3rem;
+}
+
+.docSectionHead {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    border-bottom: 2px solid var(--colorAccent);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.docSectionNum {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--colorAccent);
+}
+
+.docH2 {
+    font-size: 1.7rem;
+    color: var(--colorPrimaryDark);
+}
+
+.docH3 {
+    font-size: 1.2rem;
+    color: var(--colorInk);
+    margin: 2rem 0 0.85rem;
+}
+
+.docLead {
+    color: var(--colorMuted);
+    margin-bottom: 1.25rem;
+    max-width: 70ch;
+}
+
+.docText {
+    color: var(--colorInk);
+    margin-bottom: 1rem;
+    max-width: 75ch;
+}
+
+.docNote {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--colorMuted);
+    margin: 0.75rem 0 1.25rem;
+    max-width: 75ch;
+}
+
+/* Espacement homogène des tableaux dans le corps du document */
+.docSection .tableScroll {
+    margin-bottom: 1.25rem;
+}
+
+/* Bloc « architecture en couches » repris du .md (entonnoir) */
+.docFunnel {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.docFunnel .heroLayersSvg {
+    max-width: 380px;
+}
+
+
+/* -----------------------------------------------------------------
+   5. GRAPHIQUES SVG ADDITIONNELS
+   Réutilisent les classes d'axes/grilles de styles.css (chartAxis,
+   chartGrid, chartGridLabel, chartXLabel) et n'ajoutent que les
+   éléments spécifiques au diagramme de Gantt et aux barres de tâches.
+   ----------------------------------------------------------------- */
+.ganttSvg,
+.etpSvg {
+    width: 100%;
+    height: auto;
+}
+
+/* Barres de phase du chronogramme et de la timeline IA */
+.ganttBar {
+    fill: var(--colorPrimary);
+    rx: 4;
+}
+
+.ganttBarFree {
+    fill: var(--colorFree);
+}
+
+.ganttBarIa {
+    fill: var(--colorAccent);
+}
+
+/* Libellé de phase à gauche du Gantt */
+.ganttRowLabel {
+    fill: var(--colorInk);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Plage de mois affichée à droite de chaque barre */
+.ganttRange {
+    fill: var(--colorMuted);
+    font-size: 11px;
+}
+
+/* Trait vertical des jalons */
+.ganttMilestone {
+    stroke: var(--colorAccent);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 3;
+}
+
+
+/* -----------------------------------------------------------------
+   6. FORMAT IMPRIMABLE (@media print)
+   styles.css fournit déjà @page { size: A4 portrait } et le réglage
+   des couleurs. On ajoute ici le comportement propre au document.
+   ----------------------------------------------------------------- */
+@media print {
+
+    /* La barre d'outils n'a pas de sens sur papier */
+    .docToolbar {
+        display: none !important;
+    }
+
+    .docPage {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    /* Chaque grande section démarre sur une nouvelle page */
+    .docSection {
+        break-before: page;
+        margin-bottom: 0;
+    }
+
+    /* La page de garde et le sommaire partagent la première page ;
+       le sommaire reste utile en version imprimée. */
+    .docCover {
+        break-before: avoid;
+    }
+
+    .docToc {
+        break-before: avoid;
+        break-inside: avoid;
+    }
+
+    /* Évite les coupures au milieu des éléments structurants */
+    .dataTable,
+    .calloutBox,
+    .chartWrapper,
+    .flowWrapper,
+    .featureCard,
+    .moduleCard,
+    .propositionCard,
+    .milestoneItem,
+    .conclusionItem {
+        break-inside: avoid;
+    }
+
+    .docH2,
+    .docH3,
+    .docSectionHead {
+        break-after: avoid;
+    }
+}
