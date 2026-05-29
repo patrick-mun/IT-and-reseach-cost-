@@ -218,6 +218,31 @@ a:hover {
     font-size: 0.95rem;
 }
 
+/* Lien discret vers la présentation externe du projet */
+.buttonGhost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.7rem 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--colorPrimary);
+}
+
+.buttonGhost:hover {
+    color: var(--colorPrimaryDark);
+    text-decoration: none;
+}
+
+.buttonGhostArrow {
+    font-size: 0.9rem;
+    transition: transform 0.15s ease;
+}
+
+.buttonGhost:hover .buttonGhostArrow {
+    transform: translate(2px, -2px);
+}
+
 .buttonPrimary {
     background-color: var(--colorPrimary);
     color: #fff;
