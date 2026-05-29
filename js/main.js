@@ -1,10 +1,11 @@
 /* =================================================================
    PROJET GÉNOME RÉUNION — SCRIPT D'INTERFACE
    JavaScript vanilla, sans dépendance externe.
-   Trois comportements :
+   Quatre comportements :
      1. Menu de navigation repliable sur mobile
      2. Onglets de scénarios de génotypage
      3. Bouton « Réduire » en bas des sections repliables
+     4. Ouverture auto d'une section ciblée par un lien d'ancrage
    ================================================================= */
 
 (function () {
@@ -113,6 +114,45 @@
     }
 
     /* -------------------------------------------------------------
+       4. OUVERTURE AUTOMATIQUE D'UNE SECTION CIBLÉE PAR UN LIEN
+       Les sections étant repliées par défaut, un lien d'ancrage
+       (#architecture, #budget…) doit déplier la section visée pour
+       que l'utilisateur arrive sur du contenu, pas sur un titre seul.
+       ------------------------------------------------------------- */
+    function openTargetSection(hash) {
+        if (!hash || hash.charAt(0) !== "#") {
+            return;
+        }
+
+        var target = document.getElementById(hash.slice(1));
+        if (!target) {
+            return;
+        }
+
+        // La cible est soit une section contenant un <details>, soit
+        // directement repérable à l'intérieur.
+        var fold = target.querySelector(".sectionFold");
+        if (fold) {
+            fold.setAttribute("open", "");
+        }
+    }
+
+    function initAnchorAutoOpen() {
+        var anchors = document.querySelectorAll('a[href^="#"]');
+
+        anchors.forEach(function (anchor) {
+            anchor.addEventListener("click", function () {
+                openTargetSection(anchor.getAttribute("href"));
+            });
+        });
+
+        // Cas d'un accès direct via une URL contenant déjà une ancre.
+        if (window.location.hash) {
+            openTargetSection(window.location.hash);
+        }
+    }
+
+    /* -------------------------------------------------------------
        INITIALISATION
        On attend que le DOM soit prêt avant d'attacher les écouteurs.
        ------------------------------------------------------------- */
@@ -120,6 +160,7 @@
         initNavToggle();
         initScenarioTabs();
         initSectionCollapse();
+        initAnchorAutoOpen();
     });
 
 })();
