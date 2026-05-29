@@ -1324,3 +1324,147 @@ a:hover {
         transform: none;
     }
 }
+
+
+/* -----------------------------------------------------------------
+   15. FORMAT IMPRIMABLE (EXPORT PDF)
+   Le dossier doit pouvoir être imprimé ou exporté en PDF comme un
+   document de décision complet. Trois enjeux principaux :
+     - déplier les sections <details> repliées par défaut ;
+     - retirer les éléments d'interface (nav, boutons, chevrons) ;
+     - afficher les DEUX scénarios de génotypage côte à côte, puisque
+       l'impression est statique et n'a pas d'onglets cliquables.
+   Le script (beforeprint) ouvre aussi les <details> ; le CSS ci-dessous
+   sert de filet de sécurité si JavaScript est indisponible.
+   ----------------------------------------------------------------- */
+@media print {
+
+    /* Marges de page normalisées pour un document A4 */
+    @page {
+        margin: 1.6cm;
+    }
+
+    /* Fond blanc, encre économisée, mais couleurs des repères conservées */
+    body {
+        background-color: #fff;
+        color: #000;
+        font-size: 11pt;
+        line-height: 1.45;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* La barre de navigation collante et le menu n'ont aucun sens sur papier */
+    .siteHeader,
+    .navToggle {
+        display: none !important;
+    }
+
+    /* Éléments purement interactifs retirés de la version imprimée */
+    .heroActions,
+    .foldHint,
+    .sectionFoldChevron,
+    .sectionCollapseButton,
+    .scenarioTabList {
+        display: none !important;
+    }
+
+    /* On déplie toutes les sections : le corps des <details> redevient
+       visible même si l'attribut [open] est absent. Double sécurité
+       avec le script beforeprint. */
+    .sectionFold > .sectionFoldBody,
+    .sectionFold[open] > .sectionFoldBody {
+        display: block !important;
+    }
+
+    .sectionFoldBody {
+        padding-bottom: 1rem;
+    }
+
+    /* Les deux scénarios de génotypage s'affichent l'un sous l'autre,
+       l'attribut hidden du panneau inactif est neutralisé. */
+    .scenarioPanel,
+    .scenarioPanel[hidden] {
+        display: block !important;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Suppression des ombres (inutiles et gourmandes en encre) */
+    .dataTable,
+    .chartWrapper,
+    .flowWrapper,
+    .moduleCard,
+    .highlightBox,
+    .propositionCardFeatured {
+        box-shadow: none !important;
+    }
+
+    /* Chaque grande section démarre sur une nouvelle page, comme les
+       chapitres d'un dossier. La page de garde reste en première page. */
+    .sectionBlock {
+        break-before: page;
+        padding: 1.5rem 0 0 !important;
+    }
+
+    /* Évite les coupures disgracieuses au milieu d'un élément */
+    .dataTable,
+    .decisionTable,
+    .calloutBox,
+    .featureCard,
+    .moduleCard,
+    .propositionCard,
+    .timelineItem,
+    .milestoneItem,
+    .conclusionItem,
+    .chartWrapper,
+    .flowWrapper,
+    .highlightBox {
+        break-inside: avoid;
+    }
+
+    /* Un titre ne doit pas rester seul en bas de page */
+    .sectionFoldTitle,
+    .sectionTitle,
+    .subHeading {
+        break-after: avoid;
+    }
+
+    /* Les conteneurs scrollables affichent tout leur contenu sur papier */
+    .tableScroll {
+        overflow-x: visible !important;
+    }
+
+    /* La page de garde occupe toute la largeur disponible */
+    .coverPage,
+    .sectionInner,
+    .navContainer,
+    .footerInner {
+        max-width: 100%;
+    }
+
+    /* Le lien externe imprime son URL pour rester exploitable hors écran */
+    .projectBanner {
+        color: #000 !important;
+        background-color: transparent !important;
+        border: 1px solid var(--colorBorder);
+        padding: 0.6rem 0.8rem;
+    }
+
+    .projectBanner::after {
+        content: " — " attr(href);
+        font-weight: 400;
+        color: var(--colorMuted);
+    }
+
+    .projectBannerArrow {
+        display: none !important;
+    }
+
+    /* Le pied de page clôt le document sans pavé de couleur */
+    .siteFooter {
+        background-color: transparent;
+        color: #000;
+        border-top: 1px solid var(--colorBorder);
+        padding: 1.5rem 0 0;
+    }
+}

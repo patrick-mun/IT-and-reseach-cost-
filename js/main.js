@@ -1,11 +1,12 @@
 /* =================================================================
    PROJET GÉNOME RÉUNION — SCRIPT D'INTERFACE
    JavaScript vanilla, sans dépendance externe.
-   Quatre comportements :
+   Cinq comportements :
      1. Menu de navigation repliable sur mobile
      2. Onglets de scénarios de génotypage
      3. Bouton « Réduire » en bas des sections repliables
      4. Ouverture auto d'une section ciblée par un lien d'ancrage
+     5. Dépliage de toutes les sections avant impression / export PDF
    ================================================================= */
 
 (function () {
@@ -152,6 +153,43 @@
     }
 
     /* -------------------------------------------------------------
+       5. DÉPLIAGE AVANT IMPRESSION / EXPORT PDF
+       Les sections sont repliées par défaut : sans intervention, le
+       PDF imprimé ne contiendrait que les titres. Avant impression on
+       ouvre tous les <details>, et après on restaure l'état exact en
+       ne refermant que les sections que l'on avait nous-mêmes ouvertes
+       (les sections déjà dépliées par l'utilisateur restent ouvertes).
+       La feuille @media print sert de filet si JavaScript est absent.
+       ------------------------------------------------------------- */
+    function initPrintExpand() {
+        var folds = document.querySelectorAll(".sectionFold");
+
+        if (folds.length === 0) {
+            return;
+        }
+
+        // Mémorise les sections ouvertes spécifiquement pour l'impression.
+        var openedForPrint = [];
+
+        window.addEventListener("beforeprint", function () {
+            openedForPrint = [];
+            folds.forEach(function (fold) {
+                if (!fold.hasAttribute("open")) {
+                    fold.setAttribute("open", "");
+                    openedForPrint.push(fold);
+                }
+            });
+        });
+
+        window.addEventListener("afterprint", function () {
+            openedForPrint.forEach(function (fold) {
+                fold.removeAttribute("open");
+            });
+            openedForPrint = [];
+        });
+    }
+
+    /* -------------------------------------------------------------
        INITIALISATION
        On attend que le DOM soit prêt avant d'attacher les écouteurs.
        ------------------------------------------------------------- */
@@ -160,6 +198,7 @@
         initScenarioTabs();
         initSectionCollapse();
         initAnchorAutoOpen();
+        initPrintExpand();
     });
 
 })();
