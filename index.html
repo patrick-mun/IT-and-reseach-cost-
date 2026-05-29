@@ -161,7 +161,13 @@
         <!-- ========================================================= -->
         <section class="sectionBlock" id="architecture">
             <div class="sectionInner">
-                <h2 class="sectionTitle">Architecture de la solution</h2>
+              <details class="sectionFold" open>
+                <summary class="sectionFoldSummary">
+                    <span class="sectionFoldTitle">Architecture de la solution</span>
+                    <span class="sectionFoldKey">3 couches · ~2 800 génotypages</span>
+                    <span class="sectionFoldChevron" aria-hidden="true">▾</span>
+                </summary>
+                <div class="sectionFoldBody">
                 <p class="sectionIntro">
                     La méthodologie repose sur trois couches complémentaires.
                     Le séquençage WGS des 350 individus est pris en charge par le
@@ -282,6 +288,8 @@
                         <p class="featureCardText">Pathogénicité, PGx, admixture, risque — PyTorch + TensorFlow.</p>
                     </article>
                 </div>
+                </div>
+              </details>
             </div>
         </section>
 

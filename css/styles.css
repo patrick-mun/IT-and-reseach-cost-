@@ -470,6 +470,69 @@ a:hover {
     margin-bottom: 2rem;
 }
 
+/* ---- Sections repliables (accordéon natif <details>) ---- */
+.sectionFold {
+    border-top: 2px solid var(--colorBorder);
+}
+
+/* En-tête cliquable : titre + chiffre clé + chevron */
+.sectionFoldSummary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.4rem 0;
+}
+
+/* Masque le marqueur natif (triangle par défaut) */
+.sectionFoldSummary::-webkit-details-marker {
+    display: none;
+}
+
+.sectionFoldTitle {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--colorPrimaryDark);
+}
+
+/* Chiffre clé toujours visible, même section repliée */
+.sectionFoldKey {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--colorPrimary);
+    background-color: var(--colorSurfaceAlt);
+    border: 1px solid var(--colorBorder);
+    border-radius: 999px;
+    padding: 0.25rem 0.8rem;
+    white-space: nowrap;
+}
+
+.sectionAlt .sectionFoldKey {
+    background-color: var(--colorSurface);
+}
+
+/* Chevron poussé à droite, pivote à l'ouverture */
+.sectionFoldChevron {
+    margin-left: auto;
+    font-size: 1.1rem;
+    color: var(--colorMuted);
+    transition: transform 0.2s ease;
+}
+
+.sectionFold[open] .sectionFoldChevron {
+    transform: rotate(180deg);
+}
+
+.sectionFoldSummary:hover .sectionFoldTitle {
+    color: var(--colorPrimary);
+}
+
+.sectionFoldBody {
+    padding-top: 0.5rem;
+    padding-bottom: 1.5rem;
+}
+
 .subHeading {
     font-size: 1.3rem;
     color: var(--colorInk);
