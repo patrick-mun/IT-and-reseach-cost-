@@ -436,6 +436,12 @@ a:hover {
     padding: 4rem 0;
 }
 
+/* Les sections repliables n'ont pas besoin du grand padding :
+   le rythme vient de l'en-tête cliquable lui-même. */
+.sectionBlock:has(.sectionFold) {
+    padding: 0;
+}
+
 /* Fond alterné pour distinguer les sections successives */
 .sectionAlt {
     background-color: var(--colorSurfaceAlt);
@@ -471,8 +477,10 @@ a:hover {
 }
 
 /* ---- Sections repliables (accordéon natif <details>) ---- */
+/* L'alternance de fond (sectionAlt) sépare déjà les sections :
+   une fine bordure suffit comme repère. */
 .sectionFold {
-    border-top: 2px solid var(--colorBorder);
+    border-top: 1px solid var(--colorBorder);
 }
 
 /* En-tête cliquable : titre + chiffre clé + chevron */
@@ -482,7 +490,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.4rem 0;
+    padding: 1.1rem 0;
 }
 
 /* Masque le marqueur natif (triangle par défaut) */
@@ -491,7 +499,7 @@ a:hover {
 }
 
 .sectionFoldTitle {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--colorPrimaryDark);
 }
@@ -529,8 +537,8 @@ a:hover {
 }
 
 .sectionFoldBody {
-    padding-top: 0.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 2.5rem;
 }
 
 .subHeading {
