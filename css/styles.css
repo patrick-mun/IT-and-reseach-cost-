@@ -1339,8 +1339,9 @@ a:hover {
    ----------------------------------------------------------------- */
 @media print {
 
-    /* Marges de page normalisées pour un document A4 */
+    /* Page A4 portrait, marges normalisées pour un document officiel */
     @page {
+        size: A4 portrait;
         margin: 1.6cm;
     }
 
