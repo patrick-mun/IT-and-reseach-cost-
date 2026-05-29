@@ -1,9 +1,10 @@
 /* =================================================================
    PROJET GÉNOME RÉUNION — SCRIPT D'INTERFACE
    JavaScript vanilla, sans dépendance externe.
-   Deux comportements :
+   Trois comportements :
      1. Menu de navigation repliable sur mobile
      2. Onglets de scénarios de génotypage
+     3. Bouton « Réduire » en bas des sections repliables
    ================================================================= */
 
 (function () {
@@ -78,12 +79,47 @@
     }
 
     /* -------------------------------------------------------------
+       3. BOUTON « RÉDUIRE » EN BAS DES SECTIONS REPLIABLES
+       Quand une section est longue, on évite de remonter jusqu'au
+       titre : un bouton ajouté en bas referme la section et ramène
+       l'utilisateur à son en-tête.
+       ------------------------------------------------------------- */
+    function initSectionCollapse() {
+        var folds = document.querySelectorAll(".sectionFold");
+
+        folds.forEach(function (fold) {
+            var body = fold.querySelector(".sectionFoldBody");
+            var summary = fold.querySelector(".sectionFoldSummary");
+
+            if (!body || !summary) {
+                return;
+            }
+
+            // Bouton de repli généré dynamiquement (pas de HTML dupliqué).
+            var collapseButton = document.createElement("button");
+            collapseButton.type = "button";
+            collapseButton.className = "sectionCollapseButton";
+            collapseButton.innerHTML =
+                "Réduire la section <span aria-hidden=\"true\">↑</span>";
+
+            collapseButton.addEventListener("click", function () {
+                fold.removeAttribute("open");
+                // Ramène l'en-tête en haut de la fenêtre.
+                summary.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+
+            body.appendChild(collapseButton);
+        });
+    }
+
+    /* -------------------------------------------------------------
        INITIALISATION
        On attend que le DOM soit prêt avant d'attacher les écouteurs.
        ------------------------------------------------------------- */
     document.addEventListener("DOMContentLoaded", function () {
         initNavToggle();
         initScenarioTabs();
+        initSectionCollapse();
     });
 
 })();

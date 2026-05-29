@@ -541,6 +541,29 @@ a:hover {
     padding-bottom: 2.5rem;
 }
 
+/* Bouton « Réduire » injecté en bas de chaque section ouverte */
+.sectionCollapseButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    color: var(--colorMuted);
+    border: 1px solid var(--colorBorder);
+    border-radius: 999px;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.sectionCollapseButton:hover {
+    color: var(--colorPrimary);
+    border-color: var(--colorPrimary);
+}
+
 .subHeading {
     font-size: 1.3rem;
     color: var(--colorInk);
