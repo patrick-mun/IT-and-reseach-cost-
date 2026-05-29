@@ -668,7 +668,7 @@ a:hover {
     border-radius: var(--radius);
     padding: 1.25rem;
     box-shadow: var(--shadowSoft);
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .barChartSvg,
