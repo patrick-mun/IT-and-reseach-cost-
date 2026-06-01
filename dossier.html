@@ -1,977 +1,1192 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dossier complet du projet Génome Réunion — version détaillée et imprimable : contexte, architecture, phases, besoins matériels et humains, intégration de l'IA, chronogramme et budget.">
-    <title>Dossier complet — Projet Génome Réunion</title>
-
-    <!-- Variables, composants et réglages d'impression partagés -->
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Styles propres à la version document/imprimable -->
-    <link rel="stylesheet" href="css/dossier.css">
-
-    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>G&#233;nome R&#233;union &#8212; Document de synth&#232;se scientifique V3.5</title>
+<style>
+:root{--accent:#0F3A56;--accent2:#1E6E8C;--accent3:#E8654A;--accent-soft:#eaf3f7;--text:#1a1a1a;--muted:#555;--border:#d9d9d9;--callout-bg:#f4f7fb;--green:#0D9488;--green-soft:#f0fdf9;--purple:#7C3AED;--font-body:"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;--font-head:Georgia,"Times New Roman",serif;}
+*{box-sizing:border-box;}
+body{font-family:var(--font-body);color:var(--text);line-height:1.6;font-size:14.5px;margin:0;background:#e3e6ea;}
+h1,h2,h3{font-family:var(--font-head);color:var(--accent);line-height:1.25;}
+h1{font-size:1.85em;margin:0 0 .2em;}
+h2{font-size:1.28em;margin:1.4em 0 .35em;border-bottom:2px solid var(--accent-soft);padding-bottom:.18em;}
+h3{font-size:1.02em;margin:1em 0 .28em;color:var(--text);}
+p{margin:0 0 .75em;}strong{color:#000;}a{color:var(--accent);}
+ul,ol{margin:0 0 .75em;padding-left:1.3em;}li{margin-bottom:.2em;}
+table{border-collapse:collapse;width:100%;margin:.75em 0;font-size:.86em;}
+th,td{border:1px solid var(--border);padding:5px 8px;text-align:left;vertical-align:top;}
+thead th{background:var(--accent);color:#fff;}
+tbody tr:nth-child(even){background:#f7f9fb;}
+.caption{font-size:.8em;color:var(--muted);font-style:italic;margin-top:.28em;margin-bottom:.55em;}
+code{font-family:"Courier New",monospace;font-size:.84em;background:#f0f0f0;padding:1px 4px;border-radius:3px;}
+pre{background:#f4f4f4;border:1px solid var(--border);border-radius:4px;padding:8px 12px;font-size:.78em;line-height:1.5;overflow-x:auto;margin:.75em 0;}
+.summary{background:var(--accent-soft);border-left:4px solid var(--accent);padding:11px 16px;margin:1em 0;border-radius:0 4px 4px 0;}
+.summary h2{margin-top:0;border:none;}
+.callout{background:var(--callout-bg);border:1px solid var(--border);border-left:4px solid var(--accent);padding:8px 12px;margin:.85em 0;border-radius:0 4px 4px 0;}
+.callout .lbl,.callout-green .lbl{display:block;font-weight:700;text-transform:uppercase;font-size:.72em;letter-spacing:.04em;margin-bottom:.2em;}
+.callout .lbl{color:var(--accent);}
+.callout-green{background:var(--green-soft);border:1px solid #a7f3d0;border-left:4px solid var(--green);padding:8px 12px;margin:.85em 0;border-radius:0 4px 4px 0;}
+.callout-green .lbl{color:var(--green);}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin:1em 0;}
+.stat-card{background:var(--accent-soft);border:1px solid var(--border);border-radius:6px;padding:10px 12px;text-align:center;}
+.stat-card .num{font-family:var(--font-head);font-size:1.55em;font-weight:700;color:var(--accent);line-height:1.1;}
+.stat-card .lbl{font-size:.77em;color:var(--muted);margin-top:3px;}
+.stat-card.green{background:var(--green-soft);border-color:#a7f3d0;}.stat-card.green .num{color:var(--green);}
+.stat-card.dark{background:var(--accent);}.stat-card.dark .num{color:#fff;font-size:1.1em;}.stat-card.dark .lbl{color:#cde4f0;}
+.flow{display:flex;flex-wrap:wrap;margin:1em 0;}
+.flow-step{flex:1 1 0;min-width:80px;background:#fff;border:1.5px solid var(--accent);border-radius:5px;padding:7px 9px;font-size:.79em;text-align:center;display:flex;align-items:center;justify-content:center;position:relative;}
+.flow-step.alt{background:var(--accent-soft);}
+.flow-step:not(:last-child){margin-right:17px;}
+.flow-step:not(:last-child)::after{content:"\2192";position:absolute;right:-13px;top:50%;transform:translateY(-50%);font-size:1.15em;color:var(--accent);}
+.compo-bar{display:flex;height:22px;border-radius:4px;overflow:hidden;margin:.65em 0 .38em;border:1px solid var(--border);}
+.compo-bar span{display:block;height:100%;}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin:.25em 0 .65em;font-size:.79em;color:var(--muted);}
+.legend .item{display:flex;align-items:center;gap:5px;}
+.legend .swatch{width:10px;height:10px;border-radius:2px;flex:none;}
+.hbar{margin:.65em 0;}
+.hbar .row{display:grid;grid-template-columns:190px 1fr auto;align-items:center;gap:7px;margin-bottom:5px;font-size:.82em;}
+.hbar .track{background:#eef1f4;border-radius:3px;height:14px;overflow:hidden;}
+.hbar .fill{height:100%;background:var(--accent);border-radius:3px;}
+.hbar .fill.g{background:var(--green);}.hbar .fill.o{background:var(--accent3);}
+.hbar .val{font-variant-numeric:tabular-nums;color:var(--muted);min-width:62px;text-align:right;}
+.gantt{margin:.85em 0;font-size:.79em;}
+.gantt .row{display:grid;grid-template-columns:145px 1fr;align-items:center;gap:7px;margin-bottom:4px;}
+.gantt .lane{position:relative;height:15px;background:#eef1f4;border-radius:3px;}
+.gantt .bar{position:absolute;height:100%;border-radius:3px;background:var(--accent);}
+.gantt .bar.wgs{background:var(--green);}.gantt .bar.ia{background:var(--purple);}.gantt .bar.web{background:#D97706;}
+.gantt .scale{display:grid;grid-template-columns:145px 1fr;gap:7px;color:var(--muted);margin-top:3px;}
+.gantt .ticks{display:flex;justify-content:space-between;}
+.timeline{display:flex;margin:.9em 0;}
+.timeline .ev{flex:1;position:relative;padding-top:14px;text-align:center;font-size:.79em;}
+.timeline .ev::before{content:"";position:absolute;top:5px;left:0;right:0;height:2px;background:var(--border);}
+.timeline .ev::after{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--accent);}
+.timeline .ev .yr{font-weight:700;color:var(--accent);display:block;}
+body.paged{background:#e3e6ea;}
+.sheet{width:210mm;min-height:297mm;box-sizing:border-box;margin:0 auto 12mm;padding:13mm 15mm 10mm;background:#fff;box-shadow:0 1px 8px rgba(0,0,0,.18);display:flex;flex-direction:column;position:relative;}
+.sheet__body{flex:1 1 auto;}
+.sheet__footer{flex:none;margin-top:6px;padding-top:4px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;gap:9px;font-size:.72em;color:var(--muted);}
+.sheet__footer .pageno{margin-left:auto;font-variant-numeric:tabular-nums;}
+.sheet.is-overflowing{outline:2px dashed #d4351c;}
+.sheet .overflow-flag{display:none;}
+.sheet.is-overflowing .overflow-flag{display:block;position:absolute;top:4mm;right:4mm;background:#d4351c;color:#fff;font-size:.67em;padding:2px 5px;border-radius:3px;}
+.sheet--cover .sheet__body{display:flex;flex-direction:column;height:100%;}
+.cover-logo{padding-bottom:7mm;}
+.cover-accent-band{height:4px;background:var(--accent);border-radius:2px;margin-bottom:9mm;}
+.cover-center{flex:1;display:flex;flex-direction:column;justify-content:center;}
+.cover-center h1{font-family:var(--font-head);font-size:1.95em;color:var(--accent);margin:0 0 .22em;line-height:1.2;}
+.cover-subtitle{font-size:1.02em;color:var(--muted);font-style:italic;margin-bottom:3mm;}
+.cover-meta{margin-top:auto;border-top:1px solid var(--border);padding-top:6mm;}
+.cover-meta table{font-size:.86em;width:100%;}
+.cover-meta td{padding:3px 11px 3px 0;border:none;background:none;vertical-align:top;}
+.cover-meta td:first-child{font-weight:600;color:var(--accent);width:108px;}
+.sheet--toc h2{font-size:1.35em;margin-bottom:5mm;border:none;}
+nav.toc-doc ol{list-style:none;padding:0;margin:0;}
+nav.toc-doc li{margin-bottom:1px;}
+nav.toc-doc li.sub{padding-left:12px;}
+a.toc-e{display:flex;align-items:baseline;text-decoration:none;color:var(--text);padding:2px 2px;border-radius:3px;}
+a.toc-e:hover{background:var(--accent-soft);}
+.toc-t{flex:none;font-size:.88em;}li.sub .toc-t{font-size:.82em;color:var(--muted);}
+.toc-d{flex:1;border-bottom:1px dotted var(--border);margin:0 6px 3px;min-width:10px;}
+.toc-n{flex:none;font-variant-numeric:tabular-nums;font-size:.85em;color:var(--muted);min-width:17px;text-align:right;}
+.refs-list{font-size:.77em;line-height:1.48;color:var(--muted);}
+.refs-list li{margin-bottom:.45em;}
+.stag{display:inline-block;font-size:.7em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#fff;background:var(--accent2);border-radius:3px;padding:1px 5px;margin-right:4px;vertical-align:middle;}
+@page sheet{size:A4;margin:0;}
+@media print{
+  body.paged{background:#fff;}
+  .sheet{page:sheet;width:210mm;min-height:0;height:auto;margin:0;padding:13mm 15mm 10mm;box-shadow:none;page-break-after:always;break-after:page;}
+  .sheet:last-child{page-break-after:auto;break-after:auto;}
+  .sheet.is-overflowing{outline:none;}.sheet .overflow-flag{display:none!important;}
+  .flow-step,.stat-card,.gantt .lane,.hbar .track{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
 </head>
+<body class="paged">
 
-<body>
+<section class="sheet sheet--cover">
+<div class="sheet__body">
+<div class="cover-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 22 410 64" fill="none" style="height:58px;width:auto;">
+  <g fill="none" stroke-width="5" stroke-linecap="round" transform="translate(18,28)">
+    <path d="M0,11 C11,1 22,1 32,11 C42,21 53,21 63,11 C71,3 79,3 84,8" stroke="#0F3A56"/>
+    <path d="M0,11 C11,1 22,1 32,11 C42,21 53,21 63,11 C71,3 79,3 84,8" stroke="#1E6E8C" transform="translate(0,16)"/>
+    <path d="M0,11 C11,1 22,1 32,11 C42,21 53,21 63,11 C71,3 79,3 84,8" stroke="#E8654A" transform="translate(0,32)"/>
+    <circle cx="84" cy="8" r="2.6" fill="#0F3A56" stroke="none"/>
+    <circle cx="84" cy="24" r="2.6" fill="#1E6E8C" stroke="none"/>
+    <circle cx="84" cy="40" r="2.6" fill="#E8654A" stroke="none"/>
+  </g>
+  <text x="132" y="56" font-family="Archivo,'Helvetica Neue',Arial,sans-serif" font-weight="700" font-size="31" letter-spacing="0.2" fill="#0F3A56">G&#233;nome <tspan font-weight="500">R&#233;union</tspan></text>
+  <text x="133" y="76" font-family="Archivo,'Helvetica Neue',Arial,sans-serif" font-weight="600" font-size="10.5" letter-spacing="3.4" fill="#1E6E8C">R&#201;F&#201;RENTIEL G&#201;NOMIQUE</text>
+</svg></div>
+<div class="cover-accent-band"></div>
+<div class="cover-center">
+<h1>Document de synth&#232;se scientifique</h1>
+<div class="cover-subtitle">Consolidation compl&#232;te &#8212; Version V3.5 g&#233;o-ancestrale</div>
+<div style="margin-top:6mm;font-size:.84em;color:var(--muted);line-height:1.7;">
+Consolide&#160;: <em>Projet PMU &#183; METHODOLOGY_selection_V3_5.md &#183; Plan_Genome_Reunion_Structure_AI.md<br>
+Protocole de validation voilure r&#233;duite v1.1 &#183; 75+ r&#233;f&#233;rences bibliographiques organis&#233;es en 18 sections</em>
+</div>
+<div style="margin-top:7mm;">
+<div class="stat-grid">
+<div class="stat-card"><div class="num">2&#160;500</div><div class="lbl">individus g&#233;notyp&#233;s SNP (GDA-8)</div></div>
+<div class="stat-card"><div class="num">350</div><div class="lbl">WGS optimis&#233;s (s&#233;lection g&#233;o-ancestrale)</div></div>
+<div class="stat-card"><div class="num">100</div><div class="lbl">familles nucl&#233;aires (phasage)</div></div>
+<div class="stat-card green"><div class="num">0&#160;&#8364;</div><div class="lbl">s&#233;quen&#231;age WGS (POPgen)</div></div>
+</div>
+</div>
+</div>
+<div class="cover-meta">
+<table>
+<tr><td>Responsable</td><td>Laboratoire de g&#233;n&#233;tique &#183; CHU de La R&#233;union</td></tr>
+<tr><td>Partenaires</td><td>EFS R&#233;union &#183; Consortium POPgen &#183; CEPH &#183; H&#233;bergeur HDS</td></tr>
+<tr><td>Date</td><td>Juin 2026</td></tr>
+<tr><td>Version</td><td>V3.5 g&#233;o-ancestrale &#183; Document de travail &#8212; diffusion restreinte</td></tr>
+<tr><td>Sources</td><td>github.com/patrick-mun/genome_reunion &#183; github.com/patrick-mun/IT-and-reseach-cost-</td></tr>
+</table>
+</div>
+</div>
+<footer class="sheet__footer"><span>G&#233;nome R&#233;union &#183; Document de synth&#232;se scientifique &#8212; diffusion restreinte</span></footer>
+</section>
 
-    <!-- ============================================================= -->
-    <!-- BARRE D'OUTILS (écran uniquement : masquée à l'impression)    -->
-    <!-- ============================================================= -->
-    <div class="docToolbar">
-        <div class="docToolbarInner">
-            <a class="docToolBack" href="index.html">
-                <span aria-hidden="true">←</span> Vue d'ensemble
-            </a>
-            <button class="docToolPrint" type="button" id="printButton">
-                <span aria-hidden="true">🖨</span> Imprimer / Exporter en PDF
-            </button>
-        </div>
-    </div>
+<section class="sheet sheet--toc">
+<div class="sheet__body">
+<h2>Table des mati&#232;res</h2>
+<nav class="toc-doc">
+<ol>
+<li><a class="toc-e" href="#s1"><span class="toc-t">1. R&#233;sum&#233; ex&#233;cutif</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s2"><span class="toc-t">2. L&#8217;angle mort de la m&#233;decine de pr&#233;cision</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s2a"><span class="toc-t">2.1 Biais diagnostiques document&#233;s</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s2b"><span class="toc-t">2.2 In&#233;galit&#233;s pharmacog&#233;n&#233;tiques</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s2c"><span class="toc-t">2.3 Amplification par l&#8217;intelligence artificielle</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s3"><span class="toc-t">3. Singularit&#233; g&#233;n&#233;tique de La R&#233;union</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s3a"><span class="toc-t">3.1 Histoire migratoire et composition d&#8217;ascendance</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s3b"><span class="toc-t">3.2 Effets fondateurs et maladies rares locales</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s3c"><span class="toc-t">3.3 Inadaptation des outils g&#233;n&#233;tiques actuels</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s4"><span class="toc-t">4. Objectifs du projet</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s5"><span class="toc-t">5. Design g&#233;n&#233;ral &#8212; architecture en trois couches</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s6"><span class="toc-t">6. M&#233;thodologie d&#233;taill&#233;e</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s6a"><span class="toc-t">6.1 G&#233;notypage SNP et contr&#244;le qualit&#233;</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s6b"><span class="toc-t">6.2 Pools t&#233;moins &#8212; hi&#233;rarchie op&#233;rationnelle</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s6c"><span class="toc-t">6.3 PCA / ADMIXTURE &#8212; strat&#233;gie par niveaux</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s6d"><span class="toc-t">6.4 IBD, ROH et signatures fondatrices</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s6e"><span class="toc-t">6.5 Module familial et phasage SHAPEIT4</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s7"><span class="toc-t">7. Algorithme de s&#233;lection WGS &#8212; Score S_div V3.5</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s7a"><span class="toc-t">7.1 Score g&#233;o-ancestral S_div (noyau 322)</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s7b"><span class="toc-t">7.2 Bras de d&#233;couverte S_discovery_global (28)</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li class="sub"><a class="toc-e" href="#s7c"><span class="toc-t">7.3 Justification statistique de N&#160;=&#160;350&#160;WGS</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s8"><span class="toc-t">8. Protocole de validation &#224; voilure r&#233;duite v1.1</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s9"><span class="toc-t">9. Ressources produites</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s10"><span class="toc-t">10. Modules d&#8217;intelligence artificielle</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s11"><span class="toc-t">11. Organisation op&#233;rationnelle et gouvernance</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s12"><span class="toc-t">12. Budget et ressources humaines</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s13"><span class="toc-t">13. Chronogramme des 7 phases</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s14"><span class="toc-t">14. Impacts attendus</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s15"><span class="toc-t">15. Risques, limites et mitigations</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#s16"><span class="toc-t">16. Conclusion</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#a1"><span class="toc-t">Annexe A &#8212; Commandes bioinformatiques indicatives</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#a2"><span class="toc-t">Annexe B &#8212; Profils de validation (A, C, D)</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#a3"><span class="toc-t">Annexe C &#8212; Versioning de la m&#233;thodologie</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-e" href="#a4"><span class="toc-t">Annexe D &#8212; Bibliographie compl&#232;te (18 sections th&#233;matiques)</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+</ol>
+</nav>
+</div>
+<footer class="sheet__footer"><span>G&#233;nome R&#233;union &#183; Document de synth&#232;se scientifique</span></footer>
+</section>
 
-    <div class="docPage">
+<section class="sheet">
+<div class="sheet__body">
+<div class="stat-grid">
+<div class="stat-card dark"><div class="num">~1&#160;474&#160;000&#160;&#8364;</div><div class="lbl">budget optimal 36 mois (Sc.1 + Prop.2)</div></div>
+<div class="stat-card"><div class="num">2&#160;500</div><div class="lbl">individus g&#233;notyp&#233;s SNP (GDA-8, ~1,9&#160;M&#160;SNP)</div></div>
+<div class="stat-card"><div class="num">350</div><div class="lbl">WGS optimis&#233;s (noyau 322 + bras d&#233;couverte 28)</div></div>
+<div class="stat-card green"><div class="num">0&#160;&#8364;</div><div class="lbl">WGS POPgen &#8212; s&#233;quen&#231;age gratuit</div></div>
+</div>
 
-        <!-- ========================================================= -->
-        <!-- PAGE DE GARDE                                             -->
-        <!-- ========================================================= -->
-        <header class="docCover">
-            <img class="docCoverLogo" src="images/logo-horizontal.svg" alt="Génome Réunion">
-            <p class="docCoverDocType">Dossier de faisabilité · Version détaillée</p>
-            <h1 class="docTitle">Projet Génome Réunion</h1>
-            <p class="docSubtitle">
-                Plan de mise en place économique du premier référentiel génomique
-                local de la population réunionnaise.
-            </p>
-            <dl class="docMetaGrid">
-                <div class="docMetaItem">
-                    <dt>Objet</dt>
-                    <dd>Besoins matériels, humains et IA</dd>
-                </div>
-                <div class="docMetaItem">
-                    <dt>Date</dt>
-                    <dd>Mai 2026</dd>
-                </div>
-                <div class="docMetaItem">
-                    <dt>Durée</dt>
-                    <dd>36 mois</dd>
-                </div>
-                <div class="docMetaItem">
-                    <dt>Séquençage WGS</dt>
-                    <dd>POPgen (0 €)</dd>
-                </div>
-            </dl>
-        </header>
+<section id="s1" class="summary">
+<h2>1. R&#233;sum&#233; ex&#233;cutif</h2>
+<ul>
+<li><strong>Constat &#8212;</strong> Les bases g&#233;nomiques mondiales (gnomAD, 1000&#160;Genomes, GWAS&#160;Catalog) sont massivement eurocentr&#233;es&#160;: en 2022, les individus d&#8217;ascendance africaine ne repr&#233;sentaient que 1,1&#160;% des participants aux GWAS. Les 7/8 de la diversit&#233; humaine restent sous-repr&#233;sent&#233;s ou absents.</li>
+<li><strong>Probl&#232;me sp&#233;cifique &#8212;</strong> La&#160;R&#233;union cumule une triple singularit&#233;&#160;: admixture r&#233;cente multicontinentale (africain, malgache, indien, europ&#233;en, asiatique), structure insulaire g&#233;n&#233;ratrice d&#8217;effets fondateurs locaux document&#233;s, et absence totale dans toutes les bases de r&#233;f&#233;rence. Cela produit des erreurs diagnostiques mesurables, des biais pharmacog&#233;n&#233;tiques et une inefficacit&#233; croissante des algorithmes d&#8217;IA biom&#233;dicale.</li>
+<li><strong>R&#233;ponse &#8212;</strong> Un r&#233;f&#233;rentiel g&#233;nomique local de premi&#232;re g&#233;n&#233;ration combinant 2&#160;500 g&#233;notypages SNP (puce GDA-8, ~1,9&#160;M&#160;SNP), 100&#160;familles nucl&#233;aires pour le phasage, et 350&#160;WGS s&#233;lectionn&#233;s par un algorithme g&#233;o-ancestral hybride (score&#160;<code>S_div</code>&#160;V3.5). Le s&#233;quen&#231;age WGS est int&#233;gralement pris en charge par le consortium POPgen (0&#160;&#8364;).</li>
+<li><strong>Livrables &#8212;</strong> Base de fr&#233;quences locales recalibr&#233;es sur 2&#160;500 individus, panel WGS r&#233;unionnais, panel d&#8217;imputation/phasage (SHAPEIT4), donn&#233;es d&#8217;admixture et d&#8217;effets fondateurs, ressources pharmacog&#233;n&#233;tiques (CYP2C9, CYP2C19, CYP2D6, CYP3A4/5, SLCO1B1).</li>
+<li><strong>Budget optimal &#8212;</strong> Sc&#233;nario sous-traitance + Proposition&#160;RH&#160;2 (alternance + CIFRE)&#160;: <strong>~1&#160;474&#160;000&#160;&#8364;</strong> sur 36&#160;mois, charges patronales comprises. WGS inclus &#224; 0&#160;&#8364;.</li>
+<li><strong>Jalons cl&#233;s &#8212;</strong> M9&#160;: liste WGS gel&#233;e&#160;; M22&#160;: BD variants v1&#160;; M26&#160;: modules IA 1+2 valid&#233;s (AUC&#160;&#8805;&#160;0,85)&#160;; M36&#160;: livraison finale et publications.</li>
+</ul>
+</section>
 
-        <!-- ========================================================= -->
-        <!-- SOMMAIRE CLIQUABLE                                        -->
-        <!-- ========================================================= -->
-        <nav class="docToc" aria-label="Sommaire">
-            <h2 class="docTocTitle">Sommaire</h2>
-            <ol class="docTocList">
-                <li class="docTocItem"><span class="docTocNum">1.</span><a class="docTocLink" href="#contexte">Contexte et périmètre</a></li>
-                <li class="docTocItem"><span class="docTocNum">2.</span><a class="docTocLink" href="#architecture">Architecture de la solution</a></li>
-                <li class="docTocItem"><span class="docTocNum">3.</span><a class="docTocLink" href="#phases">Phases de mise en place</a></li>
-                <li class="docTocItem"><span class="docTocNum">4.</span><a class="docTocLink" href="#materiel">Besoins matériels</a></li>
-                <li class="docTocItem"><span class="docTocNum">5.</span><a class="docTocLink" href="#humain">Besoins en ressources humaines</a></li>
-                <li class="docTocItem"><span class="docTocNum">6.</span><a class="docTocLink" href="#ia">Intégration de l'IA</a></li>
-                <li class="docTocItem"><span class="docTocNum">7.</span><a class="docTocLink" href="#budget">Chronogramme et budget</a></li>
-            </ol>
-        </nav>
+<section id="s2">
+<h2>2. L&#8217;angle mort de la m&#233;decine de pr&#233;cision</h2>
 
-        <!-- ========================================================= -->
-        <!-- 1. CONTEXTE ET PÉRIMÈTRE                                  -->
-        <!-- ========================================================= -->
-        <section class="docSection" id="contexte">
-            <div class="docSectionHead">
-                <span class="docSectionNum">1</span>
-                <h2 class="docH2">Contexte et périmètre</h2>
-            </div>
+<p>Le g&#233;nome de r&#233;f&#233;rence humain GRCh38 a &#233;t&#233; &#233;labor&#233; &#224; partir d&#8217;un groupe restreint de donneurs majoritairement europ&#233;ens. En 2009, 96&#160;% des s&#233;quences g&#233;nomiques disponibles provenaient d&#8217;individus d&#8217;ascendance europ&#233;enne. En 2016, ce chiffre est encore de 80&#160;% pour les GWAS&#160;; en 2022, les individus d&#8217;ascendance africaine ne repr&#233;sentent plus que 1,1&#160;% du total, malgr&#233; l&#8217;effort des grandes initiatives de diversification.</p>
 
-            <p class="docText">
-                Le projet Génome Réunion crée un <strong>référentiel génomique local
-                de première génération</strong> spécifique à la population
-                réunionnaise. Il répond à la sous-représentation des populations
-                non-européennes dans les bases internationales (gnomAD,
-                1000&nbsp;Genomes).
-            </p>
+<figure>
+<svg viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;">
+  <text x="8" y="16" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">Composition ethnique de gnomAD v3 (~141&#160;456 individus) et GWAS Catalog 2022</text>
+  <rect x="8" y="24" width="440" height="24" rx="4" fill="#eaf3f7" stroke="#d9d9d9"/>
+  <rect x="8" y="24" width="349" height="24" rx="4" fill="#0F3A56" opacity=".92"/>
+  <rect x="357" y="24" width="35" height="24" fill="#1E6E8C" opacity=".88"/>
+  <rect x="392" y="24" width="27" height="24" fill="#0D9488" opacity=".85"/>
+  <rect x="419" y="24" width="19" height="24" rx="0 4 4 0" fill="#E8654A" opacity=".8"/>
+  <text x="60" y="40" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="700">Europ&#233;en 79&#160;%</text>
+  <text x="359" y="40" font-family="Arial,sans-serif" font-size="9" fill="#fff">8&#160;%</text>
+  <text x="394" y="40" font-family="Arial,sans-serif" font-size="8.5" fill="#fff">6&#160;%</text>
+  <text x="420" y="40" font-family="Arial,sans-serif" font-size="8" fill="#fff">4</text>
+  <rect x="8" y="60" width="12" height="11" rx="2" fill="#0F3A56"/><text x="24" y="70" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Europ&#233;en 79&#160;%</text>
+  <rect x="115" y="60" width="12" height="11" rx="2" fill="#1E6E8C"/><text x="131" y="70" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Africain 8&#160;%</text>
+  <rect x="210" y="60" width="12" height="11" rx="2" fill="#0D9488"/><text x="226" y="70" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Latino 6&#160;%</text>
+  <rect x="295" y="60" width="12" height="11" rx="2" fill="#E8654A"/><text x="311" y="70" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Asie Est 4&#160;% + autres 3&#160;%</text>
+  <text x="8" y="96" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">GWAS Catalog 2022 &#8212; Part d&#8217;ascendance africaine</text>
+  <rect x="8" y="103" width="440" height="17" rx="4" fill="#eaf3f7" stroke="#d9d9d9"/>
+  <rect x="8" y="103" width="4.8" height="17" rx="4 0 0 4" fill="#1E6E8C"/>
+  <text x="20" y="115" font-family="Arial,sans-serif" font-size="9.5" fill="#1E6E8C" font-weight="700">1,1&#160;% d&#8217;ascendance africaine &#8212; pour une population repr&#233;sentant ~18&#160;% de l&#8217;humanit&#233;</text>
+</svg>
+<figcaption class="caption">Figure&#160;1&#160;: D&#233;s&#233;quilibre de repr&#233;sentativit&#233; dans les bases g&#233;nomiques mondiales. Sources&#160;: Karczewski et al.&#160;2020 (gnomAD)&#160;; Fatumo et al.&#160;2022 (GWAS&#160;Catalog).</figcaption>
+</figure>
 
-            <p class="docText">
-                La méthodologie repose sur <strong>trois couches complémentaires</strong> :
-                une cohorte populationnelle génotypée sur puce SNP, un module familial
-                pour le phasage, et une sélection séquencée en WGS qui sert de vérité
-                de terrain.
-            </p>
+<h3 id="s2a">2.1 Biais diagnostiques document&#233;s</h3>
+<p>Lorsque les bases de fr&#233;quence all&#233;lique sont calibr&#233;es sur des populations dominantes, les variants fr&#233;quents dans d&#8217;autres groupes sont &#233;tiquet&#233;s &#224; tort comme rares ou pathog&#232;nes. L&#8217;exemple le plus document&#233; est celui de la <strong>cardiomyopathie hypertrophique</strong>&#160;(Manrai et al., 2016)&#160;: plusieurs patients afro-am&#233;ricains avaient re&#231;u un diagnostic positif erron&#233; bas&#233; sur des variants reclassifi&#233;s comme b&#233;nins une fois leur fr&#233;quence &#233;lev&#233;e mise en &#233;vidence dans la population africaine. Une &#233;tude portant sur 1,6&#160;million de tests g&#233;n&#233;tiques montre que les patients d&#8217;ascendance non-europ&#233;enne re&#231;oivent significativement plus de <strong>VUS (variants de signification incertaine)</strong>. Cette disparit&#233; cr&#233;e un cercle vicieux qui p&#233;nalise syst&#233;matiquement les populations d&#233;j&#224; sous-repr&#233;sent&#233;es.</p>
 
-            <!-- Entonnoir du référentiel (réutilisé de la page d'accueil) -->
-            <div class="docFunnel">
-                <svg class="heroLayersSvg" viewBox="0 0 320 280" role="img"
-                     aria-label="Schéma des trois couches du référentiel">
-                    <ellipse class="layerEllipse layerEllipseBase" cx="160" cy="70" rx="140" ry="40"></ellipse>
-                    <text class="layerLabel" x="160" y="75">2500 génotypages SNP</text>
-                    <ellipse class="layerEllipse layerEllipseMid" cx="160" cy="148" rx="105" ry="32"></ellipse>
-                    <text class="layerLabel" x="160" y="153">100 familles nucléaires</text>
-                    <ellipse class="layerEllipse layerEllipseTop" cx="160" cy="215" rx="70" ry="26"></ellipse>
-                    <text class="layerLabel" x="160" y="220">350 WGS (POPgen)</text>
-                </svg>
-            </div>
+<h3 id="s2b">2.2 In&#233;galit&#233;s pharmacog&#233;n&#233;tiques</h3>
+<p>La <strong>warfarine</strong> est m&#233;tabolis&#233;e selon des variants <em>CYP2C9</em> et <em>VKORC1</em>. Les algorithmes de dosage calibr&#233;s sur des cohortes europ&#233;ennes ou asiatiques &#233;chouent pour les patients d&#8217;ascendance africaine, dont les all&#232;les CYP2C9&#8727;5, &#8727;6, &#8727;8 et &#8727;11 n&#8217;&#233;taient pas inclus dans les mod&#232;les initiaux. Depuis 2017, les recommandations CPIC int&#232;grent explicitement la notion d&#8217;ascendance g&#233;n&#233;tique. Pour le <strong>clopidogrel</strong>, les variants CYP2C19 de perte de fonction atteignent 57&#160;% en population sud-asiatique de Grande-Bretagne, contre ~25&#160;% de m&#233;taboliseurs normaux. Une analyse colombienne montre que ~90&#160;% des individus latino-am&#233;ricains portent au moins un variant pharmacog&#233;n&#233;tique actionnable.</p>
 
-            <div class="calloutBox">
-                <span class="calloutIcon" aria-hidden="true">⚠️</span>
-                <p class="calloutText">
-                    <strong>Point crucial :</strong> le séquençage WGS des 350 individus
-                    est <strong>pris en charge par POPgen</strong>. Le coût côté
-                    laboratoire porte essentiellement sur le génotypage iScan des
-                    2500&nbsp;+&nbsp;~300 familles, auquel s'ajoutent l'extraction d'ADN
-                    et la conservation des échantillons au CRB.
-                </p>
-            </div>
+<h3 id="s2c">2.3 Amplification par l&#8217;intelligence artificielle</h3>
+<p>Les mod&#232;les d&#8217;apprentissage profond en drug discovery (GNN, AlphaFold2, VAE) d&#233;pendent enti&#232;rement de la qualit&#233; et de la repr&#233;sentativit&#233; de leurs donn&#233;es d&#8217;entra&#238;nement. Dans TCGA, 82&#8211;83&#160;% des patients sont d&#8217;ascendance europ&#233;enne. Dans le GWAS&#160;Catalog, 90&#8211;95&#160;% le sont. Sans r&#233;f&#233;rentiel r&#233;unionnais, les outils&#160;IA de m&#233;decine de pr&#233;cision produiront des r&#233;sultats aussi biais&#233;s que les outils standards actuels&#160;&#8212; voire davantage, car leur d&#233;ploiement &#224; grande &#233;chelle amplifie structurellement les angles morts.</p>
 
-            <h3 class="docH3">Chiffres clés du projet</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead>
-                        <tr><th scope="col">Paramètre</th><th scope="col">Valeur</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Cohorte populationnelle</td><td>2500 individus</td></tr>
-                        <tr><td>Module familial</td><td>100 familles (~300 individus)</td></tr>
-                        <tr><td>Sélection WGS</td><td>350 individus (parmi les 2500)</td></tr>
-                        <tr><td>Séquençage WGS</td><td>POPgen — coût 0 €</td></tr>
-                        <tr><td>Puce SNP</td><td>GDA-8, ~1,9M SNP (Illumina)</td></tr>
-                        <tr><td>Total génotypages</td><td>~2800 puces</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+<div class="callout"><span class="lbl">&#192; retenir</span>Sans donn&#233;es locales, la m&#233;decine de pr&#233;cision n&#8217;est pr&#233;cise que pour les populations d&#233;j&#224; bien repr&#233;sent&#233;es. Pour La&#160;R&#233;union, cela implique des erreurs diagnostiques mesurables, des biais pharmacog&#233;n&#233;tiques et une inefficacit&#233; croissante des algorithmes d&#8217;IA biom&#233;dicale.</div>
+</section>
+</div>
+<footer class="sheet__footer"><span>G&#233;nome R&#233;union &#183; Document de synth&#232;se scientifique &#8212; diffusion restreinte</span></footer>
+</section>
 
-        <!-- ========================================================= -->
-        <!-- 2. ARCHITECTURE DE LA SOLUTION                            -->
-        <!-- ========================================================= -->
-        <section class="docSection" id="architecture">
-            <div class="docSectionHead">
-                <span class="docSectionNum">2</span>
-                <h2 class="docH2">Architecture de la solution</h2>
-            </div>
+<section class="sheet">
+<div class="sheet__body">
+<section id="s3">
+<h2>3. Singularit&#233; g&#233;n&#233;tique de La R&#233;union</h2>
+<h3 id="s3a">3.1 Histoire migratoire et composition d&#8217;ascendance</h3>
+<p>L&#8217;&#238;le de La R&#233;union pr&#233;sente une singularit&#233; rare dans le monde&#160;: son peuplement s&#8217;est fait exclusivement par immigration, &#224; partir d&#8217;une &#238;le inhabit&#233;e lors de la colonisation fran&#231;aise (1642&#8211;1663). L&#8217;absence de population autochtone a permis une recomposition int&#233;grale des structures sociales, culturelles et g&#233;n&#233;tiques. Comme l&#8217;a formul&#233; l&#8217;historien Prosper &#200;ve, <em>&#171;&#160;La R&#233;union est un laboratoire d&#8217;histoire humaine, un monde recompos&#233; o&#249; se m&#234;lent les fragments d&#8217;identit&#233;s transplant&#233;es&#160;&#187;</em>.</p>
 
-            <p class="docLead">
-                Sept composantes techniques s'articulent du génotypage jusqu'au
-                portail clinique, toutes en stack Python.
-            </p>
+<div class="timeline">
+<div class="ev"><span class="yr">1663&#8211;1720</span>Colons fran&#231;ais (Ouest du royaume) &#8212; d&#233;buts de l&#8217;esclavage</div>
+<div class="ev"><span class="yr">1720&#8211;1848</span>Traite intensive&#160;: esclaves africains (Mozambique, Swahilie) et malgaches (Betsimisaraka, Sakalava, Antandroy). +160&#160;000 individus</div>
+<div class="ev"><span class="yr">apr&#232;s 1848</span>Engagisme&#160;: 200&#160;000+ Indiens tamouls, Chinois, Comoriens, Sud-Est asiatiques</div>
+<div class="ev"><span class="yr">XX&#8211;XXI<sup>e</sup></span>Migrations modernes&#160;: Comoriens, M&#233;tropolitains, flux indo-oc&#233;aniques</div>
+</div>
 
-            <!-- Flux de construction du référentiel (réutilisé) -->
-            <div class="flowWrapper">
-                <svg class="flowSvg" viewBox="0 0 760 360" role="img"
-                     aria-label="Flux de construction du référentiel génomique">
-                    <rect class="flowBox flowBoxInput" x="40" y="20" width="300" height="60" rx="8"></rect>
-                    <text class="flowBoxText" x="190" y="46">2500 individus · puce GDA-8</text>
-                    <text class="flowBoxSub" x="190" y="66">1,9M SNP</text>
-                    <rect class="flowBox flowBoxInput" x="420" y="20" width="300" height="60" rx="8"></rect>
-                    <text class="flowBoxText" x="570" y="46">100 familles nucléaires</text>
-                    <text class="flowBoxSub" x="570" y="66">~300 individus SNP</text>
-                    <line class="flowArrow" x1="190" y1="80" x2="190" y2="120"></line>
-                    <line class="flowArrow" x1="570" y1="80" x2="570" y2="120"></line>
-                    <rect class="flowBox flowBoxProcess" x="180" y="120" width="400" height="56" rx="8"></rect>
-                    <text class="flowBoxText" x="380" y="146">PCA · ADMIXTURE · IBD · ROH</text>
-                    <text class="flowBoxSub" x="380" y="166">Sélection hybride géo-ancestrale</text>
-                    <line class="flowArrow" x1="380" y1="176" x2="380" y2="216"></line>
-                    <rect class="flowBox flowBoxFree" x="200" y="216" width="360" height="56" rx="8"></rect>
-                    <text class="flowBoxText" x="380" y="242">350 WGS sélectionnés → POPgen</text>
-                    <text class="flowBoxSubFree" x="380" y="262">Séquençage GRATUIT (0 €)</text>
-                    <line class="flowArrow" x1="380" y1="272" x2="380" y2="312"></line>
-                    <rect class="flowBox flowBoxOutput" x="160" y="312" width="440" height="40" rx="8"></rect>
-                    <text class="flowBoxTextLight" x="380" y="337">Référentiel variants + imputation + phasage réunionnais</text>
-                </svg>
-            </div>
+<p>Ces populations, bien que culturellement m&#233;tiss&#233;es &#224; long terme, sont arriv&#233;es par vagues successives dans un espace insulaire clos, souvent cloisonn&#233;es selon des logiques communautaires, religieuses ou g&#233;ographiques (Hauts de l&#8217;&#238;le, cirques). Ce double ph&#233;nom&#232;ne produit une configuration paradoxale&#160;: <strong>admixture globale profonde</strong> et <strong>structuration locale persistante</strong>.</p>
 
-            <h3 class="docH3">Composantes de la plateforme</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead>
-                        <tr><th scope="col">Composante</th><th scope="col">Description</th><th scope="col">Technologie</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Génotypage</td><td>Puce GDA-8 via iScan</td><td>Illumina iScan + GDA-8</td></tr>
-                        <tr><td>Analyse génomique</td><td>PCA, ADMIXTURE, IBD, ROH</td><td>PLINK2, KING, SHAPEIT</td></tr>
-                        <tr><td>Sélection WGS</td><td>Score hybride géo-ancestral S_div</td><td>Pipeline Python maison</td></tr>
-                        <tr><td>Pipelines bioinfo</td><td>QC, alignement, calling</td><td>Nextflow / Snakemake</td></tr>
-                        <tr><td>Base de données</td><td>Variants, métadonnées, fréquences</td><td>PostgreSQL + MongoDB</td></tr>
-                        <tr><td>Interface clinique</td><td>Portail web, API</td><td>Django (full Python)</td></tr>
-                        <tr><td>Modules IA</td><td>Pathogénicité, PGx, admixture, risque</td><td>PyTorch + TensorFlow</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+<p><strong>Composition d&#8217;ascendance estim&#233;e (&#224; caract&#233;riser formellement par PCA/ADMIXTURE)&#160;:</strong></p>
+<div class="compo-bar">
+<span style="width:45%;background:#0D9488" title="Afrique/Malgache ~45%"></span>
+<span style="width:25%;background:#E8654A" title="Inde du Sud ~25%"></span>
+<span style="width:15%;background:#0F3A56" title="Europeen ~15%"></span>
+<span style="width:8%;background:#D97706" title="Zarabe/Gujarati ~8%"></span>
+<span style="width:7%;background:#7C3AED" title="Chinois/Asie ~7%"></span>
+</div>
+<div class="legend">
+<span class="item"><span class="swatch" style="background:#0D9488"></span>Afrique&#160;/&#160;Malgache &#8776;&#160;45&#160;%</span>
+<span class="item"><span class="swatch" style="background:#E8654A"></span>Inde du Sud &#8776;&#160;25&#160;%</span>
+<span class="item"><span class="swatch" style="background:#0F3A56"></span>Europ&#233;en &#8776;&#160;15&#160;%</span>
+<span class="item"><span class="swatch" style="background:#D97706"></span>Zarabe&#160;/&#160;Gujarati &#8776;&#160;8&#160;%</span>
+<span class="item"><span class="swatch" style="background:#7C3AED"></span>Chinois&#160;/&#160;Asie &#8776;&#160;7&#160;%</span>
+</div>
+<p class="caption">Figure&#160;2&#160;: Composition d&#8217;ascendance indicative avant caract&#233;risation formelle. Sources&#160;: Berniell-Lee et al.&#160;2008&#160;; Dubut et al.&#160;2009&#160;; Projet&#160;PMU.</p>
 
-        <!-- ========================================================= -->
-        <!-- 3. PHASES DE MISE EN PLACE                                -->
-        <!-- ========================================================= -->
-        <section class="docSection" id="phases">
-            <div class="docSectionHead">
-                <span class="docSectionNum">3</span>
-                <h2 class="docH2">Phases de mise en place</h2>
-            </div>
+<h3 id="s3b">3.2 Effets fondateurs et maladies rares locales</h3>
+<p>L&#8217;insularit&#233;, les pratiques d&#8217;endogamie partielle (Hauts, cirques) et les vagues migratoires partiellement cloisonn&#233;es ont favoris&#233; des <strong>effets fondateurs</strong> mesurables via IBD/ROH. Quand la taille effective N<sub>e</sub> chute brutalement, la variance de la fr&#233;quence all&#233;lique augmente&#160;: Var(p<sub>t+1</sub>)&#160;=&#160;p<sub>t</sub>(1&#8722;p<sub>t</sub>)&#160;/&#160;2N<sub>e</sub>. Le d&#233;s&#233;quilibre de liaison (LD) reste &#233;lev&#233;, rendant les analyses IBD/ROH particuli&#232;rement informatives.</p>
 
-            <p class="docLead">
-                Sept phases s'enchaînent et se chevauchent sur 36 mois, des panels
-                témoins jusqu'au portail web clinique. Les phases amont (0 à 3)
-                sont détaillées ci-dessous tâche par tâche.
-            </p>
+<table>
+<thead><tr><th>Syndrome</th><th>G&#232;ne / m&#233;canisme</th><th>Particularit&#233;</th></tr></thead>
+<tbody>
+<tr><td><strong>Larsen-Bourbon</strong></td><td><em>B4GALT7</em> &#8212; mutation fondatrice p.R270C (dysplasie osseuse)</td><td>Quasi-exclusif &#224; La R&#233;union&#160;; absent de gnomAD international</td></tr>
+<tr><td><strong>Syndrome de Ravine</strong></td><td>&#201;l&#233;ment transposable &#8594; ARN non codant (enc&#233;phalopathie n&#233;onatale)</td><td>D&#233;crit uniquement &#224; La R&#233;union&#160;; absent de toutes les bases mondiales</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau&#160;1&#160;: Maladies &#224; effet fondateur document&#233;es. Sources&#160;: Cartault et al.&#160;2015&#160;; Cartault et al.&#160;2012.</p>
 
-            <!-- Frise verticale d'ensemble (reprise de la page d'accueil) -->
-            <ol class="timelineList">
-                <li class="timelineItem"><span class="timelinePhase">Phase 0</span><div class="timelineBody"><h3 class="timelineTitle">Panels témoins</h3><p class="timelineMeta">Semaines 1-12 · parallèle</p><p class="timelineText">Accès et harmonisation des panels témoins (1000G, EGA, MGUA…).</p></div></li>
-                <li class="timelineItem"><span class="timelinePhase">Phase 1</span><div class="timelineBody"><h3 class="timelineTitle">Validation externe</h3><p class="timelineMeta">Semaines 1-10</p><p class="timelineText">Validation externe et simulation sur 1000G high-coverage.</p></div></li>
-                <li class="timelineItem"><span class="timelinePhase">Phase 2</span><div class="timelineBody"><h3 class="timelineTitle">Cohorte Réunion SNP</h3><p class="timelineMeta">Semaines 11-20</p><p class="timelineText">QC des 2500, PCA / ADMIXTURE puis sélection des 350 WGS.</p></div></li>
-                <li class="timelineItem"><span class="timelinePhase">Phase 3</span><div class="timelineBody"><h3 class="timelineTitle">Module familial</h3><p class="timelineMeta">Parallèle à la phase 2</p><p class="timelineText">100 familles nucléaires + phasage haplotypique réunionnais.</p></div></li>
-                <li class="timelineItem"><span class="timelinePhase">Phase 4</span><div class="timelineBody"><h3 class="timelineTitle">WGS POPgen</h3><p class="timelineMeta">Mois 8-22</p><p class="timelineText">Séquençage POPgen, traitement et base de données variants.</p></div></li>
-                <li class="timelineItem"><span class="timelinePhase">Phase 5</span><div class="timelineBody"><h3 class="timelineTitle">Modules IA</h3><p class="timelineMeta">Mois 17-30</p><p class="timelineText">Développement et validation des quatre modules IA.</p></div></li>
-                <li class="timelineItem"><span class="timelinePhase">Phase 6</span><div class="timelineBody"><h3 class="timelineTitle">Portail web & validation clinique</h3><p class="timelineMeta">Mois 27-36</p><p class="timelineText">Portail Django, mise en production et validation clinique finale.</p></div></li>
-            </ol>
+<h3 id="s3c">3.3 Inadaptation des outils g&#233;n&#233;tiques actuels</h3>
+<p>VEP, ANNOVAR, gnomAD, CADD, SIFT, PolyPhen, Varsome et Franklin reposent majoritairement sur des donn&#233;es issues de populations europ&#233;ennes ou est-asiatiques. Leur application &#224; la population r&#233;unionnaise produit syst&#233;matiquement&#160;: (1)&#160;<strong>faux&#160;positifs</strong> &#8212; variants fr&#233;quents localement &#233;tiquet&#233;s comme rares ou pathog&#232;nes&#160;; (2)&#160;<strong>faux&#160;n&#233;gatifs</strong> &#8212; variants pathog&#232;nes locaux invisibles dans les bases globales&#160;; (3)&#160;<strong>scores&#160;mal&#160;calibr&#233;s</strong> &#8212; CADD, REVEL et PolyPhen ignorent la structure g&#233;nomique r&#233;unionnaise&#160;; (4)&#160;<strong>panels&#160;d&#8217;imputation&#160;inadapt&#233;s</strong> &#8212; calibr&#233;s sur des haplotypes absents des populations m&#233;tiss&#233;es de l&#8217;oc&#233;an Indien. Des exemples comparables ont &#233;t&#233; document&#233;s au Br&#233;sil (millions de variants absents de gnomAD, PRS fausss&#233;s) et au Mexique (7&#160;clusters d&#8217;admixture invisibles aux outils standards).</p>
+</section>
+</div>
+<footer class="sheet__footer"><span>G&#233;nome R&#233;union &#183; Document de synth&#232;se scientifique &#8212; diffusion restreinte</span></footer>
+</section>
 
-            <h3 class="docH3">Phase 0 — Panels témoins (S1-S12, parallèle)</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Semaine</th><th scope="col">Tâche</th><th scope="col">Livrable</th></tr></thead>
-                    <tbody>
-                        <tr><td>1</td><td>Inventaire 1000G / EGA, priorisation</td><td>reference_panel_inventory.tsv</td></tr>
-                        <tr><td>1-2</td><td>Demandes accès DAC/EGA (MGUA, MAGE…)</td><td>reference_panel_access_status.tsv</td></tr>
-                        <tr><td>2-6</td><td>Téléchargement + contrôle formats</td><td>Dossiers versionnés</td></tr>
-                        <tr><td>3-8</td><td>Harmonisation build/strand + intersection SNP 1,9M</td><td>SNP_intersection_report</td></tr>
-                        <tr><td>6-12</td><td>PCA de sensibilité + contrôle batch effect</td><td>reference_panel_QC_report</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<section class="sheet">
+<div class="sheet__body">
+<section id="s4">
+<h2>4. Objectifs du projet</h2>
+<p><strong>Objectif principal &#8212;</strong> Constituer une base de donn&#233;es de variants g&#233;n&#233;tiques propre &#224; La R&#233;union comprenant polymorphismes fr&#233;quents (MAF&#160;&#8805;&#160;1&#160;%), mutations rares et fr&#233;quences all&#233;liques locales recalibr&#233;es. Produire un r&#233;f&#233;rentiel reproductible, auditable et am&#233;liorable.</p>
+<table>
+<thead><tr><th>Axe</th><th>Objectifs sp&#233;cifiques</th></tr></thead>
+<tbody>
+<tr><td><strong>Scientifiques</strong></td><td>Caract&#233;riser l&#8217;admixture multicontinentale (PCA/ADMIXTURE avec pools t&#233;moins)&#160;; identifier les effets fondateurs (IBD/ROH)&#160;; am&#233;liorer le phasage haplotypique (SHAPEIT4 + familles)&#160;; produire un panel d&#8217;imputation r&#233;unionnais.</td></tr>
+<tr><td><strong>Cliniques</strong></td><td>R&#233;duire les VUS&#160;; recalibrer VEP/ANNOVAR, CADD, REVEL, crit&#232;res ACMG&#160;; fournir des ressources PGx locales (CPIC Level A).</td></tr>
+<tr><td><strong>Territoriaux</strong></td><td>Infrastructure et expertise g&#233;nomiques locales au CHU&#160;; rayonnement r&#233;gional oc&#233;an Indien (COI)&#160;; contribution &#224; TOPMed, gnomAD, H3Africa&#160;; mod&#232;le pour populations admix&#233;es sous-repr&#233;sent&#233;es.</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau&#160;2&#160;: Objectifs du projet G&#233;nome R&#233;union.</p>
+</section>
 
-            <h3 class="docH3">Phase 1 — Validation externe (S1-S10)</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Semaine</th><th scope="col">Tâche</th><th scope="col">Livrable</th></tr></thead>
-                    <tbody>
-                        <tr><td>1</td><td>Préparation 1000G + panels EGA disponibles</td><td>Datasets QC</td></tr>
-                        <tr><td>2-3</td><td>Simulation tri-ancestrale + puce 1,9M</td><td>Jeu dégradé puce</td></tr>
-                        <tr><td>4</td><td>PCA / ADMIX / IBD / ROH</td><td>Scores initiaux</td></tr>
-                        <tr><td>5-6</td><td>Sélections comparatives strict vs hybride</td><td>Métriques comparées</td></tr>
-                        <tr><td>7-8</td><td>Sensibilité poids + LOCO</td><td>Rapport robustesse</td></tr>
-                        <tr><td>9-10</td><td>Synthèse → paramètres V3.5 finalisés</td><td>Paramètres gelés</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<section id="s5">
+<h2>5. Design g&#233;n&#233;ral &#8212; architecture en trois couches</h2>
+<div class="flow">
+<div class="flow-step alt">EFS R&#233;union<br>2&#160;500 donneurs<br><small>+&#160;100&#160;familles</small></div>
+<div class="flow-step">G&#233;notypage<br>GDA-8<br><small>~1,9&#160;M&#160;SNP</small></div>
+<div class="flow-step">QC &#183; PCA<br>ADMIXTURE<br>IBD &#183; ROH</div>
+<div class="flow-step">Score <code>S_div</code><br>&#8594; 350&#160;WGS<br><small>g&#233;o-ancestral</small></div>
+<div class="flow-step alt">POPgen<br>WGS 30&#215;<br><small style="color:#0D9488;font-weight:700">0&#160;&#8364;</small></div>
+<div class="flow-step">R&#233;f&#233;rentiel<br><small>variants &#183; imputation<br>phasage &#183; PGx</small></div>
+</div>
+<p class="caption">Figure&#160;3&#160;: Architecture globale du projet. Source&#160;: METHODOLOGY_selection_V3_5.md.</p>
 
-            <h3 class="docH3">Phase 2 — Cohorte Réunion SNP (S11-S20)</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Semaine</th><th scope="col">Tâche</th><th scope="col">Livrable</th></tr></thead>
-                    <tbody>
-                        <tr><td>1-2</td><td>QC 2500 SNP + secteurs géographiques</td><td>Données propres</td></tr>
-                        <tr><td>3</td><td>PCA + ADMIXTURE avec panels témoins</td><td>Structure géo-ancestrale</td></tr>
-                        <tr><td>4</td><td>Cellules géo-ancestrales + IBD + ROH + S_div</td><td>Quotas et scores</td></tr>
-                        <tr><td>5</td><td>Sélection stricte 350 + hybride 322+28</td><td>Listes 350 WGS</td></tr>
-                        <tr><td>6</td><td>Audit bras découverte</td><td>Justification individuelle</td></tr>
-                        <tr><td>7-8</td><td>Préparation envoi WGS → POPgen</td><td>Échantillons prêts</td></tr>
-                        <tr><td>9-10</td><td>Premiers VCF/BAM retournés par POPgen</td><td>Données WGS</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<div class="callout-green"><span class="lbl">Point structurant</span>Le s&#233;quen&#231;age WGS des 350 individus est int&#233;gralement pris en charge par le consortium <strong>POPgen (0&#160;&#8364;)</strong>. Le co&#251;t projet porte sur le g&#233;notypage GDA-8 (~265&#160;k&#8364; en sous-traitance), l&#8217;extraction d&#8217;ADN (54&#160;k&#8364;), la conservation au CRB (128&#160;k&#8364;) et l&#8217;infrastructure IT (270&#8211;334&#160;k&#8364; selon sc&#233;nario).</div>
 
-            <h3 class="docH3">Phase 3 — Module familial (parallèle)</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Étape</th><th scope="col">Tâche</th><th scope="col">Livrable</th></tr></thead>
-                    <tbody>
-                        <tr><td>F1</td><td>Recrutement 100 familles nucléaires</td><td>Familles diversifiées géographiquement</td></tr>
-                        <tr><td>F2</td><td>Génotypage SNP GDA-8 (~300 individus)</td><td>Données familiales SNP</td></tr>
-                        <tr><td>F3</td><td>QC familial + erreurs de Mendel</td><td>Rapport transmission</td></tr>
-                        <tr><td>F4</td><td>Phasage 2500 + familles</td><td>Haplotypes réunionnais SNP</td></tr>
-                        <tr><td>F5</td><td>Intégration WGS</td><td>Panel d'imputation local</td></tr>
-                        <tr><td>F6</td><td>Évaluation imputation / LAI</td><td>Rapport performance</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+<table>
+<thead><tr><th>Couche</th><th>N</th><th>R&#244;le</th><th>Statut</th></tr></thead>
+<tbody>
+<tr><td><strong>Cohorte populationnelle SNP</strong></td><td>2&#160;500</td><td>Structure g&#233;n&#233;tique, s&#233;lection WGS, recalibrage fr&#233;quences</td><td>Base populationnelle principale</td></tr>
+<tr><td><strong>Module familial SNP</strong></td><td>~300 (100&#160;familles)</td><td>Phasage par transmission, contr&#244;le mend&#233;lien, haplotypes r&#233;unionnais</td><td>Hors cohorte 2&#160;500 &#8212; ressource technique</td></tr>
+<tr><td><strong>Panel WGS optimis&#233;</strong></td><td>350 (issus des 2&#160;500)</td><td>D&#233;couverte variants, panel d&#8217;imputation, r&#233;f&#233;rence locale</td><td>Hybride&#160;: noyau 322 + bras d&#233;couverte 28</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau&#160;3&#160;: Architecture des trois couches. Source&#160;: METHODOLOGY_selection_V3_5.md &#167;2.</p>
 
-        <!-- ========================================================= -->
-        <!-- 4. BESOINS MATÉRIELS                                      -->
-        <!-- ========================================================= -->
-        <section class="docSection" id="materiel">
-            <div class="docSectionHead">
-                <span class="docSectionNum">4</span>
-                <h2 class="docH2">Besoins matériels</h2>
-            </div>
+<p>Les fr&#233;quences finales <strong>ne seront pas lues directement sur les 350&#160;WGS</strong> (&#233;chantillon enrichi, non repr&#233;sentatif). Elles seront recalibr&#233;es sur les 2&#160;500&#160;individus&#160;: <code>freq_pond&#233;r&#233;e(v)&#160;=&#160;&#931;<sub>s</sub>&#160;poids<sub>s</sub>&#160;&#215;&#160;freq<sub>s</sub>(v)</code>, o&#249; poids<sub>s</sub> est la proportion de la strate&#160;s dans les 2&#160;500&#160;SNP. Quatre formes de fr&#233;quences seront rapport&#233;es&#160;: brute WGS, pond&#233;r&#233;e, imput&#233;e, finale annot&#233;e.</p>
+</section>
+</div>
+<footer class="sheet__footer"><span>G&#233;nome R&#233;union &#183; Document de synth&#232;se scientifique &#8212; diffusion restreinte</span></footer>
+</section>
 
-            <h3 class="docH3">4.1 Génotypage iScan — budget principal</h3>
-            <p class="docText">
-                Puce Infinium Global Diversity Array-8 (GDA-8), ~1,9M SNP, pour
-                ~2800 puces (+5% réplicats QC = 2940 au total). Le WGS des 350
-                individus est pris en charge par POPgen (0 €). Deux scénarios
-                mutuellement exclusifs, le CHU ne disposant pas d'iScan en propre.
-            </p>
+<section class="sheet">
+<div class="sheet__body">
+<section id="s6">
+<h2>6. Méthodologie détaillée</h2>
 
-            <h4 class="docH3">Scénario 1 — Sous-traitance à une plateforme partenaire</h4>
-            <p class="docText">
-                Le prestataire (CNG Évry, GenomEast, CNRGH…) fournit tout : puces,
-                réactifs, hybridation, scan, extraction IDAT. Le CHU ne paie qu'à la facture.
-            </p>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Poste</th><th scope="col">Quantité</th><th scope="col">Tarif</th><th scope="col">Total</th></tr></thead>
-                    <tbody>
-                        <tr><td>GDA-8 — cohorte populationnelle</td><td>2500</td><td>~90 €/éch.</td><td>225 000 €</td></tr>
-                        <tr><td>GDA-8 — module familial</td><td>300</td><td>~90 €/éch.</td><td>27 000 €</td></tr>
-                        <tr><td>Réplicats QC (+5%)</td><td>140</td><td>~90 €/éch.</td><td>12 600 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total scénario 1</td><td>2940</td><td>—</td><td>~265 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<h3 id="s6a">6.1 Génotypage SNP et contrôle qualité</h3>
+<p>La puce <strong>Infinium Global Diversity Array-8 (GDA-8, Illumina)</strong> génère environ 1,9 million de SNP bruts. Ce choix résulte de sa couverture multi-ancestrale optimisée et de sa pertinence pour le phasage, les ROH et l’imputation. Volume total : ~2 800 puces (2 500 cohorte + ~300 familles + 5 % réplicats QC = 2 940).</p>
 
-            <h4 class="docH3">Scénario 2 — Acquisition iScan + consommables</h4>
-            <p class="docText">
-                Le CHU souhaite internaliser durablement le génotypage. L'instrument
-                amortit son coût sur les projets futurs.
-            </p>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Poste</th><th scope="col">Coût</th></tr></thead>
-                    <tbody>
-                        <tr><td>iScan System (scanner neuf)</td><td>150 000 €</td></tr>
-                        <tr><td>AutoLoader 2.x + ILASS</td><td>70 000 €</td></tr>
-                        <tr><td>Installation + qualification IQ/OQ/PQ</td><td>15 000 €</td></tr>
-                        <tr><td>Maintenance 1ère année</td><td>18 000 €</td></tr>
-                        <tr><td>Sous-total équipement</td><td>253 000 €</td></tr>
-                        <tr><td>Consommables (puces GDA-8 + réactifs Infinium)</td><td>226 000 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total scénario 2</td><td>~479 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<table>
+<thead><tr><th>Usage analytique</th><th>Jeu SNP retenu</th><th>Filtres principaux</th><th>Outil</th></tr></thead>
+<tbody>
+<tr><td>PCA, ADMIXTURE</td><td>SNP prunés en LD</td><td>MAF ≥ 1 %, HWE p&gt;1e-6, LD pruning 200 kb&#160;/&#160;r²≤0,2</td><td>PLINK2</td></tr>
+<tr><td>Phasage, IBD, ROH</td><td>SNP denses filtrés</td><td>MAF ≥ 1 %, call rate ≥ 98 %, sans LD pruning agressif</td><td>SHAPEIT4, KING</td></tr>
+<tr><td>Imputation</td><td>SNP harmonisés WGS</td><td>Build commun, strand harmonisé, intersection WGS locale</td><td>MINIMAC4 / BEAGLE 5</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 4 : Usage différencié des marqueurs SNP. Source : METHODOLOGY_selection_V3_5.md §5.4.</p>
 
-            <h4 class="docH3">Comparaison des deux scénarios</h4>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Critère</th><th scope="col">Sc.1 Sous-traitance</th><th scope="col">Sc.2 iScan</th></tr></thead>
-                    <tbody>
-                        <tr><td>Coût génotypage projet</td><td>~265 000 €</td><td>~479 000 €</td></tr>
-                        <tr><td>Investissement instrument</td><td>0 €</td><td>253 000 €</td></tr>
-                        <tr><td>Autonomie future</td><td>Non</td><td>Oui</td></tr>
-                        <tr><td>Délai de démarrage</td><td>Rapide</td><td>+3-4 mois</td></tr>
-                        <tr><td>Recommandé si…</td><td>Projet ponctuel</td><td>Stratégie long terme</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<div class="callout"><span class="lbl">Important</span>Les 1,9 M SNP bruts ne sont pas utilisés indistinctement. Le choix du jeu SNP est la première décision analytique à documenter et versionner, car il conditionne la qualité de toutes les analyses aval.</div>
 
-            <!-- Coût matériel total par scénario (réutilisé) -->
-            <h4 class="docH3">Coût matériel total par scénario</h4>
-            <div class="chartWrapper">
-                <svg class="barChartSvg" viewBox="0 0 640 300" role="img"
-                     aria-label="Comparaison du budget matériel total des deux scénarios">
-                    <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
-                    <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
-                    <text class="chartGridLabel" x="50" y="64">1000K</text>
-                    <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
-                    <text class="chartGridLabel" x="50" y="159">500K</text>
-                    <rect class="barRect barRectOne" x="170" y="136" width="120" height="114"></rect>
-                    <text class="barValue" x="230" y="126">599K€</text>
-                    <text class="barLabel" x="230" y="270">Sc.1 Sous-traitance</text>
-                    <rect class="barRect barRectThree" x="380" y="95" width="120" height="155"></rect>
-                    <text class="barValue" x="440" y="85">813K€</text>
-                    <text class="barLabel" x="440" y="270">Sc.2 iScan à acquérir</text>
-                </svg>
-            </div>
+<h3 id="s6b">6.2 Pools témoins — hiérarchie opérationnelle</h3>
+<p>Les pools témoins ne remplacent pas la cohorte réunionnaise : ils ancrent les axes PCA dans un espace génétique interprétable et stabilisent les composantes ADMIXTURE. Ils sont organisés en trois niveaux :</p>
 
-            <h3 class="docH3">4.2 Infrastructure informatique (on-premise)</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Composant</th><th scope="col">Qté</th><th scope="col">Total</th></tr></thead>
-                    <tbody>
-                        <tr><td>Serveurs CPU (analyse QC/PCA)</td><td>2</td><td>16 000 €</td></tr>
-                        <tr><td>Serveurs HPC GPU (pipelines)</td><td>4</td><td>100 000 €</td></tr>
-                        <tr><td>Serveurs GPU A100 (IA/ML)</td><td>2</td><td>80 000 €</td></tr>
-                        <tr><td>Stockage NVMe 100TB (NAS)</td><td>2</td><td>60 000 €</td></tr>
-                        <tr><td>Réseau 10/25Gbps + switch</td><td>1</td><td>18 000 €</td></tr>
-                        <tr><td>UPS + climatisation</td><td>1</td><td>20 000 €</td></tr>
-                        <tr><td>Sécurité + sauvegarde offsite</td><td>1</td><td>15 000 €</td></tr>
-                        <tr><td>Logiciels + licences</td><td>1</td><td>25 000 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total infrastructure IT</td><td>—</td><td>334 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="calloutBox">
-                <span class="calloutIcon" aria-hidden="true">💾</span>
-                <p class="calloutText">
-                    <strong>Stockage estimé :</strong> IDAT génotypage ~1,4 TB,
-                    VCF/BAM des 350 WGS ~35 TB, intermédiaires ~20 TB, base variants +
-                    sauvegardes ~30 TB → <strong>100-120 TB recommandés</strong>.
-                </p>
-            </div>
+<table>
+<thead><tr><th>Niveau</th><th>Panel</th><th>Accession EGA</th><th>N</th><th>Rôle</th></tr></thead>
+<tbody>
+<tr><td><strong>0 — Socle public</strong></td><td>1000 Genomes high-coverage / IGSR</td><td>Public</td><td>3 202 WGS, 26 pop.</td><td>Ancrage multi-ancestral, phasage, imputation</td></tr>
+<tr><td><strong>1 — Prioritaire</strong></td><td>MGUA Malagasy WGS</td><td>EGAS50000000496</td><td>264 ind.</td><td>Ancrage malgache — critique pour La Réunion</td></tr>
+<tr><td><strong>1 — Prioritaire</strong></td><td>GenomeAsia 100K</td><td>EGAS00001002921</td><td>diverse</td><td>Ancrage sud-asiatique et est-asiatique</td></tr>
+<tr><td><strong>1 — Prioritaire</strong></td><td>Angola / Mozambique WGS</td><td>EGAS00001007458</td><td>WGS</td><td>Ancrage bantou, Afrique australe-orientale</td></tr>
+<tr><td><strong>2 — Complémentaire</strong></td><td>AGVP / H3Africa WGS</td><td>Divers EGA</td><td>—</td><td>Diversité africaine large, contrôle robustesse</td></tr>
+<tr><td><strong>2 — Exploratoire</strong></td><td>Pacific WGS</td><td>EGAS00001004540</td><td>317</td><td>Axeaust ronésien, interprétation prudente</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 5 : Catalogue opérationnel des pools témoins. Source : METHODOLOGY_selection_V3_5.md §6.3.</p>
 
-            <!-- Évolution du stockage (réutilisé) -->
-            <div class="chartWrapper">
-                <svg class="lineChartSvg" viewBox="0 0 640 300" role="img"
-                     aria-label="Courbe d'évolution du stockage par phase">
-                    <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
-                    <line class="chartAxis" x1="60" y1="40" x2="60" y2="250"></line>
-                    <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
-                    <text class="chartGridLabel" x="50" y="64">100</text>
-                    <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
-                    <text class="chartGridLabel" x="50" y="159">50</text>
-                    <polyline class="lineSeries" points="110,246 230,231 350,193 470,136 590,60"></polyline>
-                    <circle class="linePoint" cx="110" cy="246" r="5"></circle>
-                    <circle class="linePoint" cx="230" cy="231" r="5"></circle>
-                    <circle class="linePoint" cx="350" cy="193" r="5"></circle>
-                    <circle class="linePoint" cx="470" cy="136" r="5"></circle>
-                    <circle class="linePoint" cx="590" cy="60" r="5"></circle>
-                    <text class="chartXLabel" x="110" y="270">Phase 0</text>
-                    <text class="chartXLabel" x="230" y="270">Phase 1</text>
-                    <text class="chartXLabel" x="350" y="270">Phase 2</text>
-                    <text class="chartXLabel" x="470" y="270">Phase 3</text>
-                    <text class="chartXLabel" x="590" y="270">Phase 4+</text>
-                </svg>
-            </div>
+<p>Un panel ne sera retenu que s’il satisfait : accès obtenu, build harmonisable, intersection SNP suffisante (&gt; 50 k SNP en commun après QC), absence de batch effect majeur dans la PCA, stabilité ADMIXTURE multi-seed, cohérence avec les connaissances historiques. L’absence ou la faible qualité d’un pool témoin doit être explicitément documentée dans le rapport de validation.</p>
 
-            <h3 class="docH3">4.3 Alternative : infrastructure cloud hybride</h3>
-            <p class="docText">
-                L'infrastructure ci-dessus peut être portée dans le cloud. Pour des
-                données de santé, la contrainte structurante est réglementaire :
-                hébergement <strong>certifié HDS</strong> et données dans l'Union
-                européenne. Le modèle recommandé est hybride — stockage HDS souverain
-                pour les données sensibles, calcul GPU à la demande (burst) — ce qui
-                transforme un CAPEX en OPEX.
-            </p>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Poste</th><th scope="col">Détail</th><th scope="col">Coût (36 mois)</th></tr></thead>
-                    <tbody>
-                        <tr><td>Stockage HDS + sauvegarde</td><td>~100-120 TB souverain</td><td>~90 000 €</td></tr>
-                        <tr><td>Compute CPU + BD managée</td><td>VMs permanentes</td><td>~55 000 €</td></tr>
-                        <tr><td>Compute GPU à la demande</td><td>IA + pipelines (burst)</td><td>~40 000 €</td></tr>
-                        <tr><td>Sécurité, conformité HDS</td><td>—</td><td>~25 000 €</td></tr>
-                        <tr><td>Logiciels + licences</td><td>—</td><td>~25 000 €</td></tr>
-                        <tr><td>Poste local minimal</td><td>Postes + cache NAS</td><td>~20 000 €</td></tr>
-                        <tr><td>Réseau + egress</td><td>Transferts, accès</td><td>~15 000 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total cloud hybride</td><td>—</td><td>~270 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<h3 id="s6c">6.3 PCA / ADMIXTURE — stratégie par niveaux progressifs</h3>
+<p>La PCA est conduite en quatre niveaux pour distinguer la structure interne de La Réunion de l’ancrage par références externes :</p>
+<ul>
+<li><strong>PCA-0</strong> — Réunion seule : structure interne des 2 500 individus, axes non nommés ;</li>
+<li><strong>PCA-1</strong> — Réunion + 1000G : ancrage multi-ancestral public immédiat ;</li>
+<li><strong>PCA-2</strong> — + panels EGA prioritaires (MGUA, GenomeAsia, Angola/Mozambique) si accords DAC obtenus ;</li>
+<li><strong>PCA-3</strong> — analyse de sensibilité avec panels complémentaires (AGVP, H3Africa, Pacific).</li>
+</ul>
+<p>L’ADMIXTURE est conduit en mode non supervisé puis semi-supervisé. Le choix de K combine : CV-error, stabilité multi-seed, cohérence avec la PCA projetée, cohérence historique, prudence sur les composantes mal représentées par les panels disponibles. Un K fixé a priori sans validation croisée serait plus trompeur qu’utile.</p>
+</section>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
 
-            <!-- On-premise vs cloud (réutilisé) -->
-            <div class="chartWrapper">
-                <svg class="barChartSvg" viewBox="0 0 640 300" role="img"
-                     aria-label="Comparaison du coût d'infrastructure on-premise et cloud hybride">
-                    <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
-                    <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
-                    <text class="chartGridLabel" x="50" y="64">400K</text>
-                    <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
-                    <text class="chartGridLabel" x="50" y="159">200K</text>
-                    <rect class="barRect barRectOne" x="170" y="91" width="120" height="159"></rect>
-                    <text class="barValue" x="230" y="81">334 K€</text>
-                    <text class="barLabel" x="230" y="270">On-premise (CAPEX)</text>
-                    <rect class="barRect barRectTwo" x="380" y="122" width="120" height="128"></rect>
-                    <text class="barValue" x="440" y="112">270 K€</text>
-                    <text class="barLabel" x="440" y="270">Cloud hybride (OPEX)</text>
-                </svg>
-            </div>
-            <div class="calloutBox">
-                <span class="calloutIcon" aria-hidden="true">💡</span>
-                <p class="calloutText">
-                    <strong>Impact budget :</strong> retenir le cloud hybride
-                    (~270 000 €) plutôt que l'on-premise (334 000 €) réduit le
-                    sous-total de 64 000 €, soit −70 400 € après contingence. Le budget
-                    optimal passe d'environ 1 474 000 € à <strong>~1 403 000 €</strong>.
-                    Les tableaux du §7 conservent l'hypothèse on-premise par défaut.
-                </p>
-            </div>
+<section class="sheet">
+<div class="sheet__body">
 
-            <h3 class="docH3">4.4 Coûts biologiques (extraction + conservation)</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Poste</th><th scope="col">Détail</th><th scope="col">Coût</th></tr></thead>
-                    <tbody>
-                        <tr><td>Extraction ADN</td><td>Kits + consommables (~2800 échantillons)</td><td>~54 000 €</td></tr>
-                        <tr><td>Conservation au CRB</td><td>Stockage biologique des échantillons</td><td>127 676 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="docNote">
-                Le temps opérateur (réception, extraction, QC, envois) est porté par le
-                technicien de laboratoire à 100% listé en partie RH (§5).
-            </p>
-        </section>
+<h3 id="s6d">6.4 IBD, ROH et signatures fondatrices</h3>
+<p>L’inférence de parenté est réalisée avec <strong>KING-robust</strong>, retenu car robuste en contexte admixé — contrairement à PI_HAT qui est biaisé en présence de stratification. Le seuil d’exclusion du panel WGS est :</p>
+<pre>
+kinship_KING ≥ 0,0625  →  apparentement ≥ cousins germains → exclusion du noyau principal
+(correspond à relatedness_R ≥ 0,125)
+</pre>
 
-        <!-- ========================================================= -->
-        <!-- 5. BESOINS EN RESSOURCES HUMAINES                         -->
-        <!-- ========================================================= -->
-        <section class="docSection" id="humain">
-            <div class="docSectionHead">
-                <span class="docSectionNum">5</span>
-                <h2 class="docH2">Besoins en ressources humaines</h2>
-            </div>
+<table>
+<thead><tr><th>Degré d’apparentement</th><th>PI_HAT / relatedness R</th><th>Kinship KING approx.</th></tr></thead>
+<tbody>
+<tr><td>Parent-enfant / germains</td><td>~0,50</td><td>~0,25</td></tr>
+<tr><td>2ᵉ degré (demi-germains, grands-parents)</td><td>~0,25</td><td>~0,125</td></tr>
+<tr><td>Cousins germains</td><td>~0,125</td><td>~0,0625 ← <strong>seuil</strong></td></tr>
+<tr><td>Parenté plus éloignée</td><td>&lt;0,125</td><td>&lt;0,0625</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 6 : Correspondances des mesures de parenté. Source : METHODOLOGY_selection_V3_5.md §7.5.</p>
 
-            <p class="docText">
-                Projet de 36 mois. Tous les coûts sont exprimés en <strong>coût
-                employeur, charges patronales comprises</strong> (~43% du brut, secteur
-                hospitalier public). Trois propositions de montage d'équipe, partageant
-                une équipe socle invariante.
-            </p>
+<p>Les ROH (Runs of Homozygosity) mesurent l’autozygotie et détectent les signatures fondatrices. Le score individuel ROH utilisé dans <code>S_div</code> est :</p>
+<pre>ROH_score_diversity(i) = max(0, 1 − total_ROH_length(i) / 100 Mb)
+Version empirique (recommandée en sensibilité) :
+ROH_score_diversity_emp(i) = 1 − rank_percentile(total_ROH_length, secteur)</pre>
+<p>Un ROH élevé isolé peut refléter une consanguinité récente individuelle. Un ROH partagé par plusieurs individus non proches, localisé géographiquement et associé à un haplotype commun, est plus informatif pour l’effet fondateur.</p>
 
-            <h3 class="docH3">Équipe socle — invariante</h3>
-            <p class="docText">
-                Le coordinateur IR2 pilote le projet et encadre les juniors ; le
-                technicien de laboratoire à 100% assure réception, extraction et QC.
-                Ces deux coûts ne peuvent être réduits sans compromettre la qualité.
-            </p>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Poste</th><th scope="col">Contrat</th><th scope="col">Brut</th><th scope="col">Coût CC total</th></tr></thead>
-                    <tbody>
-                        <tr><td>Coordinateur scientifique</td><td>IR2 CDD 100% · 36 mois</td><td>3 833 €/mois</td><td>197 340 €</td></tr>
-                        <tr><td>Technicien de laboratoire</td><td>CDD 100% · 36 mois</td><td>2 200 €/mois</td><td>113 256 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<h3 id="s6e">6.5 Module familial et phasage SHAPEIT4</h3>
+<p>Les 100 familles nucléaires (~300 individus) sont recrutées <strong>hors cohorte 2 500</strong>. Elles ne servent pas à estimer les fréquences populationnelles. Leur rôle est exclusivement technique.</p>
 
-            <h3 class="docH3">Proposition 1 — Stages + CDD + contrat doctoral</h3>
-            <p class="docText"><strong>−17% vs référence · Total : 565 000 € CC.</strong> Montage le plus simple, sans délai administratif particulier.</p>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Poste</th><th scope="col">Contrat</th><th scope="col">Coût CC total</th></tr></thead>
-                    <tbody>
-                        <tr><td>Coordinateur</td><td>IR2 CDD 100% · 36 mois</td><td>197 340 €</td></tr>
-                        <tr><td>Technicien de laboratoire</td><td>CDD 100% · 36 mois</td><td>113 256 €</td></tr>
-                        <tr><td>Bioinformaticien</td><td>Doctorant contrat doctoral · 36 mois</td><td>118 548 €</td></tr>
-                        <tr><td>Data Engineer</td><td>Stage 6m → CDD IE1 16m</td><td>66 740 €</td></tr>
-                        <tr><td>Data Scientist IA</td><td>Stage 6m → CDD IE1 14m</td><td>59 590 €</td></tr>
-                        <tr><td>DevOps</td><td>Stage 6m</td><td>9 540 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total proposition 1</td><td>—</td><td>565 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<table>
+<thead><tr><th>Usage</th><th>Familles incluses ?</th><th>Commentaire</th></tr></thead>
+<tbody>
+<tr><td>Estimation de fréquence populationnelle</td><td><strong>Non</strong></td><td>Apparentés, hors cohorte 2 500</td></tr>
+<tr><td>Phasage SNP</td><td>Oui</td><td>Transmission mendélienne</td></tr>
+<tr><td>Imputation</td><td>Oui</td><td>Amélioration des haplotypes</td></tr>
+<tr><td>LAI (Local Ancestry Inference)</td><td>Oui</td><td>Soutien à la reconstruction locale</td></tr>
+<tr><td>IBD/ROH familial</td><td>Oui</td><td>Analyses dédiées</td></tr>
+<tr><td>Contrôle qualité</td><td>Oui</td><td>Erreurs de Mendel, incohérences, contamination</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 7 : Statut analytique des familles nucléaires. Source : METHODOLOGY_selection_V3_5.md §20.</p>
 
-            <h3 class="docH3">Proposition 2 — Alternance + CIFRE ⭐ recommandée</h3>
-            <p class="docText"><strong>−23% vs référence · Total : 524 000 € CC.</strong> L'alternance (&lt;26 ans) est quasi-exonérée de charges ; le CIFRE réduit de moitié le coût du doctorant (subvention ANRT 14 000 €/an). Meilleur équilibre coût/risque.</p>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Poste</th><th scope="col">Contrat</th><th scope="col">Coût CC total</th></tr></thead>
-                    <tbody>
-                        <tr><td>Coordinateur</td><td>IR2 CDD 100% · 36 mois</td><td>197 340 €</td></tr>
-                        <tr><td>Technicien de laboratoire</td><td>CDD 100% · 36 mois</td><td>113 256 €</td></tr>
-                        <tr><td>Bioinformaticien</td><td>Doctorant CIFRE · 36 mois</td><td>95 292 €</td></tr>
-                        <tr><td>Data Engineer</td><td>Alternance 2 ans → CDD IE1 10m</td><td>65 150 €</td></tr>
-                        <tr><td>Data Scientist IA</td><td>Alternance 1 an → CDD IE1 8m</td><td>43 300 €</td></tr>
-                        <tr><td>DevOps</td><td>Stage 6m</td><td>9 540 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total proposition 2</td><td>—</td><td>524 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<p>Le phasage sera produit en trois niveaux comparables avec SHAPEIT4 comme outil principal :</p>
+<pre>
+1. phasage_populationnel_SHAPEIT4           (2 500 SNP seuls)
+2. phasage_pop_familles_SHAPEIT4            (2 500 + 100 familles)
+3. phasage_pop_familles_WGS_SHAPEIT4        (après réception WGS POPgen)
+</pre>
+<p>La comparaison des trois sorties permettra de quantifier le gain réel du module familial et du panel WGS local sur la précision du phasage haplotypique réunionnais. Une quatrième sortie exploratoire avec SHAPEIT5 (pour les variants rares) pourra être envisagée en phase d’extension.</p>
 
-            <h3 class="docH3">Proposition 3 — Maximum alternance</h3>
-            <p class="docText"><strong>−29% vs référence · Total : 485 000 € CC.</strong> Trois alternants + CIFRE + coordinateur à 80% ETP. Budget minimal, supervision intensive requise.</p>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Poste</th><th scope="col">Contrat</th><th scope="col">Coût CC total</th></tr></thead>
-                    <tbody>
-                        <tr><td>Coordinateur</td><td>IR2 CDD 80% ETP · 36 mois</td><td>157 896 €</td></tr>
-                        <tr><td>Technicien de laboratoire</td><td>CDD 100% · 36 mois</td><td>113 256 €</td></tr>
-                        <tr><td>Bioinformaticien</td><td>Doctorant CIFRE · 36 mois</td><td>95 292 €</td></tr>
-                        <tr><td>Data Engineer</td><td>Alternance 2 ans → CDD IE1 10m</td><td>65 150 €</td></tr>
-                        <tr><td>Data Scientist IA</td><td>Alternance 2 ans</td><td>29 400 €</td></tr>
-                        <tr><td>Frontend / Backend</td><td>Alternance 1 an</td><td>14 700 €</td></tr>
-                        <tr><td>DevOps</td><td>Stage 6m</td><td>9 540 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total proposition 3</td><td>—</td><td>485 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<div class="callout"><span class="lbl">Garde-fou analytique</span>Les familles nucléaires ne seront jamais traitées comme observations indépendantes dans l’estimation des fréquences. Elles constituent une ressource de phasage, pas un suréchantillonnage de la cohorte principale. Cette distinction est essentielle pour la rigueur scientifique et la défense devant un comité de relecture.</div>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
 
-            <div class="calloutBox">
-                <span class="calloutIcon" aria-hidden="true">★</span>
-                <p class="calloutText">
-                    <strong>Recommandation :</strong> la proposition 2 (alternance +
-                    CIFRE) offre le meilleur équilibre coût/risque.
-                </p>
-            </div>
-            <div class="calloutBox calloutBoxWarn">
-                <span class="calloutIcon" aria-hidden="true">!</span>
-                <p class="calloutText">
-                    <strong>Condition bloquante :</strong> le CIFRE impose un partenaire
-                    privé (startup génomique, laboratoire ou éditeur médical). Sans
-                    partenaire, contrat doctoral classique (+23 000 € sur trois ans).
-                </p>
-            </div>
+<section class="sheet">
+<div class="sheet__body">
+<section id="s7">
+<h2>7. Algorithme de sélection WGS — Score S_div V3.5</h2>
 
-            <h3 class="docH3">Comparaison des trois propositions</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Critère</th><th scope="col">Référence</th><th scope="col">Prop. 1</th><th scope="col">Prop. 2</th><th scope="col">Prop. 3</th></tr></thead>
-                    <tbody>
-                        <tr><td>Coût total CC</td><td>680 000 €</td><td>565 000 €</td><td>524 000 €</td><td>485 000 €</td></tr>
-                        <tr><td>Réduction</td><td>—</td><td>−17%</td><td>−23%</td><td>−29%</td></tr>
-                        <tr><td>Complexité admin.</td><td>Faible</td><td>Faible</td><td>Modérée</td><td>Élevée</td></tr>
-                        <tr><td>Condition bloquante</td><td>Aucune</td><td>Aucune</td><td>Partenaire CIFRE</td><td>CIFRE + PI 20%</td></tr>
-                        <tr><td>Risque supervision</td><td>Faible</td><td>Modéré</td><td>Modéré</td><td>Élevé</td></tr>
-                        <tr><td>Délai de démarrage</td><td>1-2 mois</td><td>1-2 mois</td><td>2-3 mois</td><td>3-4 mois</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<h3 id="s7a">7.1 Score géo-ancestral S_div (noyau principal — 322 WGS)</h3>
+<p>Le changement fondamental de V3.5 est le remplacement de la stratification strictement géographique par une stratification <strong>géo-ancestrale distributionnelle</strong>. La cellule de sélection devient :</p>
+<pre>cellule géo-ancestrale = secteur géographique × cluster d’ascendance génétique inférée</pre>
+<p>Cette approche interdit la règle simpliste « secteur &#224; majorité d’ascendance X → sélectionner uniquement X ». L’objectif est de représenter la <strong>distribution interne de chaque secteur</strong> : profils majoritaires, minoritaires, mixtes, rares et fondateurs.</p>
 
-            <!-- NOUVEAU : montée en charge de l'effectif (Proposition 2) -->
-            <h3 class="docH3">Montée en charge de l'effectif — Proposition 2</h3>
-            <div class="chartWrapper">
-                <svg class="etpSvg" viewBox="0 0 640 300" role="img"
-                     aria-label="Évolution de l'effectif en ETP par mois pour la proposition 2">
-                    <!-- Axes -->
-                    <line class="chartAxis" x1="60" y1="250" x2="600" y2="250"></line>
-                    <line class="chartAxis" x1="60" y1="50" x2="60" y2="250"></line>
-                    <!-- Grilles ETP -->
-                    <line class="chartGrid" x1="60" y1="50" x2="600" y2="50"></line>
-                    <text class="chartGridLabel" x="50" y="54">6</text>
-                    <line class="chartGrid" x1="60" y1="117" x2="600" y2="117"></line>
-                    <text class="chartGridLabel" x="50" y="121">4</text>
-                    <line class="chartGrid" x1="60" y1="183" x2="600" y2="183"></line>
-                    <text class="chartGridLabel" x="50" y="187">2</text>
-                    <!-- Courbe en escalier de l'effectif -->
-                    <polyline class="lineSeries" points="60,133 122,133 122,100 307,100 307,67 338,67 338,83 600,83"></polyline>
-                    <circle class="linePoint" cx="60" cy="133" r="5"></circle>
-                    <circle class="linePoint" cx="122" cy="100" r="5"></circle>
-                    <circle class="linePoint" cx="307" cy="67" r="5"></circle>
-                    <circle class="linePoint" cx="338" cy="83" r="5"></circle>
-                    <circle class="linePoint" cx="600" cy="83" r="5"></circle>
-                    <!-- Valeurs ETP -->
-                    <text class="barValue" x="82" y="125">3,5</text>
-                    <text class="barValue" x="122" y="92">4,5</text>
-                    <text class="barValue" x="307" y="59">5,5</text>
-                    <text class="barValue" x="360" y="76">5,0</text>
-                    <!-- Étiquettes mois -->
-                    <text class="chartXLabel" x="60" y="268">M1</text>
-                    <text class="chartXLabel" x="122" y="268">M5</text>
-                    <text class="chartXLabel" x="307" y="268">M17</text>
-                    <text class="chartXLabel" x="338" y="282">M19</text>
-                    <text class="chartXLabel" x="600" y="268">M36</text>
-                </svg>
-            </div>
+<p>Le score individuel au sein de chaque cellule (poids à optimiser empiriquement) :</p>
+<pre>
+S_div_geoancestry(i) = w_pca  × PCA_diversity(i)          [w=0,35 — distance au centroide PCA]
+                     + w_admix × ADMIX_diversity(i)         [w=0,30 — entropie H(q_k)]
+                     + w_ibd  × IBD_score_geoancestry(i)   [w=0,25 — 1 − max_j relatedness_R]
+                     + w_roh  × ROH_score_diversity(i)      [w=0,10 — max(0, 1−ROH/100 Mb)]
+</pre>
 
-            <!-- Répartition du budget RH (réutilisé) -->
-            <h3 class="docH3">Répartition du budget RH — Proposition 2</h3>
-            <div class="chartWrapper">
-                <svg class="hbarChartSvg" viewBox="0 0 640 290" role="img"
-                     aria-label="Répartition du budget RH de la proposition 2 par poste">
-                    <text class="hbarLabel" x="10" y="37">Coordinateur IR2</text>
-                    <rect class="hbarTrack" x="230" y="20" width="380" height="24" rx="4"></rect>
-                    <rect class="hbarFill hbarFillOne" x="230" y="20" width="182" height="24" rx="4"></rect>
-                    <text class="hbarValue" x="420" y="37">197 340 € · 38%</text>
-                    <text class="hbarLabel" x="10" y="83">Doctorant CIFRE</text>
-                    <rect class="hbarTrack" x="230" y="66" width="380" height="24" rx="4"></rect>
-                    <rect class="hbarFill hbarFillTwo" x="230" y="66" width="88" height="24" rx="4"></rect>
-                    <text class="hbarValue" x="326" y="83">95 292 € · 18%</text>
-                    <text class="hbarLabel" x="10" y="129">Technicien labo</text>
-                    <rect class="hbarTrack" x="230" y="112" width="380" height="24" rx="4"></rect>
-                    <rect class="hbarFill hbarFillSix" x="230" y="112" width="104" height="24" rx="4"></rect>
-                    <text class="hbarValue" x="342" y="129">113 256 € · 22%</text>
-                    <text class="hbarLabel" x="10" y="175">Alternant Data Eng.</text>
-                    <rect class="hbarTrack" x="230" y="158" width="380" height="24" rx="4"></rect>
-                    <rect class="hbarFill hbarFillThree" x="230" y="158" width="60" height="24" rx="4"></rect>
-                    <text class="hbarValue" x="298" y="175">65 150 € · 12%</text>
-                    <text class="hbarLabel" x="10" y="221">Alternant IA</text>
-                    <rect class="hbarTrack" x="230" y="204" width="380" height="24" rx="4"></rect>
-                    <rect class="hbarFill hbarFillFour" x="230" y="204" width="40" height="24" rx="4"></rect>
-                    <text class="hbarValue" x="278" y="221">43 300 € · 8%</text>
-                    <text class="hbarLabel" x="10" y="267">Stage DevOps</text>
-                    <rect class="hbarTrack" x="230" y="250" width="380" height="24" rx="4"></rect>
-                    <rect class="hbarFill hbarFillFive" x="230" y="250" width="9" height="24" rx="4"></rect>
-                    <text class="hbarValue" x="247" y="267">9 540 € · 2%</text>
-                </svg>
-            </div>
-            <p class="docNote">
-                Sur 524 000 € : ~366 000 € de brut versé aux personnes (70%) et
-                ~158 000 € de charges patronales (30%).
-            </p>
-        </section>
+<figure>
+<svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;">
+  <text x="8" y="15" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">Composition du score S_div (poids de travail V3.5)</text>
+  <!-- Barre de composition -->
+  <rect x="8" y="24" width="440" height="30" rx="5" fill="#eaf3f7" stroke="#d9d9d9"/>
+  <rect x="8" y="24" width="154" height="30" rx="5 0 0 5" fill="#0F3A56" opacity=".9"/>
+  <rect x="162" y="24" width="132" height="30" fill="#1E6E8C" opacity=".85"/>
+  <rect x="294" y="24" width="110" height="30" fill="#E8654A" opacity=".8"/>
+  <rect x="404" y="24" width="44" height="30" rx="0 5 5 0" fill="#0D9488" opacity=".8"/>
+  <text x="25" y="43" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="700">PCA 35&#160;%</text>
+  <text x="168" y="43" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="700">ADMIXTURE 30&#160;%</text>
+  <text x="300" y="43" font-family="Arial,sans-serif" font-size="10" fill="#fff" font-weight="700">IBD 25&#160;%</text>
+  <text x="406" y="43" font-family="Arial,sans-serif" font-size="9" fill="#fff">ROH 10&#160;%</text>
+  <!-- Légende descriptions -->
+  <text x="8" y="72" font-family="Arial,sans-serif" font-size="9" fill="#0F3A56">PCA : diversité géo-ancestrale</text>
+  <text x="162" y="72" font-family="Arial,sans-serif" font-size="9" fill="#1E6E8C">ADMIX : entropie d’admixture</text>
+  <text x="294" y="72" font-family="Arial,sans-serif" font-size="9" fill="#E8654A">IBD : indépendance génétique</text>
+  <text x="404" y="72" font-family="Arial,sans-serif" font-size="9" fill="#0D9488">ROH</text>
+</svg>
+<figcaption class="caption">Figure 5 : Composition du score S_div. Poids à recalibrer empiriquement après validation croisée. Source : METHODOLOGY_selection_V3_5.md §7.</figcaption>
+</figure>
 
-        <!-- ========================================================= -->
-        <!-- 6. INTÉGRATION DE L'IA                                    -->
-        <!-- ========================================================= -->
-        <section class="docSection" id="ia">
-            <div class="docSectionHead">
-                <span class="docSectionNum">6</span>
-                <h2 class="docH2">Intégration de l'IA</h2>
-            </div>
+<p>La sélection au sein de chaque cellule est <strong>stratifiée anti-biais directionnel</strong> :</p>
+<table>
+<thead><tr><th>Effectif de la cellule</th><th>Stratégie</th><th>Justification</th></tr></thead>
+<tbody>
+<tr><td>N ≥ 20</td><td>Quintiles (Q1=20 %, Q2=20 %, Q3=30 %, Q4=20 %, Q5=10 %)</td><td>Cinq strates informatives, profils typiques bien représentés</td></tr>
+<tr><td>N = 6–19</td><td>Binaire top/bottom 50 %</td><td>Maintien d’un ancrage représentatif</td></tr>
+<tr><td>N &lt; 6</td><td>Greedy documenté</td><td>Effectif trop faible pour stratifier</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 8 : Stratification anti-biais directionnel. Source : METHODOLOGY_selection_V3_5.md §9.1.</p>
 
-            <p class="docLead">
-                Quatre modules d'IA valorisent cliniquement le référentiel. L'enjeu
-                central est la recalibration sur la population réunionnaise métissée,
-                où les modèles génériques (cohortes européennes) perdent en précision.
-            </p>
+<p>Option renforcée : terme de nouveauté marginale pour limiter la redondance dans l’espace PCA/ADMIX :</p>
+<pre>score_selection(i | S) = S_div_geoancestry(i) + λ × novelty(i, S)
+λ ∈ [0,10 ; 0,20]  — les deux versions seront comparées en validation</pre>
 
-            <div class="cardGrid">
-                <article class="moduleCard">
-                    <span class="moduleNumber">01</span>
-                    <h3 class="moduleTitle">Pathogénicité des variants</h3>
-                    <p class="moduleText">Graph Neural Networks sur ClinVar, COSMIC et variants locaux. Cible : AUC ≥ 0,85.</p>
-                </article>
-                <article class="moduleCard">
-                    <span class="moduleNumber">02</span>
-                    <h3 class="moduleTitle">Pharmacogénétique × admixture</h3>
-                    <p class="moduleText">Random Forest + XGBoost sur CYP2C19, CYP2D6, CYP3A4/5, SLCO1B1 (CPIC level A).</p>
-                </article>
-                <article class="moduleCard">
-                    <span class="moduleNumber">03</span>
-                    <h3 class="moduleTitle">Analyse d'admixture</h3>
-                    <p class="moduleText">Autoencoders + HDBSCAN sur scores ADMIXTURE, PCA, IBD, ROH. Profils par individu.</p>
-                </article>
-                <article class="moduleCard">
-                    <span class="moduleNumber">04</span>
-                    <h3 class="moduleTitle">Polygenic Risk Score</h3>
-                    <p class="moduleText">PRS recalibrés localement (diabète T2, HTA, cardiopathies) pour une prévention stratifiée.</p>
-                </article>
-            </div>
+<h3 id="s7b">7.2 Bras de découverte — S_discovery_global (28 WGS)</h3>
+<p>Le bras découverte sélectionne 28 individus à l’échelle insulaire via un score distinct, non normalisé localement :</p>
+<pre>
+S_discovery_global(i) = a × PCA_global_outlier(i)      [profils éloignés dans l’espace PCA]
+                      + b × ADMIX_rarity_global(i)      [profils d’ascendance rares ou dominants]
+                      + c × IBD_independence_global(i)  [non-redondance avec le noyau]
+                      + d × Haplotype_utility(i)        [apport à l’imputation/phasage]
+                      + e × Founder_ROH_score(i)        [signature ROH/fondateur]
+</pre>
+<p>Chaque composante est convertie en percentile global avant agrégation. La composante <code>Haplotype_utility</code> n’est activée que si le phasage SNP familial est disponible avant gel (sinon d=0). Les 28 individus sont répartis en quatre sous-bras :</p>
+<table>
+<thead><tr><th>Sous-bras</th><th>N (sur 28)</th><th>Critère principal</th></tr></thead>
+<tbody>
+<tr><td>Score S_discovery_global élevé</td><td>10</td><td>Score global extrême, IBD compatible</td></tr>
+<tr><td>Ascendance rare ou dominante</td><td>7</td><td>ADMIX_rarity / distance q aux pôles</td></tr>
+<tr><td>ROH / fondateur</td><td>7</td><td>ROH partagé, cluster local, haplotype fondateur</td></tr>
+<tr><td>Utilité haplotypique / imputation</td><td>4</td><td>Couverture de segments, amélioration imputation</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 9 : Sous-bras du bras découverte. Source : METHODOLOGY_selection_V3_5.md §8.3.</p>
+</section>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
 
-            <p class="docText">
-                La stack repose sur PyTorch et TensorFlow (frameworks),
-                scikit-learn / XGBoost (ML classique), MLflow et Kubeflow (MLOps),
-                Docker / Kubernetes et Django (déploiement).
-            </p>
+<section class="sheet">
+<div class="sheet__body">
 
-            <!-- NOUVEAU : timeline de développement IA -->
-            <h3 class="docH3">Timeline de développement IA</h3>
-            <div class="chartWrapper">
-                <svg class="ganttSvg" viewBox="0 0 720 270" role="img"
-                     aria-label="Calendrier de développement des modules d'IA sur 18 mois">
-                    <!-- Grilles verticales de mois -->
-                    <line class="chartGrid" x1="200" y1="30" x2="200" y2="234"></line>
-                    <line class="chartGrid" x1="339" y1="30" x2="339" y2="234"></line>
-                    <line class="chartGrid" x1="506" y1="30" x2="506" y2="234"></line>
-                    <line class="chartGrid" x1="672" y1="30" x2="672" y2="234"></line>
-                    <line class="chartAxis" x1="200" y1="234" x2="700" y2="234"></line>
-                    <!-- Tâches -->
-                    <text class="ganttRowLabel" x="10" y="55">Données &amp; labels</text>
-                    <rect class="ganttBar" x="200" y="40" width="111" height="22"></rect>
-                    <text class="ganttRange" x="317" y="55">M1–4</text>
-                    <text class="ganttRowLabel" x="10" y="95">Module 1 (GNN)</text>
-                    <rect class="ganttBar" x="311" y="80" width="111" height="22"></rect>
-                    <text class="ganttRange" x="428" y="95">M5–8</text>
-                    <text class="ganttRowLabel" x="10" y="135">Module 2 (XGBoost)</text>
-                    <rect class="ganttBar" x="339" y="120" width="139" height="22"></rect>
-                    <text class="ganttRange" x="484" y="135">M6–10</text>
-                    <text class="ganttRowLabel" x="10" y="175">Modules 3 &amp; 4</text>
-                    <rect class="ganttBar" x="394" y="160" width="139" height="22"></rect>
-                    <text class="ganttRange" x="539" y="175">M8–12</text>
-                    <text class="ganttRowLabel" x="10" y="215">Validation clinique</text>
-                    <rect class="ganttBar ganttBarIa" x="533" y="200" width="167" height="22"></rect>
-                    <text class="ganttRange" x="527" y="215" text-anchor="end">M13–18</text>
-                    <!-- Étiquettes mois -->
-                    <text class="chartXLabel" x="200" y="250">M1</text>
-                    <text class="chartXLabel" x="339" y="250">M6</text>
-                    <text class="chartXLabel" x="506" y="250">M12</text>
-                    <text class="chartXLabel" x="672" y="250">M18</text>
-                </svg>
-            </div>
-        </section>
+<h3 id="s7c">7.3 Justification statistique de N = 350 WGS</h3>
+<p>350 WGS dipoïdes correspondent à ~700 haplotypes. La probabilité de détecter un variant de fréquence f est :</p>
+<pre>P(détection) = 1 − (1 − f)^700</pre>
 
-        <!-- ========================================================= -->
-        <!-- 7. CHRONOGRAMME ET BUDGET                                 -->
-        <!-- ========================================================= -->
-        <section class="docSection" id="budget">
-            <div class="docSectionHead">
-                <span class="docSectionNum">7</span>
-                <h2 class="docH2">Chronogramme et budget</h2>
-            </div>
+<figure>
+<svg viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;">
+  <text x="8" y="14" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">Probabilité de détection selon MAF — panel de 350 WGS (700 haplotypes)</text>
+  <line x1="50" y1="22" x2="50" y2="108" stroke="#ccc" stroke-width="1"/>
+  <line x1="50" y1="108" x2="470" y2="108" stroke="#ccc" stroke-width="1"/>
+  <rect x="60" y="24" width="55" height="84" rx="3" fill="#0F3A56" opacity=".9"/>
+  <text x="87" y="21" font-family="Arial,sans-serif" font-size="8.5" fill="#0F3A56" text-anchor="middle">≫99,9 %</text>
+  <text x="87" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 5 %</text>
+  <rect x="128" y="24" width="55" height="84" rx="3" fill="#1E6E8C" opacity=".9"/>
+  <text x="155" y="21" font-family="Arial,sans-serif" font-size="8.5" fill="#1E6E8C" text-anchor="middle">≫99,9 %</text>
+  <text x="155" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 2 %</text>
+  <rect x="196" y="24" width="55" height="84" rx="3" fill="#0D9488" opacity=".9"/>
+  <text x="223" y="21" font-family="Arial,sans-serif" font-size="8.5" fill="#0D9488" text-anchor="middle">≫99,9 %</text>
+  <text x="223" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 1 %</text>
+  <rect x="264" y="52" width="55" height="56" rx="3" fill="#D97706" opacity=".9"/>
+  <text x="291" y="49" font-family="Arial,sans-serif" font-size="8.5" fill="#D97706" text-anchor="middle">~97 %</text>
+  <text x="291" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 0,5 %</text>
+  <rect x="332" y="82" width="55" height="26" rx="3" fill="#E8654A" opacity=".9"/>
+  <text x="359" y="79" font-family="Arial,sans-serif" font-size="8.5" fill="#E8654A" text-anchor="middle">~50 %</text>
+  <text x="359" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 0,1 %</text>
+  <line x1="264" y1="22" x2="264" y2="110" stroke="#d4351c" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="266" y="32" font-family="Arial,sans-serif" font-size="8" fill="#d4351c">Seuil opérationnel</text>
+  <text x="266" y="42" font-family="Arial,sans-serif" font-size="8" fill="#d4351c">MAF ≥ 1 % (fiable)</text>
+</svg>
+<figcaption class="caption">Figure 6 : Probabilité de détection selon MAF dans un panel de 350 WGS. Source : METHODOLOGY_selection_V3_5.md §4.</figcaption>
+</figure>
 
-            <p class="docLead">
-                Les totaux croisent le scénario de génotypage (Sc.1/2) avec la
-                proposition RH retenue. Tous intègrent l'extraction d'ADN (54 000 €) et
-                la conservation au CRB (127 676 €). Une contingence de 10% couvre les aléas.
-            </p>
+<table>
+<thead><tr><th>MAF</th><th>Copies attendues / 700 haplotypes</th><th>P(détection)</th><th>Interprétation</th></tr></thead>
+<tbody>
+<tr><td>5 %</td><td>35</td><td>&gt;99,9 %</td><td>Très robuste</td></tr>
+<tr><td>2 %</td><td>14</td><td>&gt;99,9 %</td><td>Robuste</td></tr>
+<tr><td>1 %</td><td>7</td><td>&gt;99,9 %</td><td>Seuil opérationnel — acceptable</td></tr>
+<tr><td>0,5 %</td><td>3,5</td><td>~97 %</td><td>Fréquence fragile — interpréter avec prudence</td></tr>
+<tr><td>0,1 %</td><td>0,7</td><td>~50 %</td><td>Non fiable avec 350 WGS</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 10 : Probabilités de détection selon MAF. Source : METHODOLOGY_selection_V3_5.md §4.</p>
 
-            <div class="highlightBox">
-                <p class="highlightLabel">Budget optimal recommandé</p>
-                <p class="highlightValue">~1 474 000 €</p>
-                <p class="highlightDetail">Sous-traitance + alternance/CIFRE · WGS POPgen gratuit · 36 mois</p>
-            </div>
+<div class="callout"><span class="lbl">Limite structurelle assumée</span>Les variants ultra-rares (MAF &lt; 0,5 %) et certains effets fondateurs très localisés nécessiteront des phases d’extension ultérieures. Le panel de 350 WGS est un <strong>référentiel de première génération</strong>, complémentaire des ressources internationales.</div>
 
-            <h3 class="docH3">Budget — Proposition RH 1 (565 000 € CC)</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Catégorie</th><th scope="col">Sc.1 Sous-traité</th><th scope="col">Sc.2 iScan</th></tr></thead>
-                    <tbody>
-                        <tr><td>Génotypage GDA-8</td><td>265 000 €</td><td>226 000 €</td></tr>
-                        <tr><td>Système iScan</td><td>0 €</td><td>253 000 €</td></tr>
-                        <tr><td>Infrastructure IT</td><td>334 000 €</td><td>334 000 €</td></tr>
-                        <tr><td>WGS POPgen</td><td>0 €</td><td>0 €</td></tr>
-                        <tr><td>Extraction ADN</td><td>54 000 €</td><td>54 000 €</td></tr>
-                        <tr><td>Stockage biologique (CRB)</td><td>127 676 €</td><td>127 676 €</td></tr>
-                        <tr><td>RH Prop. 1 (CC)</td><td>565 000 €</td><td>565 000 €</td></tr>
-                        <tr><td>Prestation web + formation</td><td>35 000 €</td><td>35 000 €</td></tr>
-                        <tr><td>Contingence (10%)</td><td>138 068 €</td><td>159 468 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total</td><td>~1 519 000 €</td><td>~1 754 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<section id="s8">
+<h2>8. Protocole de validation à voilure réduite v1.1</h2>
+<p>Le protocole dense (11 stratégies × 4 profils × 100 seeds × 24 variantes) a été resserré pour éviter les comparaisons multiples non corrigées. La version v1.1 applique cinq décisions de réduction :</p>
+<ul>
+<li>Un seul <strong>endpoint primaire décisif</strong> : amélioration de l’imputation des variants rares et fondateurs vs référentiel externe seul et tirage aléatoire ;</li>
+<li>3–4 stratégies comparées (au lieu de 11) ;</li>
+<li>3 profils décisifs : A (contrôle négatif), C (scénario principal réunionnais plausible), D (stress-test adversaire, isolat cryptique) ;</li>
+<li>Seeds en deux étages : criblage 25 → confirmation 100 ;</li>
+<li>Sensibilité non croisée : un seul couple (profil C × stratégie candidate).</li>
+</ul>
+<p><strong>Profil D est le seul test réellement adverse</strong> : l’isolat cryptique est généré par le simulateur mais <em>non transmis au score S_div</em>. C’est le seul profil qui injecte un signal hors des coordonnées connues du modèle. La preuve décisive repose sur la simulation ; les données réelles externes (EPIGEN-Brasil) ne servent qu’en appui confirmatoire. Règle de décision : 3 portes pré-enregistrées avant lancement.</p>
+<p>L’audit de représentativité EFS (distribution des donneurs par commune/secteur/âge/sexe vs INSEE) est une <strong>condition de déploiement séparée et obligatoire</strong>, distincte de la validation in silico.</p>
+</section>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
 
-            <h3 class="docH3">Budget — Proposition RH 2 ⭐ (524 000 € CC)</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Catégorie</th><th scope="col">Sc.1 Sous-traité</th><th scope="col">Sc.2 iScan</th></tr></thead>
-                    <tbody>
-                        <tr><td>Génotypage GDA-8</td><td>265 000 €</td><td>226 000 €</td></tr>
-                        <tr><td>Système iScan</td><td>0 €</td><td>253 000 €</td></tr>
-                        <tr><td>Infrastructure IT</td><td>334 000 €</td><td>334 000 €</td></tr>
-                        <tr><td>WGS POPgen</td><td>0 €</td><td>0 €</td></tr>
-                        <tr><td>Extraction ADN</td><td>54 000 €</td><td>54 000 €</td></tr>
-                        <tr><td>Stockage biologique (CRB)</td><td>127 676 €</td><td>127 676 €</td></tr>
-                        <tr><td>RH Prop. 2 (CC)</td><td>524 000 €</td><td>524 000 €</td></tr>
-                        <tr><td>Prestation web + formation</td><td>35 000 €</td><td>35 000 €</td></tr>
-                        <tr><td>Contingence (10%)</td><td>133 968 €</td><td>155 368 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total</td><td>~1 474 000 €</td><td>~1 709 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<section class="sheet">
+<div class="sheet__body">
+<section id="s9">
+<h2>9. Ressources produites</h2>
+<table>
+<thead><tr><th>Livrable</th><th>Contenu</th><th>Usage direct</th></tr></thead>
+<tbody>
+<tr><td><strong>Base de fréquences locales</strong></td><td>Fréquences alléliques recalibrées : brutes WGS, pondérées, imputées, annotées avec IC</td><td>Recalibrage VEP/ANNOVAR, seuils ACMG, interprétation clinique</td></tr>
+<tr><td><strong>Panel WGS réunionnais</strong></td><td>VCF/BAM des 350 WGS à 30×, fournis par POPgen</td><td>Référence locale, découverte de variants, réanalyse future</td></tr>
+<tr><td><strong>Panel d’imputation</strong></td><td>Haplotypes phasés (SHAPEIT4, 3 niveaux) intégrant familles et WGS</td><td>Imputation sur cohortes futures, LAI, IBD</td></tr>
+<tr><td><strong>Données d’admixture</strong></td><td>Profils PCA projetée, composantes ADMIXTURE, cellules géo-ancestrales, strates</td><td>Pharmaco-épidémiologie, recherche, module IA 3</td></tr>
+<tr><td><strong>Données IBD / ROH</strong></td><td>Segments autozygotes, signatures fondatrices partagées, clusters géographiques</td><td>Cartographie maladies rares locales, module IA 4</td></tr>
+<tr><td><strong>Ressources PGx</strong></td><td>Fréquences locales allèles CPIC Level A : CYP2C9, CYP2C19, CYP2D6, CYP3A4/5, SLCO1B1</td><td>Adaptation posologique personnalisée</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 11 : Livrables du projet. Sources : Projet PMU ; Plan_Genome_Reunion_Structure_AI.md.</p>
+</section>
 
-            <h3 class="docH3">Budget — Proposition RH 3 (485 000 € CC)</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Catégorie</th><th scope="col">Sc.1 Sous-traité</th><th scope="col">Sc.2 iScan</th></tr></thead>
-                    <tbody>
-                        <tr><td>Génotypage GDA-8</td><td>265 000 €</td><td>226 000 €</td></tr>
-                        <tr><td>Système iScan</td><td>0 €</td><td>253 000 €</td></tr>
-                        <tr><td>Infrastructure IT</td><td>334 000 €</td><td>334 000 €</td></tr>
-                        <tr><td>WGS POPgen</td><td>0 €</td><td>0 €</td></tr>
-                        <tr><td>Extraction ADN</td><td>54 000 €</td><td>54 000 €</td></tr>
-                        <tr><td>Stockage biologique (CRB)</td><td>127 676 €</td><td>127 676 €</td></tr>
-                        <tr><td>RH Prop. 3 (CC)</td><td>485 000 €</td><td>485 000 €</td></tr>
-                        <tr><td>Prestation web + formation</td><td>35 000 €</td><td>35 000 €</td></tr>
-                        <tr><td>Contingence (10%)</td><td>130 068 €</td><td>151 468 €</td></tr>
-                        <tr class="dataTableTotal"><td>Total</td><td>~1 431 000 €</td><td>~1 666 000 €</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<section id="s10">
+<h2>10. Modules d’intelligence artificielle</h2>
+<p>Quatre modules IA sont développés en surcouche du référentiel, activés à partir du mois 17 :</p>
+<table>
+<thead><tr><th>Module</th><th>Architecture</th><th>Données entraînement</th><th>Métrique cible</th></tr></thead>
+<tbody>
+<tr><td><strong>M1 — Pathogénicité</strong></td><td>Graph Neural Networks (GNN) + NN dense</td><td>ClinVar, COSMIC, variants réunionnais locaux</td><td>AUC ≥ 0,85 sur jeu validation local</td></tr>
+<tr><td><strong>M2 — PGx × admixture</strong></td><td>Random Forest + XGBoost</td><td>CPIC, PharmGKB, profils admixture réunionnais</td><td>Validation cas cliniques CHU</td></tr>
+<tr><td><strong>M3 — Admixture</strong></td><td>Autoencoders deep learning + HDBSCAN</td><td>Scores ADMIXTURE, PCA, IBD, ROH des 2 500</td><td>Caractérisation diversité réunionnaise</td></tr>
+<tr><td><strong>M4 — PRS local</strong></td><td>PRS pondérés localement + ensemble learning</td><td>Fréquences réunionnaises vs européennes</td><td>Risque T2D, HTA, cardiopathies</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 12 : Modules IA. Source : Plan_Genome_Reunion_Structure_AI.md §6.</p>
 
-            <!-- NOUVEAU : chronogramme de Gantt sur 36 mois -->
-            <h3 class="docH3">Chronogramme détaillé (36 mois)</h3>
-            <div class="chartWrapper">
-                <svg class="ganttSvg" viewBox="0 0 772 320" role="img"
-                     aria-label="Diagramme de Gantt des sept phases sur 36 mois">
-                    <!-- Grilles verticales de mois -->
-                    <line class="chartGrid" x1="130" y1="40" x2="130" y2="294"></line>
-                    <line class="chartGrid" x1="217" y1="40" x2="217" y2="294"></line>
-                    <line class="chartGrid" x1="322" y1="40" x2="322" y2="294"></line>
-                    <line class="chartGrid" x1="426" y1="40" x2="426" y2="294"></line>
-                    <line class="chartGrid" x1="531" y1="40" x2="531" y2="294"></line>
-                    <line class="chartGrid" x1="635" y1="40" x2="635" y2="294"></line>
-                    <line class="chartGrid" x1="740" y1="40" x2="740" y2="294"></line>
-                    <line class="chartAxis" x1="130" y1="294" x2="740" y2="294"></line>
-                    <!-- Barres de phase -->
-                    <text class="ganttRowLabel" x="10" y="64">Phase 0</text>
-                    <rect class="ganttBar" x="130" y="50" width="52" height="20"></rect>
-                    <text class="ganttRange" x="188" y="64">M1–3</text>
-                    <text class="ganttRowLabel" x="10" y="100">Phase 1</text>
-                    <rect class="ganttBar" x="130" y="86" width="87" height="20"></rect>
-                    <text class="ganttRange" x="223" y="100">M1–5</text>
-                    <text class="ganttRowLabel" x="10" y="136">Phase 2</text>
-                    <rect class="ganttBar" x="182" y="122" width="105" height="20"></rect>
-                    <text class="ganttRange" x="293" y="136">M4–9</text>
-                    <text class="ganttRowLabel" x="10" y="172">Phase 3</text>
-                    <rect class="ganttBar" x="182" y="158" width="192" height="20"></rect>
-                    <text class="ganttRange" x="380" y="172">M4–14</text>
-                    <text class="ganttRowLabel" x="10" y="208">Phase 4</text>
-                    <rect class="ganttBar ganttBarFree" x="252" y="194" width="261" height="20"></rect>
-                    <text class="ganttRange" x="519" y="208">M8–22</text>
-                    <text class="ganttRowLabel" x="10" y="244">Phase 5</text>
-                    <rect class="ganttBar ganttBarIa" x="409" y="230" width="244" height="20"></rect>
-                    <text class="ganttRange" x="659" y="244">M17–30</text>
-                    <text class="ganttRowLabel" x="10" y="280">Phase 6</text>
-                    <rect class="ganttBar" x="583" y="266" width="157" height="20"></rect>
-                    <text class="ganttRange" x="577" y="280" text-anchor="end">M27–36</text>
-                    <!-- Étiquettes mois -->
-                    <text class="chartXLabel" x="130" y="310">M1</text>
-                    <text class="chartXLabel" x="217" y="310">M6</text>
-                    <text class="chartXLabel" x="322" y="310">M12</text>
-                    <text class="chartXLabel" x="426" y="310">M18</text>
-                    <text class="chartXLabel" x="531" y="310">M24</text>
-                    <text class="chartXLabel" x="635" y="310">M30</text>
-                    <text class="chartXLabel" x="740" y="310">M36</text>
-                </svg>
-            </div>
+<p><strong>Stack technique IA :</strong> PyTorch 2.x + TensorFlow 2.x, scikit-learn + XGBoost + LightGBM, MLflow (tracking), Kubeflow (pipelines), Django (portail API). Latence API cible : &lt; 500 ms en production. Monitoring continu avec réentraînement semestriel.</p>
 
-            <h3 class="docH3">Jalons clés</h3>
-            <ul class="milestoneList">
-                <li class="milestoneItem"><span class="milestoneMonth">M3</span> Infrastructure IT opérationnelle</li>
-                <li class="milestoneItem"><span class="milestoneMonth">M5</span> Génotypage des 2500 individus lancé</li>
-                <li class="milestoneItem"><span class="milestoneMonth">M9</span> Liste 350 WGS gelée → envoi POPgen</li>
-                <li class="milestoneItem"><span class="milestoneMonth">M14</span> Module familial phasé + haplotypes</li>
-                <li class="milestoneItem"><span class="milestoneMonth">M22</span> Premiers VCF/BAM + base variants v1</li>
-                <li class="milestoneItem"><span class="milestoneMonth">M26</span> Modules IA 1+2 validés (AUC ≥ 0,85)</li>
-                <li class="milestoneItem"><span class="milestoneMonth">M30</span> Modules IA 3+4 opérationnels</li>
-                <li class="milestoneItem"><span class="milestoneMonth">M34</span> Portail web clinique en production</li>
-                <li class="milestoneItem"><span class="milestoneMonth">M36</span> Validation clinique + publication</li>
-            </ul>
+<p><strong>Timeline IA :</strong> M1–4 : collecte et labellisation ; M5–8 : Module 1 (GNN pathogénicité) ; M6–10 : Module 2 (PGx XGBoost) ; M8–12 : Modules 3 et 4 (admixture autoencoder + PRS) ; M13–18 : validation clinique et déploiement.</p>
 
-            <h3 class="docH3">Métriques de succès</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Métrique</th><th scope="col">Cible</th><th scope="col">Description</th></tr></thead>
-                    <tbody>
-                        <tr><td>Collecte</td><td>≥ 2500 individus</td><td>Représentativité géo-ancestrale validée</td></tr>
-                        <tr><td>Sélection WGS</td><td>350 WGS</td><td>Sélection stricte ou hybride 322+28</td></tr>
-                        <tr><td>Couverture variants</td><td>MAF ≥ 1% fiable</td><td>Seuil opérationnel 1ère génération</td></tr>
-                        <tr><td>AUC pathogénicité</td><td>≥ 0,85</td><td>Module 1 sur validation locale</td></tr>
-                        <tr><td>Latence API</td><td>&lt; 500 ms</td><td>Requêtes cliniques en production</td></tr>
-                        <tr><td>Publications</td><td>≥ 3 articles</td><td>Peer-reviewed, année 2</td></tr>
-                        <tr><td>Adoption clinique</td><td>≥ 5 centres</td><td>CHU + partenaires</td></tr>
-                    </tbody>
-                </table>
-            </div>
+<div class="callout"><span class="lbl">À retenir</span>Les modules IA ne corrigent les biais que s’ils s’entraînent sur des données représentatives. <strong>Sans le référentiel réunionnais en amont, M1–M4 produiraient des résultats aussi biaisés que les outils standards actuels.</strong></div>
+</section>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
 
-            <h3 class="docH3">Analyse des risques</h3>
-            <div class="tableScroll">
-                <table class="dataTable">
-                    <thead><tr><th scope="col">Risque</th><th scope="col">Probabilité</th><th scope="col">Impact</th><th scope="col">Mitigation</th></tr></thead>
-                    <tbody>
-                        <tr><td>Délai accès panels EGA (DAC)</td><td><span class="levelBadge levelBadgeHigh">Élevée</span></td><td>4-12 sem. de retard Ph.0</td><td>Socle 1000G public en repli</td></tr>
-                        <tr><td>Biais représentativité EFS</td><td><span class="levelBadge levelBadgeMid">Modérée</span></td><td>Résultats biaisés</td><td>Audit EFS préalable (vs INSEE)</td></tr>
-                        <tr><td>Défaillance iScan / plateforme</td><td><span class="levelBadge levelBadgeLow">Faible</span></td><td>Downtime 1-2 semaines</td><td>SLA Illumina + plateforme de secours</td></tr>
-                        <tr><td>Qualité ADN dégradée</td><td><span class="levelBadge levelBadgeMid">Modérée</span></td><td>Taux d'échec génotypage ↑</td><td>+5% réplicats, QC post-extraction</td></tr>
-                        <tr><td>Datadrift modèles IA</td><td><span class="levelBadge levelBadgeMid">Modérée</span></td><td>Perte de précision</td><td>Monitoring + réentraînement semestriel</td></tr>
-                        <tr><td>Recrutement bioinformaticiens</td><td><span class="levelBadge levelBadgeHigh">Élevée</span></td><td>Délai M2-M3</td><td>Partenariats INSERM / université</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+<section class="sheet">
+<div class="sheet__body">
+<section id="s11">
+<h2>11. Organisation opérationnelle et gouvernance</h2>
+<table>
+<thead><tr><th>Acteur</th><th>Rôle</th></tr></thead>
+<tbody>
+<tr><td><strong>CHU La Réunion — Génétique</strong></td><td>Maîtré d’ouvrage ; extraction ADN ; interprétation clinique ; portail diagnostique Django</td></tr>
+<tr><td><strong>EFS Réunion</strong></td><td>Recrutement des donneurs volontaires (2 500 + 100 familles) ; audit représentativité vs INSEE obligatoire avant déploiement</td></tr>
+<tr><td><strong>Consortium POPgen</strong></td><td>Séquençage WGS 30× des 350 individus — 0 € pour le projet</td></tr>
+<tr><td><strong>CRB</strong></td><td>Conservation longue durée des échantillons biologiques (127 676 €)</td></tr>
+<tr><td><strong>Plateforme partenaire (Sc. 1)</strong></td><td>Génotypage GDA-8 sous-traité : CNG Évry, GenomEast, CNRGH ou équivalent</td></tr>
+<tr><td><strong>Hébergeur HDS certifié</strong></td><td>Stockage souverain des données génomiques (RGPD, loi HDS, UE) ; OVHcloud ou Scaleway recommandés</td></tr>
+<tr><td><strong>CEPH / gnomAD / H3Africa / TOPMed</strong></td><td>Intégration des données dans les bases internationales en fin de projet</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 13 : Partenaires et rôles. Source : Projet PMU ; Plan_Genome_Reunion_Structure_AI.md.</p>
+<p>La conformité réglementaire repose sur RGPD + Hébergement de Données de Santé (HDS). Les données restent en souveraineté européenne. Le consentement éclairé est obtenu auprès de chaque donneur EFS. Les apparentements inattendus identifiés dans les données génomiques feront l’objet d’une procédure éthique dédiée.</p>
+</section>
 
-        <!-- ========================================================= -->
-        <!-- CONCLUSION                                                -->
-        <!-- ========================================================= -->
-        <section class="docSection" id="conclusion">
-            <div class="docSectionHead">
-                <span class="docSectionNum">·</span>
-                <h2 class="docH2">Conclusion</h2>
-            </div>
-            <p class="docText">
-                Le projet Génome Réunion constitue la première base de données
-                génomiques locale adaptée à la population réunionnaise. Il combine une
-                architecture scientifique en trois couches, un budget maîtrisé grâce à
-                la gratuité du séquençage WGS, et une surcouche d'IA qui en assure la
-                valorisation clinique.
-            </p>
-            <ul class="conclusionList">
-                <li class="conclusionItem"><span class="conclusionMark" aria-hidden="true">✓</span><p class="conclusionText">Le génotypage iScan (~226-265 K€) est le principal coût biologique, complété par l'extraction d'ADN (54 000 €) et la conservation au CRB (127 676 €) ; le WGS POPgen est gratuit.</p></li>
-                <li class="conclusionItem"><span class="conclusionMark" aria-hidden="true">✓</span><p class="conclusionText">Les ressources humaines (485-565 K€ charges comprises, technicien inclus) représentent ~30 à 37% du budget total.</p></li>
-                <li class="conclusionItem"><span class="conclusionMark" aria-hidden="true">✓</span><p class="conclusionText">La combinaison optimale (sous-traitance + proposition RH 2) ramène le budget à ~1 474 000 € sur 36 mois.</p></li>
-                <li class="conclusionItem"><span class="conclusionMark" aria-hidden="true">✓</span><p class="conclusionText">L'IA valorise le référentiel sur trois axes cliniques : pathogénicité, pharmacogénétique et risque polygénique.</p></li>
-            </ul>
-        </section>
+<section id="s12">
+<h2>12. Budget et ressources humaines</h2>
+<p><strong>Scénario optimal : sous-traitance génotypage (Sc. 1) + Proposition RH 2 (alternance + CIFRE)</strong></p>
 
-    </div>
+<div class="hbar">
+<div class="row"><div>Génotypage GDA-8 — Sc. 1 sous-traité (~90 €/éch.)</div><div class="track"><div class="fill" style="width:51%"></div></div><div class="val">265 000 €</div></div>
+<div class="row"><div>Génotypage GDA-8 — Sc. 2 iScan consommables seuls</div><div class="track"><div class="fill o" style="width:43%"></div></div><div class="val">226 000 €</div></div>
+<div class="row"><div>Système iScan neuf (si Sc. 2, actif durable)</div><div class="track"><div class="fill o" style="width:49%"></div></div><div class="val">253 000 €</div></div>
+<div class="row"><div>Infrastructure IT on-premise HDS</div><div class="track"><div class="fill" style="width:64%"></div></div><div class="val">334 000 €</div></div>
+<div class="row"><div>Infrastructure IT cloud hybride HDS (alternative)</div><div class="track"><div class="fill g" style="width:52%"></div></div><div class="val">270 000 €</div></div>
+<div class="row"><div>Extraction ADN (~2 800 échantillons)</div><div class="track"><div class="fill" style="width:10%"></div></div><div class="val">54 000 €</div></div>
+<div class="row"><div>Conservation CRB (stockage biologique)</div><div class="track"><div class="fill" style="width:24%"></div></div><div class="val">127 676 €</div></div>
+<div class="row"><div>RH — Prop. 1 (stages + CDD + contrat doctoral)</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="val">565 000 €</div></div>
+<div class="row"><div>RH — Prop. 2 ⭐ (alternance + CIFRE) recommandée</div><div class="track"><div class="fill g" style="width:93%"></div></div><div class="val">524 000 €</div></div>
+<div class="row"><div>RH — Prop. 3 (max alternance)</div><div class="track"><div class="fill g" style="width:86%"></div></div><div class="val">485 000 €</div></div>
+<div class="row"><div>WGS POPgen</div><div class="track"><div class="fill g" style="width:.3%"></div></div><div class="val" style="color:#0D9488;font-weight:700">0 €</div></div>
+</div>
+<p class="caption">Figure 7 : Postes budgétaires comparés. Contingence 10 % + prestations 35 k€ s’ajoutent aux totaux finaux. Source : Plan_Genome_Reunion_Structure_AI.md §7.</p>
 
-    <!-- ============================================================= -->
-    <!-- PIED DE PAGE                                                  -->
-    <!-- ============================================================= -->
-    <footer class="siteFooter">
-        <div class="footerInner">
-            <p class="footerTitle">Projet Génome Réunion</p>
-            <p class="footerMeta">
-                Document généré : Mai 2026 · Basé sur METHODOLOGY_selection_V3_5 + Projet Génome PMU
-            </p>
-        </div>
-    </footer>
+<div class="stat-grid">
+<div class="stat-card dark"><div class="num">~1 474 000 €</div><div class="lbl">Optimal : Sc. 1 + Prop. 2 (36 mois)</div></div>
+<div class="stat-card"><div class="num">~1 403 000 €</div><div class="lbl">Avec cloud hybride HDS (−70 k€)</div></div>
+<div class="stat-card"><div class="num">~1 431 000 €</div><div class="lbl">Minimal : Sc. 1 + Prop. 3</div></div>
+<div class="stat-card"><div class="num">~1 754 000 €</div><div class="lbl">Maximal : Sc. 2 + Prop. 1</div></div>
+</div>
+</section>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
 
-    <script src="js/dossier.js"></script>
+<section class="sheet">
+<div class="sheet__body">
+<h3>Equipe — Proposition 2 recommandée (524 000 € CC, −23 % vs référence)</h3>
+<table>
+<thead><tr><th>Poste</th><th>Contrat</th><th>Durée</th><th>Coût CC total</th><th>%</th></tr></thead>
+<tbody>
+<tr><td>Coordinateur scientifique</td><td>IR2 CDD 100 %</td><td>36 mois</td><td>197 340 €</td><td>38 %</td></tr>
+<tr><td>Technicien de laboratoire</td><td>CDD 100 %</td><td>36 mois</td><td>113 256 €</td><td>22 %</td></tr>
+<tr><td>Bioinformaticien</td><td>Doctorant CIFRE*</td><td>36 mois</td><td>95 292 €</td><td>18 %</td></tr>
+<tr><td>Data Engineer</td><td>Alternance Epitech 24m → CDD IE1 10m</td><td>34 mois</td><td>65 150 €</td><td>12 %</td></tr>
+<tr><td>Data Scientist IA</td><td>Alternance Epitech 12m → CDD IE1 8m</td><td>20 mois</td><td>43 300 €</td><td>8 %</td></tr>
+<tr><td>DevOps</td><td>Stage Epitech</td><td>6 mois</td><td>9 540 €</td><td>2 %</td></tr>
+<tr><td colspan="3"><strong>Total Prop. 2 — charges patronales comprises (×1,43)</strong></td><td><strong>524 000 €</strong></td><td>100 %</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 14 : Equipe Proposition 2. *CIFRE requiert un partenaire privé (startup génomique, labo d’analyses, éditeur logiciel médical). Sans partenaire, remplacer par contrat doctoral classique (+23 000 €). Source : Plan_Genome_Reunion_Structure_AI.md §5.</p>
 
+<section id="s13">
+<h2>13. Chronogramme des 7 phases (36 mois)</h2>
+<div class="gantt">
+<div class="row"><div>Ph.0 — Panels témoins</div><div class="lane"><div class="bar" style="left:0%;width:8%"></div></div></div>
+<div class="row"><div>Ph.1 — Validation externe</div><div class="lane"><div class="bar" style="left:0%;width:14%"></div></div></div>
+<div class="row"><div>Ph.2 — Cohorte SNP 2 500</div><div class="lane"><div class="bar" style="left:11%;width:25%"></div></div></div>
+<div class="row"><div>Ph.3 — Module familial</div><div class="lane"><div class="bar" style="left:11%;width:39%"></div></div></div>
+<div class="row"><div>Ph.4 — WGS POPgen + BD</div><div class="lane"><div class="bar wgs" style="left:22%;width:39%"></div></div></div>
+<div class="row"><div>Ph.5 — Modules IA ×4</div><div class="lane"><div class="bar ia" style="left:47%;width:36%"></div></div></div>
+<div class="row"><div>Ph.6 — Portail clinique</div><div class="lane"><div class="bar web" style="left:75%;width:25%"></div></div></div>
+<div class="scale"><div></div><div class="ticks"><span>M1</span><span>M6</span><span>M12</span><span>M18</span><span>M24</span><span>M30</span><span>M36</span></div></div>
+</div>
+<div class="legend" style="margin-top:.4em;">
+<span class="item"><span class="swatch" style="background:#0F3A56"></span>Génotypage / analyse</span>
+<span class="item"><span class="swatch" style="background:#0D9488"></span>WGS POPgen (gratuit)</span>
+<span class="item"><span class="swatch" style="background:#7C3AED"></span>Modules IA</span>
+<span class="item"><span class="swatch" style="background:#D97706"></span>Portail web clinique</span>
+</div>
+<p class="caption">Figure 8 : Chronogramme des 7 phases sur 36 mois. Source : Plan_Genome_Reunion_Structure_AI.md §3 et §7.</p>
+
+<table>
+<thead><tr><th>Jalon</th><th>Mois</th><th>Livrable</th></tr></thead>
+<tbody>
+<tr><td>Infrastructure IT opérationnelle</td><td>M3</td><td>Serveurs, stockage, pipelines CI/CD</td></tr>
+<tr><td>Génotypage 2 500 lancé</td><td>M5</td><td>Puces GDA-8 envoyées à la plateforme</td></tr>
+<tr><td>Liste 350 WGS gelée</td><td>M9</td><td>Envoi POPgen — sélection S_div validée</td></tr>
+<tr><td>Module familial phasé</td><td>M14</td><td>Haplotypes réunionnais SNP + familles</td></tr>
+<tr><td>BD variants v1</td><td>M22</td><td>Premiers VCF/BAM POPgen + base de fréquences</td></tr>
+<tr><td>IA 1+2 validés</td><td>M26</td><td>AUC ≥ 0,85 modules pathogénicité + PGx</td></tr>
+<tr><td>IA 3+4 opérationnels</td><td>M30</td><td>Admixture + PRS déployés</td></tr>
+<tr><td>Portail clinique + publication</td><td>M36</td><td>≥ 3 articles peer-reviewed ; ≥ 5 centres d’adoption</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 15 : Jalons clés. Source : Plan_Genome_Reunion_Structure_AI.md §7.</p>
+</section>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
+
+<section class="sheet">
+<div class="sheet__body">
+<section id="s14">
+<h2>14. Impacts attendus</h2>
+<table>
+<thead><tr><th>Domaine</th><th>Bénéfices attendus</th><th>Exemples concrets</th></tr></thead>
+<tbody>
+<tr><td><strong>Diagnostic génétique</strong></td><td>Meilleure interprétation des variants locaux ; réduction des VUS</td><td>Reclassification VUS bénins/pathogènes ; cardiomyopathies, métabolismes</td></tr>
+<tr><td><strong>Pharmacogénétique</strong></td><td>Ajustement posologique selon profils locaux</td><td>Warfarine (CYP2C9), clopidogrel (CYP2C19) — éviter sous/surdosage</td></tr>
+<tr><td><strong>Maladies rares locales</strong></td><td>Meilleure détection et caractérisation des effets fondateurs</td><td>Syndromes Larsen-Bourbon, Ravine ; segments autozygotes par micro-région</td></tr>
+<tr><td><strong>Santé publique</strong></td><td>Surveillance populationnelle ; scores de risque locaux (PRS recalibrés)</td><td>T2D, HTA, cardiopathies réunionnaises mieux stratifiées</td></tr>
+<tr><td><strong>Recherche biomédicale</strong></td><td>Référentiel unique admixture + effets fondateurs</td><td>Enrichissement TOPMed, gnomAD, H3Africa ; ≥ 3 publications</td></tr>
+<tr><td><strong>IA pharmaceutique</strong></td><td>Correction des biais dans les algorithmes IA</td><td>Cibles thérapeutiques plus fiables ; recommandations PGx équitables</td></tr>
+<tr><td><strong>Équité en santé</strong></td><td>Réduction des inégalités diagnostiques ; inclusion dans les essais cliniques</td><td>Modèle pour autres populations admixées sous-représentées</td></tr>
+<tr><td><strong>Territoire</strong></td><td>La Réunion hub génomique de l’océan Indien</td><td>Coopérations Madagascar, Maurice, Comores, Seychelles (COI)</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 16 : Impacts attendus. Source : Projet PMU ; Plan_Genome_Reunion_Structure_AI.md.</p>
+</section>
+
+<section id="s15">
+<h2>15. Risques, limites et mitigations</h2>
+<table>
+<thead><tr><th>Risque</th><th>Probab.</th><th>Mitigation</th></tr></thead>
+<tbody>
+<tr><td>Délai accès panels EGA (DAC)</td><td>Élevée</td><td>Socle 1000G public comme solution de repli dès Ph.0 ; demandes accès en parallèle dès M1</td></tr>
+<tr><td>Biais représentativité EFS vs INSEE</td><td>Modérée</td><td>Audit EFS préalable (commune/secteur/âge/sexe) : condition de déploiement obligatoire avant gel WGS</td></tr>
+<tr><td>Sous-représentation structurelle (350 WGS)</td><td>Structurelle</td><td>Sélection géo-ancestrale optimisée ; recalibrage fréquences sur 2 500 ; extensions ultérieures planifiées</td></tr>
+<tr><td>Réglementaire (RGPD / HDS)</td><td>Modérée</td><td>Hébergeur souverain certifié HDS ; consentement éclairé EFS ; DTA pour partages externes</td></tr>
+<tr><td>Recrutement bioinformaticiens</td><td>Élevée</td><td>Partenariats INSERM / Université de La Réunion ; annonces dès M1</td></tr>
+<tr><td>Partenaire CIFRE indisponible</td><td>Modérée</td><td>Remplacer par contrat doctoral classique (+23 000 €)</td></tr>
+<tr><td>Qualité ADN dégradée</td><td>Modérée</td><td>+5 % réplicats QC (2 940 puces au total) ; QC post-extraction avant envoi</td></tr>
+<tr><td>Datadrift modèles IA</td><td>Modérée</td><td>Monitoring continu MLflow + Grafana ; réentraînement semestriel</td></tr>
+<tr><td>Sur-promesse IA</td><td>Modérée</td><td>Validation empirique (AUC ≥ 0,85) obligatoire avant déploiement clinique ; référentiel local comme socle non négociable</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau 17 : Risques et mitigations. Sources : METHODOLOGY_selection_V3_5.md §16 ; Plan_Genome_Reunion_Structure_AI.md §7.</p>
+</section>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
+
+<section class="sheet">
+<div class="sheet__body">
+<section id="s16">
+<h2>16. Conclusion</h2>
+<p><strong>Besoin —</strong> Combler l’angle mort des bases génomiques mondiales pour une population cumulant admixture multicontinentale récente, effets fondateurs locaux documentés et isolement insulaire. Sans référentiel local, les outils de médecine de précision, les annotateurs cliniques et les algorithmes d’IA biomédicale restent inadaptés ou potentiellement dangereux pour les Réunionnais. Les inégalités diagnostiques et pharmacogénétiques mesurées dans d’autres populations similaires (Brésil, Mexique, Afrique) se reproduiront nécessairement à La Réunion tant que des données locales ne seront pas produites.</p>
+
+<p><strong>Apport —</strong> Un référentiel génomique réunionnais de première génération, reproductible, auditable et améliorable, produit à coût maîtrisé grâce au partenariat POPgen (WGS 0 €) et à l’architecture hybride géo-ancestrale du score <code>S_div</code> V3.5. Ce référentiel combinera pour la première fois découverte de variants, imputation locale, phasage réunionnais et caractérisation des effets fondateurs dans un cadre méthodologique défendable devant un comité de protection des personnes et une revue internationale.</p>
+
+<p><strong>Conditions de réussite —</strong> Validation empirique du protocole (voilure réduite v1.1) avant gel de la sélection WGS à M9 ; audit représentativité EFS obligatoire ; conformité réglementaire HDS ; partenaire CIFRE identifié ; accès EGA aux panels MGUA et GenomeAsia obtenus dès Ph.0.</p>
+
+<p><strong>Perspectives —</strong> Extensions WGS pour les variants ultra-rares (MAF &lt; 0,5 %) ; intégration progressive dans TOPMed, gnomAD et H3Africa ; coopération régionale avec Madagascar, Maurice, Comores et Seychelles dans le cadre de la Commission de l’Océan Indien ; formation régionale francophone en génomique. La Réunion, longtemps absente des bases mondiales, pourrait devenir un centre de référence pour les populations admixées et un modèle de génomique équitable dans l’espace indo-océanique.</p>
+
+<div class="callout-green" style="margin-top:1.2em;">
+<span class="lbl">Synthèse en trois piliers</span>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;font-size:.86em;margin-top:.4em;">
+<div style="background:#fff;border:1px solid #a7f3d0;border-radius:4px;padding:7px 9px;"><strong>2 500 SNP populationnels</strong><br>→ structure, sélection, recalibrage des fréquences</div>
+<div style="background:#fff;border:1px solid #a7f3d0;border-radius:4px;padding:7px 9px;"><strong>350 WGS optimisés (0 €)</strong><br>→ découverte, référence locale, imputation</div>
+<div style="background:#fff;border:1px solid #a7f3d0;border-radius:4px;padding:7px 9px;"><strong>100 familles nucléaires SNP</strong><br>→ phasage, transmission, haplotypes réunionnais</div>
+</div>
+</div>
+
+<div style="margin-top:1.2em;padding:8px 12px;background:#fafafa;border:1px solid var(--border);border-radius:4px;font-size:.78em;color:var(--muted);">
+<strong>Sources consolidées dans ce document :</strong><br>
+→ <a href="https://github.com/patrick-mun/genome_reunion">github.com/patrick-mun/genome_reunion</a> — deck 42 slides V3.5, METHODOLOGY_selection_V3_5.md (1 962 lignes), protocole validation v1.1<br>
+→ <a href="https://github.com/patrick-mun/IT-and-reseach-cost-">github.com/patrick-mun/IT-and-reseach-cost-</a> — Plan_Genome_Reunion_Structure_AI.md, budget complet, 3 propositions RH, 4 modules IA<br>
+→ Document PMU projet_genome_20250729 — texte scientifique de fond, contexte clinique, 77 références<br>
+→ PLAN_DOCUMENT_COMPLEMENTAIRE_GENOME_REUNION.md — plan structurel de référence
+</div>
+</section>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
+
+<section class="sheet">
+<div class="sheet__body">
+<h2 id="a1"><span class="stag">Annexe A</span> Commandes bioinformatiques indicatives</h2>
+<p style="font-size:.83em;color:var(--muted);">Commandes indicatives — à adapter au format exact des fichiers, au build génomique et aux versions logicielles retenues. Source : METHODOLOGY_selection_V3_5.md §19.</p>
+
+<h3>A.1 Conversion, QC et LD pruning (PLINK2)</h3>
+<pre>
+# Conversion depuis VCF et QC variant + individu
+plink2 --vcf data.vcf.gz --make-pgen --out reunion_raw
+plink2 --pfile reunion_raw \
+  --geno 0.05 --mind 0.05 --maf 0.01 --hwe 1e-6 midp \
+  --make-pgen --out reunion_qc_dense
+
+# Contrôles individuels (call rate, sexe, hétérozygotie)
+plink2 --pfile reunion_qc_dense \
+  --missing sample-only --check-sex --het --out qc_individuals
+
+# LD pruning pour PCA et ADMIXTURE
+plink2 --pfile reunion_qc_dense --maf 0.01 \
+  --indep-pairwise 200kb 50 0.2 --out reunion_pruning
+plink2 --pfile reunion_qc_dense \
+  --extract reunion_pruning.prune.in --make-pgen --out reunion_qc_ldpruned
+</pre>
+
+<h3>A.2 PCA par niveaux progressifs</h3>
+<pre>
+# PCA-0 : Réunion seule (structure interne des 2 500)
+plink2 --pfile reunion_qc_ldpruned --pca 10 --out pca_reunion_seule
+
+# PCA-1 : Réunion + 1000G (ancrage multi-ancestral public)
+# 1. Harmoniser references + cohorte (build/strand/SNP communs)
+# 2. Fusionner les jeux de données
+# 3. LD pruning commun
+plink2 --pfile reunion_plus_1000g_ldpruned --pca 20 --out pca_1000g
+
+# PCA-2 : + panels EGA prioritaires (après accès DAC et harmonisation)
+plink2 --pfile reunion_plus_1000g_plus_ega_ldpruned \
+  --pca 20 --out pca_full_reference
+</pre>
+
+<h3>A.3 ADMIXTURE multi-K et multi-seed</h3>
+<pre>
+plink2 --pfile reunion_qc_ldpruned --make-bed --out reunion_admixture
+
+# Non supervisé — K de 2 à 12, 3 seeds par K
+for K in $(seq 2 12); do
+  for SEED in 42 123 999; do
+    admixture --cv --seed=${SEED} reunion_admixture.bed $K \
+      | tee admixture_unsup_K${K}_s${SEED}.log
+  done
+done
+grep "CV error" admixture_unsup_K*.log
+
+# Supervisé avec pools témoins (exemple indicatif)
+admixture --supervised --seed=42 reunion_references_admixture.bed ${K_REF}
+</pre>
+
+<h3>A.4 Parenté KING et ROH</h3>
+<pre>
+# Table de parenté KING — seuil exclusion kinship >= 0.0625
+plink2 --pfile reunion_qc_dense --make-king-table --out king_global
+
+# ROH — paramètres à recalibrer sur distribution réelle
+plink --bfile reunion_qc_dense \
+  --homozyg --homozyg-window-snp 50 --homozyg-snp 50 \
+  --homozyg-kb 1000 --out roh_global
+</pre>
+
+<h3>A.5 Phasage SHAPEIT4 en trois niveaux</h3>
+<pre>
+# Niveau 1 : phasage populationnel seul
+shapeit4 --input reunion_chr${CHR}.vcf.gz \
+  --map genetic_map_chr${CHR}.txt --region ${CHR} \
+  --output reunion_chr${CHR}.pop_phased.bcf --thread 8
+
+# Niveau 2 : assisté par familles nucléaires
+shapeit4 --input reunion_chr${CHR}.vcf.gz \
+  --map genetic_map_chr${CHR}.txt --region ${CHR} \
+  --scaffold family_scaffold_chr${CHR}.bcf \
+  --output reunion_chr${CHR}.family_phased.bcf --thread 8
+
+# Niveau 3 : intégration WGS (après réception POPgen)
+shapeit4 --input reunion_chr${CHR}.vcf.gz \
+  --map genetic_map_chr${CHR}.txt --region ${CHR} \
+  --reference wgs_panel_chr${CHR}.bcf \
+  --output reunion_chr${CHR}.wgs_phased.bcf --thread 8
+</pre>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Annexe — diffusion restreinte</span></footer>
+</section>
+
+<section class="sheet">
+<div class="sheet__body">
+<h2 id="a2"><span class="stag">Annexe B</span> Profils de population pour la validation in silico</h2>
+<p style="font-size:.82em;color:var(--muted);">Source : METHODOLOGIE_validation_voilure_reduite_v1.md. 8 secteurs géographiques constants entre profils. Ces profils ne sont pas des portraits de La Réunion : ce sont des mondes possibles pour tester la robustesse de la méthode.</p>
+
+<h3>Profil A — Homogène (contrôle négatif)</h3>
+<p style="font-size:.83em;color:var(--muted);">Résultat attendu : random ≈ géographique strict ≈ géo-ancestral. Un gain élevé signalerait un biais de métrique ou une simulation mal contrôlée.</p>
+<table>
+<thead><tr><th>Secteur</th><th>Eur %</th><th>Afr %</th><th>Malg %</th><th>Ind %</th><th>ChinEA %</th><th>OcéanInd %</th></tr></thead>
+<tbody>
+<tr><td>Nord urbain</td><td>20</td><td>15</td><td>18</td><td>30</td><td>8</td><td>9</td></tr>
+<tr><td>Nord-Est / Est agricole</td><td>18</td><td>16</td><td>20</td><td>30</td><td>7</td><td>9</td></tr>
+<tr><td>Saint-Leu / Hauts Ouest</td><td>19</td><td>15</td><td>18</td><td>30</td><td>8</td><td>10</td></tr>
+<tr><td>Sud agricole</td><td>19</td><td>14</td><td>18</td><td>31</td><td>8</td><td>10</td></tr>
+<tr><td>Hauts du Sud / Plaine</td><td>22</td><td>14</td><td>18</td><td>28</td><td>7</td><td>11</td></tr>
+<tr><td>Sud-Est périphérique</td><td>18</td><td>17</td><td>20</td><td>29</td><td>6</td><td>10</td></tr>
+<tr><td>Cirques / Hauts isolés</td><td>20</td><td>15</td><td>19</td><td>30</td><td>7</td><td>9</td></tr>
+<tr><td>Ouest littoral</td><td>21</td><td>15</td><td>17</td><td>29</td><td>9</td><td>9</td></tr>
+</tbody>
+</table>
+
+<h3>Profil C — Mixte-hétérogène réunionnais plausible (scénario principal)</h3>
+<p style="font-size:.83em;color:var(--muted);">Résultat attendu : random &lt; géographique strict &lt; géo-ancestral. φ ≈ 0,03, G_endo = 4–5 dans les foyers.</p>
+<table>
+<thead><tr><th>Secteur</th><th>Eur %</th><th>Afr %</th><th>Malg %</th><th>Ind %</th><th>ChinEA %</th><th>OcéanInd %</th></tr></thead>
+<tbody>
+<tr><td>Nord urbain</td><td>25</td><td>10</td><td>10</td><td>22</td><td>20</td><td>13</td></tr>
+<tr><td>Nord-Est / Est agricole</td><td>12</td><td>20</td><td>28</td><td>30</td><td>4</td><td>6</td></tr>
+<tr><td>Saint-Leu / Hauts Ouest</td><td>28</td><td>8</td><td>12</td><td>42</td><td>3</td><td>7</td></tr>
+<tr><td>Sud agricole</td><td>18</td><td>10</td><td>10</td><td>50</td><td>4</td><td>8</td></tr>
+<tr><td>Hauts du Sud / Plaine</td><td>45</td><td>8</td><td>10</td><td>25</td><td>2</td><td>10</td></tr>
+<tr><td>Sud-Est périphérique</td><td>12</td><td>18</td><td>25</td><td>35</td><td>3</td><td>7</td></tr>
+<tr><td>Cirques / Hauts isolés</td><td>35</td><td>14</td><td>25</td><td>16</td><td>1</td><td>9</td></tr>
+<tr><td>Ouest littoral</td><td>22</td><td>13</td><td>15</td><td>32</td><td>8</td><td>10</td></tr>
+</tbody>
+</table>
+
+<h3>Profil D — Stress-test d’isolat cryptique (seul test réellement adverse)</h3>
+<p style="font-size:.83em;color:var(--muted);">L’isolat est généré par le simulateur mais <strong>non transmis au score S_div</strong>. φ ≈ 0,08, G_endo = 5–6. C’est le seul test qui injecte un signal hors des coordonnées connues de la méthode.</p>
+<table>
+<thead><tr><th>Secteur</th><th>Eur %</th><th>Afr %</th><th>Malg %</th><th>Ind %</th><th>ChinEA %</th><th>OcéanInd %</th></tr></thead>
+<tbody>
+<tr><td>Nord urbain</td><td>30</td><td>8</td><td>8</td><td>20</td><td>25</td><td>9</td></tr>
+<tr><td>Nord-Est / Est agricole</td><td>7</td><td>20</td><td>29</td><td>38</td><td>2</td><td>4</td></tr>
+<tr><td>Saint-Leu / Hauts Ouest</td><td>32</td><td>6</td><td>10</td><td>45</td><td>1</td><td>6</td></tr>
+<tr><td>Sud agricole</td><td>12</td><td>6</td><td>8</td><td>66</td><td>2</td><td>6</td></tr>
+<tr><td>Hauts du Sud / Plaine</td><td>60</td><td>5</td><td>8</td><td>18</td><td>1</td><td>8</td></tr>
+<tr><td>Sud-Est périphérique</td><td>10</td><td>15</td><td>22</td><td>42</td><td>2</td><td>9</td></tr>
+<tr><td>Cirques / Hauts isolés</td><td>45</td><td>18</td><td>25</td><td>6</td><td>0</td><td>6</td></tr>
+<tr><td>Ouest littoral</td><td>28</td><td>10</td><td>12</td><td>36</td><td>7</td><td>7</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableaux B1–B3 : Profils de population pour la validation in silico. Source : METHODOLOGIE_validation_voilure_reduite_v1.md §3.</p>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Annexe — diffusion restreinte</span></footer>
+</section>
+
+<section class="sheet">
+<div class="sheet__body">
+<h2 id="a3"><span class="stag">Annexe C</span> Versioning de la méthodologie de sélection WGS</h2>
+<p style="font-size:.82em;color:var(--muted);">Source : METHODOLOGY_selection_V3_5.md §22.</p>
+<table>
+<thead><tr><th>Version</th><th>Changements principaux</th></tr></thead>
+<tbody>
+<tr><td><strong>V1</strong></td><td>Méthode initiale : stratification géographique + score S_div basique</td></tr>
+<tr><td><strong>V2</strong></td><td>Panel hybride, bras découverte, QC, ROH fondateur, validation puce→WGS</td></tr>
+<tr><td><strong>V3</strong></td><td>Familles nucléaires hors cohorte, puce 1,9 M SNP, phasage réunionnais, S_discovery_global distinct, IBD KING clarifié, quotas intégrés, recalibrage fréquences formalisé</td></tr>
+<tr><td><strong>V3.1</strong></td><td>SHAPEIT4 retenu comme outil principal ; phasage en trois niveaux ; annexe commandes indicatives</td></tr>
+<tr><td><strong>V3.2</strong></td><td>Réorganisation en grandes parties ; page titre, sommaire, garde-fous méthodologiques intégrés</td></tr>
+<tr><td><strong>V3.3</strong></td><td>Révision conceptuelle majeure : stratification géo-ancestrale (remplacement de la stratification strictement géographique) ; pools témoins ; distinction ascendance génétique inférée vs ethnicité sociale</td></tr>
+<tr><td><strong>V3.4</strong></td><td>Clarification : la stratégie ne sélectionne pas le profil ancestral dominant de chaque secteur mais représente la distribution interne (profils majoritaires, minoritaires, mixtes, rares, fondateurs)</td></tr>
+<tr><td><strong>V3.5 (actuelle)</strong></td><td>Intégration opérationnelle des pools témoins 1000G/IGSR et EGA ; catalogue hiérarchisé en 3 niveaux ; analyse PCA/ADMIXTURE par niveaux A/B/C/D ; critères inclusion/exclusion panels ; phase 0 d’accès et harmonisation ; 75+ références bibliographiques intégrées</td></tr>
+</tbody>
+</table>
+<p class="caption">Tableau C1 : Historique de versioning. Source : METHODOLOGY_selection_V3_5.md §22.</p>
+
+<p style="font-size:.84em;">Paramètres à figer avant déploiement (fichier versionné pour reproductibilité) : puce SNP, outil et seuil IBD, seuil ROH, K ADMIXTURE et panels témoins retenus, poids S_div, règles de protection des profils rares, procédure de récupération, format de reporting des fréquences, protocole gouvernance familiale.</p>
+
+<h2 id="a4"><span class="stag">Annexe D</span> Bibliographie complète — sections thématiques 1 à 5</h2>
+<p style="font-size:.82em;color:var(--muted);">Source : METHODOLOGY_selection_V3_5.md §21 (18 sections, 75+ références) + Projet PMU (77 références numérotées).</p>
+
+<h3>D.1 Cadre général : diversité génomique, équité et interprétation clinique</h3>
+<ol class="refs-list">
+<li>Sirugo G, Williams SM, Tishkoff SA. The Missing Diversity in Human Genetic Studies. <em>Cell</em>, 2019. DOI: 10.1016/j.cell.2019.02.048.</li>
+<li>Fatumo S et al. A roadmap to increase diversity in genomic studies. <em>Nature Medicine</em>, 2022. DOI: 10.1038/s41591-021-01672-4.</li>
+<li>Popejoy AB, Fullerton SM. Genomics is failing on diversity. <em>Nature</em>, 2016;538:161–164.</li>
+<li>Wojcik GL et al. Genetic analyses of diverse populations improves discovery. <em>Nature</em>, 2019;570:514–518.</li>
+<li>Manrai AK et al. Genetic Misdiagnoses and the Potential for Health Disparities. <em>N Engl J Med</em>, 2016;375:655–665.</li>
+<li>Karczewski KJ et al. The mutational constraint spectrum from 141,456 humans [gnomAD]. <em>Nature</em>, 2020;581:434–443.</li>
+<li>Martin AR et al. Clinical use of current polygenic risk scores may exacerbate health disparities. <em>Nat Genet</em>, 2019;51:584–591.</li>
+</ol>
+
+<h3>D.2 Population réunionnaise et océan Indien</h3>
+<ol class="refs-list">
+<li>Berniell-Lee G et al. Admixture and sexual bias in the population settlement of La Réunion Island. <em>Am J Phys Anthropol</em>, 2008;136:100–107.</li>
+<li>Dubut V et al. Inter- and Extra-Indian Admixture in Reunion Island. <em>Ann Hum Genet</em>, 2009;73:314–334.</li>
+<li>Pierron D et al. Genomic landscape of human diversity across Madagascar. <em>PNAS</em>, 2017;114:E6498–E6506.</li>
+<li>Pierron D et al. Strong selection for African ancestry in Madagascar. <em>Nat Commun</em>, 2018;9:932.</li>
+<li>Heiske M et al. Genetic evidence of Asian and African origins of the present Malagasy population. <em>Hum Mol Genet</em>, 2021;30:R72–R78.</li>
+</ol>
+
+<h3>D.3 Pools témoins et populations parentales</h3>
+<ol class="refs-list">
+<li>Choudhury A et al. High-depth African genomes inform human migration and health. <em>Nature</em>, 2020;586:741–748.</li>
+<li>Gurdasani D et al. The African Genome Variation Project. <em>Nature</em>, 2015;517:327–332.</li>
+<li>Wall JD et al. The GenomeAsia 100K Project. <em>Nature</em>, 2019;576:106–111.</li>
+<li>Bergström A et al. Insights from 929 diverse genomes [HGDP]. <em>Science</em>, 2020;367:eaay5012.</li>
+<li>Byrska-Bishop M et al. High-coverage 1000 Genomes + 602 trios. <em>Cell</em>, 2022;185:3426–3440.</li>
+<li>Chen S et al. Mutational constraint map from 76,156 genomes [gnomAD v4]. <em>Nature</em>, 2024;625:92–100.</li>
+</ol>
+
+<h3>D.4 Populations admixées et insulaires comparables</h3>
+<ol class="refs-list">
+<li>Naslavsky MS et al. Whole-genome sequencing of 1,171 admixed individuals from São Paulo. <em>Nat Commun</em>, 2022;13:1004.</li>
+<li>Nunes K et al. Admixture’s impact on Brazilian population evolution and health. <em>Science</em>, 2025;388:eadl3564. [cohorte 2 723 WGS, référence la plus proche de Génome Réunion]</li>
+<li>Gudbjartsson DF et al. Large-scale whole-genome sequencing of the Icelandic population [deCODE]. <em>Nat Genet</em>, 2015;47:435–444.</li>
+<li>Kurki MI et al. FinnGen provides genetic insights from a well-phenotyped isolated population. <em>Nature</em>, 2023;613:508–518.</li>
+<li>Martínez-Magaña JJ et al. Admixture patterns and pharmacogenetic counseling in Mexico. <em>Front Pharmacol</em>, 2020;11:324.</li>
+</ol>
+
+<h3>D.5 Structure des populations : PCA et ADMIXTURE</h3>
+<ol class="refs-list">
+<li>Price AL et al. Principal components analysis corrects for stratification in GWAS. <em>Nat Genet</em>, 2006;38:904–909.</li>
+<li>Alexander DH, Novembre J, Lange K. Fast model-based estimation of ancestry [ADMIXTURE]. <em>Genome Res</em>, 2009;19:1655–1664.</li>
+<li>Lawson DJ et al. A tutorial on how not to over-interpret ADMIXTURE bar plots. <em>Nat Commun</em>, 2018;9:3258.</li>
+</ol>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Annexe — diffusion restreinte</span></footer>
+</section>
+
+<section class="sheet">
+<div class="sheet__body">
+<h2><span class="stag">Annexe D (suite)</span> Bibliographie — sections thématiques 6 à 18</h2>
+
+<h3>D.6 Inférence de parenté (IBD, kinship)</h3>
+<ol class="refs-list">
+<li>Manichaikul A et al. Robust relationship inference in GWAS [KING-robust]. <em>Bioinformatics</em>, 2010;26:2867–2873.</li>
+<li>Thornton T et al. Estimating kinship in admixed populations [REAP]. <em>Am J Hum Genet</em>, 2012;91:122–138.</li>
+<li>Conomos MP et al. Model-free estimation of recent genetic relatedness [PC-Relate]. <em>Am J Hum Genet</em>, 2016;98:127–148.</li>
+</ol>
+
+<h3>D.7 Effets fondateurs, ROH et homozygotie</h3>
+<ol class="refs-list">
+<li>Kirin M et al. Genomic runs of homozygosity record population history. <em>PLoS ONE</em>, 2010;5:e13996.</li>
+<li>Ceballos FC et al. Runs of homozygosity : windows into population history. <em>Nat Rev Genet</em>, 2018;19:220–234.</li>
+<li>Tournebize R et al. Reconstructing founder events using genome-wide allele sharing. <em>PLoS Genet</em>, 2022;18:e1010243.</li>
+<li>Cartault F et al. Expanding the clinical spectrum of B4GALT7 deficiency [Larsen-Bourbon]. <em>Eur J Hum Genet</em>, 2015;23:49–53.</li>
+<li>Cartault F et al. Mutation in a primate-conserved retrotransposon [Syndrome de Ravine]. <em>PNAS</em>, 2012;109:4980–5.</li>
+</ol>
+
+<h3>D.8 Phasage haplotypique</h3>
+<ol class="refs-list">
+<li>Delaneau O et al. Accurate, scalable and integrative haplotype estimation [SHAPEIT4]. <em>Nat Commun</em>, 2019;10:5436.</li>
+<li>Loh PR et al. Fast and accurate long-range phasing in UK Biobank [Eagle]. <em>Nat Genet</em>, 2016;48:811–816.</li>
+<li>Hofmeister RJ et al. Accurate rare variant phasing in UK Biobank [SHAPEIT5]. <em>Nat Genet</em>, 2023;55:1243–1249.</li>
+</ol>
+
+<h3>D.9 Imputation et panels de référence</h3>
+<ol class="refs-list">
+<li>Browning BL et al. A One-Penny Imputed Genome from Next-Generation Reference Panels [Beagle 5]. <em>Am J Hum Genet</em>, 2018;103:338–348.</li>
+<li>Taliun D et al. Sequencing of 53,831 diverse genomes from NHLBI TOPMed. <em>Nature</em>, 2021;590:290–299.</li>
+<li>Rubinacci S et al. Efficient phasing and imputation of low-coverage sequencing data [GLIMPSE]. <em>Nat Genet</em>, 2021;53:120–126.</li>
+<li>Marchini J, Howie B. Genotype imputation for genome-wide association studies. <em>Nat Rev Genet</em>, 2010;11:499–511.</li>
+</ol>
+
+<h3>D.10 Local Ancestry Inference (LAI)</h3>
+<ol class="refs-list">
+<li>Maples BK et al. RFMix: a discriminative modeling approach for rapid LAI. <em>Am J Hum Genet</em>, 2013;93:278–288.</li>
+<li>Browning SR et al. Fast, accurate local ancestry inference with FLARE. <em>Am J Hum Genet</em>, 2023;110:326–335.</li>
+</ol>
+
+<h3>D.11 Outils logiciels bioinformatiques</h3>
+<ol class="refs-list">
+<li>Chang CC et al. Second-generation PLINK [PLINK2]. <em>GigaScience</em>, 2015;4:7.</li>
+<li>Danecek P et al. Twelve years of SAMtools and BCFtools. <em>GigaScience</em>, 2021;10:giab008.</li>
+<li>McKenna A et al. The Genome Analysis Toolkit [GATK]. <em>Genome Res</em>, 2010;20:1297–1303.</li>
+</ol>
+
+<h3>D.12 Interprétation clinique des variants en populations diverses</h3>
+<ol class="refs-list">
+<li>Manrai AK et al. Genetic Misdiagnoses and Health Disparities. <em>N Engl J Med</em>, 2016;375:655–665.</li>
+<li>Landry LG, Rehm HL. Association of race/ethnicity with genetic tests for cardiomyopathy. <em>JAMA Cardiology</em>, 2018;3:341–345.</li>
+<li>Richards S et al. Standards for interpretation of sequence variants [ACMG/AMP]. <em>Genet Med</em>, 2015;17:405–424.</li>
+<li>Chen E et al. Rates of Variants of Uncertain Significance in Hereditary Disease Testing. <em>JAMA Netw Open</em>, 2023;6:e2339571.</li>
+</ol>
+
+<h3>D.13 Pharmacogénomique en populations diverses</h3>
+<ol class="refs-list">
+<li>Whirl-Carrillo M et al. Evidence-based framework for pharmacogenomics [PharmGKB / CPIC]. <em>Clin Pharmacol Ther</em>, 2021;110:563–572.</li>
+<li>Perera MA et al. Genetic variants associated with warfarin dose in African-American individuals. <em>Lancet</em>, 2013;382:790–796.</li>
+<li>Johnson JA et al. CPIC Guideline for Warfarin Dosing : 2017 Update. <em>Clin Pharmacol Ther</em>, 2017;102:397–404.</li>
+<li>Magavern EF et al. CYP2C19 genotype and clopidogrel in British-South Asians. <em>JACC Adv</em>, 2023;2:100573.</li>
+<li>Suarez-Kurtz G. Pharmacogenetics in the Brazilian admixed population. <em>Front Pharmacol</em>, 2010;1:118.</li>
+</ol>
+
+<h3>D.14–15 Scores polygéniques + Cadre éthique des descripteurs de population</h3>
+<ol class="refs-list">
+<li>Privé F et al. Portability of 245 polygenic scores across 9 ancestry groups. <em>Am J Hum Genet</em>, 2022;109:12–23.</li>
+<li>National Academies. Using Population Descriptors in Genetics and Genomics Research. <em>NASEM Press</em>, 2023.</li>
+<li>Lewis ACF et al. Getting genetic ancestry right for science and society. <em>Science</em>, 2022;376:250–252.</li>
+<li>Khan AT et al. Recommendations on race, ethnicity, ancestry in genetic research [TOPMed]. <em>Cell Genomics</em>, 2022;2:100155.</li>
+</ol>
+
+<h3>D.16–17 Effet Wahlund, HWE + IA en génomique</h3>
+<ol class="refs-list">
+<li>Wahlund S. Zusammensetzung von Populationen. <em>Hereditas</em>, 1928;11:65–106.</li>
+<li>Cardon LR, Palmer LJ. Population stratification and spurious allelic association. <em>Lancet</em>, 2003;361:598–604.</li>
+<li>Hasanzadeh F et al. Bias recognition and mitigation in AI healthcare applications. <em>NPJ Digit Med</em>, 2025;8:154.</li>
+<li>Nunes K et al. Admixture’s impact on Brazilian population evolution and health. <em>Science</em>, 2025;388:eadl3564.</li>
+</ol>
+
+<h3>D.18 Datasets EGA + 1000G — Pools témoins opérationnels</h3>
+<ol class="refs-list">
+<li>Byrska-Bishop M et al. High-coverage 1000G + 602 trios. <em>Cell</em>, 2022. [Public IGSR]</li>
+<li>Hamid I et al. Mid-pass WGS in a Malagasy Cohort. <em>HGG Advances</em>, 2024. [<strong>EGAS50000000496</strong> / EGAD50000000708]</li>
+<li>Pierron D et al. Genomic landscape of Madagascar. <em>PNAS</em>, 2017. [<strong>EGAS00001002549</strong> / EGAD00010001612]</li>
+<li>GenomeAsia100K Consortium. The GenomeAsia 100K Project. <em>Nature</em>, 2019. [<strong>EGAS00001002921</strong>]</li>
+<li>Tallman S et al. Whole genomes from Angola and Mozambique. <em>Nat Commun</em>, 2023. [<strong>EGAS00001007458</strong>]</li>
+<li>Gurdasani D et al. The African Genome Variation Project. <em>Nature</em>, 2015. [AGVP : <strong>EGAS00001000960</strong>]</li>
+<li>Choudhury A et al. High-depth African genomes. <em>Nature</em>, 2020. [H3Africa WGS : <strong>EGAS00001005972</strong>]</li>
+<li>Choin J et al. Genomic insights from Oceania populations. <em>Nature</em>, 2021. [Pacific WGS : <strong>EGAS00001004540</strong>]</li>
+</ol>
+
+<p style="margin-top:1em;font-size:.78em;color:var(--muted);font-style:italic;">Bibliographie historique et sociologique (réf. [34]–[44] du document PMU) : Ève P., Fuma S., Marimoutou M., Ramsamy J.-R. Bibliographie fondatrice génétique des populations (réf. [45]–[50]) : Hardy–Weinberg, Wright, Kimura, Casillas et al.</p>
+</div>
+<footer class="sheet__footer"><span>Génome Réunion · Annexe D (suite) · Juin 2026</span></footer>
+</section>
+
+<script>
+(function(){"use strict";
+function paginate(){
+  var sheets=Array.prototype.slice.call(document.querySelectorAll(".sheet"));
+  var content=sheets.filter(function(s){return!s.classList.contains("sheet--cover")&&!s.classList.contains("sheet--toc");});
+  sheets.forEach(function(sheet){
+    var flag=sheet.querySelector(".overflow-flag");
+    if(!flag){flag=document.createElement("div");flag.className="overflow-flag";flag.textContent="Contenu trop long - a scinder";sheet.appendChild(flag);}
+    sheet.classList.toggle("is-overflowing",sheet.scrollHeight>sheet.clientHeight+2);
+    var footer=sheet.querySelector(".sheet__footer");if(!footer)return;
+    var no=footer.querySelector(".pageno");if(!no){no=document.createElement("span");no.className="pageno";footer.appendChild(no);}
+    if(sheet.classList.contains("sheet--cover")||sheet.classList.contains("sheet--toc")){no.textContent="";}
+    else{var idx=content.indexOf(sheet);no.textContent="Page "+(idx+1)+" / "+content.length;}
+  });
+  document.querySelectorAll("a.toc-e[href]").forEach(function(link){
+    var href=link.getAttribute("href");if(!href||href[0]!=="#")return;
+    var target=document.getElementById(href.slice(1));if(!target)return;
+    var el=target;var ts=null;
+    while(el&&el!==document.body){if(el.classList&&el.classList.contains("sheet")){ts=el;break;}el=el.parentNode;}
+    if(!ts)return;var idx=content.indexOf(ts);
+    var n=link.querySelector(".toc-n");
+    if(n)n.textContent=idx>=0?String(idx+1):"--";
+  });
+}
+function bindToc(){
+  document.querySelectorAll('a.toc-e[href^="#"]').forEach(function(link){
+    link.addEventListener("click",function(e){
+      var target=document.getElementById(this.getAttribute("href").slice(1));
+      if(!target)return;e.preventDefault();target.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  });
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){paginate();bindToc();});}
+else{paginate();bindToc();}
+window.addEventListener("load",paginate);window.addEventListener("beforeprint",paginate);
+})();
+</script>
 </body>
 </html>
