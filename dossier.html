@@ -141,7 +141,23 @@ nav.toc-side a:hover { color: var(--accent); }
 
 /* Flow diagram — process / architecture */
 .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: 1.4em 0; }
-.flow-step { flex: 1 1 0; min-width: 120px; background: #fff; border: 1.5px solid var(--accent); border-radius: 6px; padding: 10px 12px; font-size: 0.86em; text-align: center; display: flex; align-items: center; justify-content: center; position: relative; }
+.flow-step {
+  flex: 1 1 0;
+  min-width: 80px;
+  background: #fff;
+  border: 1.5px solid var(--accent);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.86em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  word-break: break-word;
+  hyphens: auto;
+}
 .flow-step.alt { background: var(--accent-soft); }
 .flow-step:not(:last-child) { margin-right: 22px; }
 .flow-step:not(:last-child)::after { content: "\203A"; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.6em; color: var(--accent); }
@@ -157,19 +173,19 @@ nav.toc-side a:hover { color: var(--accent); }
 
 /* Horizontal bar chart rows (CSS, label + bar + value) */
 .hbar { margin: 1em 0; }
-.hbar .row { display: grid; grid-template-columns: 180px 1fr auto; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 0.88em; }
+.hbar .row { display: grid; grid-template-columns: 225px 1fr auto; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 0.84em; }
 .hbar .track { background: #eef1f4; border-radius: 4px; height: 18px; overflow: hidden; }
 .hbar .fill { height: 100%; background: var(--accent); border-radius: 4px; }
 .hbar .val { font-variant-numeric: tabular-nums; color: var(--muted); }
 
 /* Gantt — phases over a timeline */
 .gantt { margin: 1.2em 0; font-size: 0.84em; }
-.gantt .row { display: grid; grid-template-columns: 170px 1fr; align-items: center; gap: 10px; margin-bottom: 6px; }
+.gantt .row { display: grid; grid-template-columns: 195px 1fr; align-items: center; gap: 10px; margin-bottom: 6px; }
 .gantt .lane { position: relative; height: 20px; background: #eef1f4; border-radius: 4px; }
 .gantt .bar { position: absolute; height: 100%; border-radius: 4px; background: var(--accent); }
 .gantt .bar.free { background: #0D9488; }
 .gantt .bar.ia { background: #7C3AED; }
-.gantt .scale { display: grid; grid-template-columns: 170px 1fr; gap: 10px; color: var(--muted); margin-top: 4px; }
+.gantt .scale { display: grid; grid-template-columns: 195px 1fr; gap: 10px; color: var(--muted); margin-top: 4px; }
 .gantt .ticks { display: flex; justify-content: space-between; }
 
 /* Timeline — historical / sequential markers */
@@ -179,10 +195,6 @@ nav.toc-side a:hover { color: var(--accent); }
 .timeline .ev::after { content: ""; position: absolute; top: 1px; left: 50%; transform: translateX(-50%); width: 11px; height: 11px; border-radius: 50%; background: var(--accent); }
 .timeline .ev .yr { font-weight: 700; color: var(--accent); display: block; }
 
-@media print {
-  .flow-step, .stat-card, .gantt .lane, .hbar .track { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .stat-grid, .flow, .gantt, .hbar, .compo-bar, .timeline { break-inside: avoid; page-break-inside: avoid; }
-}
 
 /* ===================================================================
    A4 SHEET MODEL (paged layout) — see references/pagination.md
@@ -313,50 +325,15 @@ li.toc-sub .toc-title { font-size: 0.9em; color: var(--muted); }
   text-align: right;
 }
 
-@media print {
-  /* Cover and TOC: no page-break logic needed (handled by .sheet) */
-  .cover-logo svg, .cover-accent-band, .cover-center, .cover-meta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  a.toc-entry { color: var(--text) !important; background: none !important; }
-}
 
 @page sheet { size: A4; margin: 0; }   /* sheet supplies its own margins via padding */
 
-@media print {
-  body.paged { background: #fff; }
-  .sheet {
-    page: sheet;
-    width: 210mm; min-height: 0; height: auto;
-    margin: 0; padding: 16mm 18mm 12mm; box-shadow: none;
-    page-break-after: always; break-after: page;
-  }
-  .sheet:last-child { page-break-after: auto; break-after: auto; }
-  .sheet.is-overflowing { outline: none; }
-  .sheet .overflow-flag { display: none !important; }
-}
 
-/* ===================================================================
-   PRINT — A4, clean margins, sensible page breaks
-   =================================================================== */
+@page sheet { size: A4; margin: 0; }
+
 @page {
   size: A4;
   margin: 2cm;
-}
-
-@media print {
-  body { background: #fff; font-size: 11.5pt; }
-  .page { max-width: none; margin: 0; padding: 0; box-shadow: none; }
-  .dossier { display: block; max-width: none; margin: 0; box-shadow: none; }
-  nav.toc-side { display: none !important; }
-
-  /* Avoid breaking inside these blocks */
-  h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
-  table, figure, aside.callout, .summary { page-break-inside: avoid; break-inside: avoid; }
-  p { orphans: 3; widows: 3; }
-
-  /* Hide screen-only navigation helpers if any are added */
-  .no-print { display: none !important; }
-
-  a { color: #000; text-decoration: none; }
 }
 
 /* === Palette Génome Réunion — override de la palette standard du skill === */
@@ -416,9 +393,6 @@ li.toc-sub .toc-title { font-size: 0.9em; color: var(--muted); }
    CORRECTIONS Genome Reunion — per audit CORRECTIONS_genome_reunion.md
    =================================================================== */
 
-/* V2 + V6 — Flow min-width + word-break */
-.flow-step { min-width: 80px; overflow: hidden; word-break: break-word; hyphens: auto; }
-
 /* V3 — hbar fill colour variants */
 .hbar .fill.g { background: var(--green); }
 .hbar .fill.o { background: var(--accent3); }
@@ -441,7 +415,6 @@ pre {
   white-space: pre;
   word-break: normal;
 }
-@media print { pre { white-space: pre-wrap; } }
 code {
   font-family: "Courier New", Courier, monospace;
   font-size: 0.88em;
@@ -449,13 +422,6 @@ code {
   padding: 1px 4px;
   border-radius: 3px;
 }
-
-/* V7 — hbar label column */
-.hbar .row { grid-template-columns: 225px 1fr auto; font-size: 0.84em; }
-
-/* V8 — Gantt label column */
-.gantt .row   { grid-template-columns: 195px 1fr; }
-.gantt .scale { grid-template-columns: 195px 1fr; }
 
 /* V9 — Table cell word-break */
 td, th { word-break: break-word; overflow-wrap: break-word; }
@@ -517,9 +483,66 @@ td, th { word-break: break-word; overflow-wrap: break-word; }
   line-height: 1;
 }
 
+/* ===================================================================
+   UNIFIED PRINT MEDIA RULES — A4 Paged Layout
+   Consolidated to avoid CSS conflicts and ensure consistent printing.
+   =================================================================== */
+
 @media print {
+  /* Hide navigation bar and screen-only elements */
   .docNavbar { display: none !important; }
-  body { padding-top: 0 !important; }
+  .no-print { display: none !important; }
+  .sheet.is-overflowing { outline: none; }
+  .sheet .overflow-flag { display: none !important; }
+
+  /* Body and page layout */
+  body { background: #fff; font-size: 11.5pt; padding-top: 0 !important; }
+  body.paged { background: #fff; }
+
+  /* Sheet (A4 page) configuration */
+  .sheet {
+    page: sheet;
+    width: 210mm;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 16mm 18mm 12mm;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+  .sheet:last-child { page-break-after: auto; break-after: auto; }
+
+  /* Color preservation for visual elements */
+  .flow-step, .stat-card, .gantt .lane, .hbar .track {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cover-logo svg, .cover-accent-band, .cover-center, .cover-meta {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Page break rules for better formatting */
+  .stat-grid, .flow, .gantt, .hbar, .compo-bar, .timeline {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+  table, figure, aside.callout, .summary { page-break-inside: avoid; break-inside: avoid; }
+  p { orphans: 3; widows: 3; }
+
+  /* Page wrapper and layout elements */
+  .page { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+  .dossier { display: block; max-width: none; margin: 0; box-shadow: none; }
+  nav.toc-side { display: none !important; }
+  a.toc-entry { color: var(--text) !important; background: none !important; }
+
+  /* Link styling for print */
+  a { color: #000; text-decoration: none; }
+
+  /* Code blocks */
+  pre { white-space: pre-wrap; }
 }
 
 
@@ -959,6 +982,7 @@ ROH_score_diversity_emp(i) =
 <p>La comparaison des trois sorties permettra de quantifier le gain réel du module familial et du panel WGS local sur la précision du phasage haplotypique réunionnais. Une quatrième sortie exploratoire avec SHAPEIT5 (pour les variants rares) pourra être envisagée en phase d’extension.</p>
 
 <aside class="callout"><span class="label">Garde-fou analytique</span>Les familles nucléaires ne seront jamais traitées comme observations indépendantes dans l’estimation des fréquences. Elles constituent une ressource de phasage, pas un suréchantillonnage de la cohorte principale. Cette distinction est essentielle pour la rigueur scientifique et la défense devant un comité de relecture.</aside>
+</div>
 <footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
 </section>
 
@@ -1342,9 +1366,10 @@ S_discovery_global(i) = a × PCA_global_outlier(i)
 → Document PMU projet_genome_20250729 — texte scientifique de fond, contexte clinique, 77 références<br>
 → PLAN_DOCUMENT_COMPLEMENTAIRE_GENOME_REUNION.md — plan structurel de référence
 </div>
-</section>
+</div>
 </div>
 <footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
+</section>
 </section>
 
 <section class="sheet">
