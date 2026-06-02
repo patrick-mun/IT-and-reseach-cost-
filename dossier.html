@@ -179,10 +179,6 @@ nav.toc-side a:hover { color: var(--accent); }
 .timeline .ev::after { content: ""; position: absolute; top: 1px; left: 50%; transform: translateX(-50%); width: 11px; height: 11px; border-radius: 50%; background: var(--accent); }
 .timeline .ev .yr { font-weight: 700; color: var(--accent); display: block; }
 
-@media print {
-  .flow-step, .stat-card, .gantt .lane, .hbar .track { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .stat-grid, .flow, .gantt, .hbar, .compo-bar, .timeline { break-inside: avoid; page-break-inside: avoid; }
-}
 
 /* ===================================================================
    A4 SHEET MODEL (paged layout) — see references/pagination.md
@@ -313,50 +309,15 @@ li.toc-sub .toc-title { font-size: 0.9em; color: var(--muted); }
   text-align: right;
 }
 
-@media print {
-  /* Cover and TOC: no page-break logic needed (handled by .sheet) */
-  .cover-logo svg, .cover-accent-band, .cover-center, .cover-meta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  a.toc-entry { color: var(--text) !important; background: none !important; }
-}
 
 @page sheet { size: A4; margin: 0; }   /* sheet supplies its own margins via padding */
 
-@media print {
-  body.paged { background: #fff; }
-  .sheet {
-    page: sheet;
-    width: 210mm; min-height: 0; height: auto;
-    margin: 0; padding: 16mm 18mm 12mm; box-shadow: none;
-    page-break-after: always; break-after: page;
-  }
-  .sheet:last-child { page-break-after: auto; break-after: auto; }
-  .sheet.is-overflowing { outline: none; }
-  .sheet .overflow-flag { display: none !important; }
-}
 
-/* ===================================================================
-   PRINT — A4, clean margins, sensible page breaks
-   =================================================================== */
+@page sheet { size: A4; margin: 0; }
+
 @page {
   size: A4;
   margin: 2cm;
-}
-
-@media print {
-  body { background: #fff; font-size: 11.5pt; }
-  .page { max-width: none; margin: 0; padding: 0; box-shadow: none; }
-  .dossier { display: block; max-width: none; margin: 0; box-shadow: none; }
-  nav.toc-side { display: none !important; }
-
-  /* Avoid breaking inside these blocks */
-  h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
-  table, figure, aside.callout, .summary { page-break-inside: avoid; break-inside: avoid; }
-  p { orphans: 3; widows: 3; }
-
-  /* Hide screen-only navigation helpers if any are added */
-  .no-print { display: none !important; }
-
-  a { color: #000; text-decoration: none; }
 }
 
 /* === Palette Génome Réunion — override de la palette standard du skill === */
@@ -441,7 +402,6 @@ pre {
   white-space: pre;
   word-break: normal;
 }
-@media print { pre { white-space: pre-wrap; } }
 code {
   font-family: "Courier New", Courier, monospace;
   font-size: 0.88em;
@@ -517,9 +477,66 @@ td, th { word-break: break-word; overflow-wrap: break-word; }
   line-height: 1;
 }
 
+/* ===================================================================
+   UNIFIED PRINT MEDIA RULES — A4 Paged Layout
+   Consolidated to avoid CSS conflicts and ensure consistent printing.
+   =================================================================== */
+
 @media print {
+  /* Hide navigation bar and screen-only elements */
   .docNavbar { display: none !important; }
-  body { padding-top: 0 !important; }
+  .no-print { display: none !important; }
+  .sheet.is-overflowing { outline: none; }
+  .sheet .overflow-flag { display: none !important; }
+
+  /* Body and page layout */
+  body { background: #fff; font-size: 11.5pt; padding-top: 0 !important; }
+  body.paged { background: #fff; }
+
+  /* Sheet (A4 page) configuration */
+  .sheet {
+    page: sheet;
+    width: 210mm;
+    min-height: 0;
+    height: auto;
+    margin: 0;
+    padding: 16mm 18mm 12mm;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+  .sheet:last-child { page-break-after: auto; break-after: auto; }
+
+  /* Color preservation for visual elements */
+  .flow-step, .stat-card, .gantt .lane, .hbar .track {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cover-logo svg, .cover-accent-band, .cover-center, .cover-meta {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Page break rules for better formatting */
+  .stat-grid, .flow, .gantt, .hbar, .compo-bar, .timeline {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+  table, figure, aside.callout, .summary { page-break-inside: avoid; break-inside: avoid; }
+  p { orphans: 3; widows: 3; }
+
+  /* Page wrapper and layout elements */
+  .page { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+  .dossier { display: block; max-width: none; margin: 0; box-shadow: none; }
+  nav.toc-side { display: none !important; }
+  a.toc-entry { color: var(--text) !important; background: none !important; }
+
+  /* Link styling for print */
+  a { color: #000; text-decoration: none; }
+
+  /* Code blocks */
+  pre { white-space: pre-wrap; }
 }
 
 
