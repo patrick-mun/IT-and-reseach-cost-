@@ -141,7 +141,23 @@ nav.toc-side a:hover { color: var(--accent); }
 
 /* Flow diagram — process / architecture */
 .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: 1.4em 0; }
-.flow-step { flex: 1 1 0; min-width: 120px; background: #fff; border: 1.5px solid var(--accent); border-radius: 6px; padding: 10px 12px; font-size: 0.86em; text-align: center; display: flex; align-items: center; justify-content: center; position: relative; }
+.flow-step {
+  flex: 1 1 0;
+  min-width: 80px;
+  background: #fff;
+  border: 1.5px solid var(--accent);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.86em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  word-break: break-word;
+  hyphens: auto;
+}
 .flow-step.alt { background: var(--accent-soft); }
 .flow-step:not(:last-child) { margin-right: 22px; }
 .flow-step:not(:last-child)::after { content: "\203A"; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.6em; color: var(--accent); }
@@ -157,19 +173,19 @@ nav.toc-side a:hover { color: var(--accent); }
 
 /* Horizontal bar chart rows (CSS, label + bar + value) */
 .hbar { margin: 1em 0; }
-.hbar .row { display: grid; grid-template-columns: 180px 1fr auto; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 0.88em; }
+.hbar .row { display: grid; grid-template-columns: 225px 1fr auto; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 0.84em; }
 .hbar .track { background: #eef1f4; border-radius: 4px; height: 18px; overflow: hidden; }
 .hbar .fill { height: 100%; background: var(--accent); border-radius: 4px; }
 .hbar .val { font-variant-numeric: tabular-nums; color: var(--muted); }
 
 /* Gantt — phases over a timeline */
 .gantt { margin: 1.2em 0; font-size: 0.84em; }
-.gantt .row { display: grid; grid-template-columns: 170px 1fr; align-items: center; gap: 10px; margin-bottom: 6px; }
+.gantt .row { display: grid; grid-template-columns: 195px 1fr; align-items: center; gap: 10px; margin-bottom: 6px; }
 .gantt .lane { position: relative; height: 20px; background: #eef1f4; border-radius: 4px; }
 .gantt .bar { position: absolute; height: 100%; border-radius: 4px; background: var(--accent); }
 .gantt .bar.free { background: #0D9488; }
 .gantt .bar.ia { background: #7C3AED; }
-.gantt .scale { display: grid; grid-template-columns: 170px 1fr; gap: 10px; color: var(--muted); margin-top: 4px; }
+.gantt .scale { display: grid; grid-template-columns: 195px 1fr; gap: 10px; color: var(--muted); margin-top: 4px; }
 .gantt .ticks { display: flex; justify-content: space-between; }
 
 /* Timeline — historical / sequential markers */
@@ -377,9 +393,6 @@ li.toc-sub .toc-title { font-size: 0.9em; color: var(--muted); }
    CORRECTIONS Genome Reunion — per audit CORRECTIONS_genome_reunion.md
    =================================================================== */
 
-/* V2 + V6 — Flow min-width + word-break */
-.flow-step { min-width: 80px; overflow: hidden; word-break: break-word; hyphens: auto; }
-
 /* V3 — hbar fill colour variants */
 .hbar .fill.g { background: var(--green); }
 .hbar .fill.o { background: var(--accent3); }
@@ -409,13 +422,6 @@ code {
   padding: 1px 4px;
   border-radius: 3px;
 }
-
-/* V7 — hbar label column */
-.hbar .row { grid-template-columns: 225px 1fr auto; font-size: 0.84em; }
-
-/* V8 — Gantt label column */
-.gantt .row   { grid-template-columns: 195px 1fr; }
-.gantt .scale { grid-template-columns: 195px 1fr; }
 
 /* V9 — Table cell word-break */
 td, th { word-break: break-word; overflow-wrap: break-word; }
