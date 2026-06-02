@@ -5,107 +5,543 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>G&#233;nome R&#233;union &#8212; Document de synth&#232;se scientifique V3.5</title>
 <style>
-:root{--accent:#0F3A56;--accent2:#1E6E8C;--accent3:#E8654A;--accent-soft:#eaf3f7;--text:#1a1a1a;--muted:#555;--border:#d9d9d9;--callout-bg:#f4f7fb;--green:#0D9488;--green-soft:#f0fdf9;--purple:#7C3AED;--font-body:"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;--font-head:Georgia,"Times New Roman",serif;}
-*{box-sizing:border-box;}
-body{font-family:var(--font-body);color:var(--text);line-height:1.6;font-size:14.5px;margin:0;background:#e3e6ea;}
-h1,h2,h3{font-family:var(--font-head);color:var(--accent);line-height:1.25;}
-h1{font-size:1.85em;margin:0 0 .2em;}
-h2{font-size:1.28em;margin:1.4em 0 .35em;border-bottom:2px solid var(--accent-soft);padding-bottom:.18em;}
-h3{font-size:1.02em;margin:1em 0 .28em;color:var(--text);}
-p{margin:0 0 .75em;}strong{color:#000;}a{color:var(--accent);}
-ul,ol{margin:0 0 .75em;padding-left:1.3em;}li{margin-bottom:.2em;}
-table{border-collapse:collapse;width:100%;margin:.75em 0;font-size:.86em;}
-th,td{border:1px solid var(--border);padding:5px 8px;text-align:left;vertical-align:top;}
-thead th{background:var(--accent);color:#fff;}
-tbody tr:nth-child(even){background:#f7f9fb;}
-.caption{font-size:.8em;color:var(--muted);font-style:italic;margin-top:.28em;margin-bottom:.55em;}
-code{font-family:"Courier New",monospace;font-size:.84em;background:#f0f0f0;padding:1px 4px;border-radius:3px;}
-pre{background:#f4f4f4;border:1px solid var(--border);border-radius:4px;padding:8px 12px;font-size:.78em;line-height:1.5;overflow-x:auto;margin:.75em 0;}
-.summary{background:var(--accent-soft);border-left:4px solid var(--accent);padding:11px 16px;margin:1em 0;border-radius:0 4px 4px 0;}
-.summary h2{margin-top:0;border:none;}
-.callout{background:var(--callout-bg);border:1px solid var(--border);border-left:4px solid var(--accent);padding:8px 12px;margin:.85em 0;border-radius:0 4px 4px 0;}
-.callout .lbl,.callout-green .lbl{display:block;font-weight:700;text-transform:uppercase;font-size:.72em;letter-spacing:.04em;margin-bottom:.2em;}
-.callout .lbl{color:var(--accent);}
-.callout-green{background:var(--green-soft);border:1px solid #a7f3d0;border-left:4px solid var(--green);padding:8px 12px;margin:.85em 0;border-radius:0 4px 4px 0;}
-.callout-green .lbl{color:var(--green);}
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px;margin:1em 0;}
-.stat-card{background:var(--accent-soft);border:1px solid var(--border);border-radius:6px;padding:10px 12px;text-align:center;}
-.stat-card .num{font-family:var(--font-head);font-size:1.55em;font-weight:700;color:var(--accent);line-height:1.1;}
-.stat-card .lbl{font-size:.77em;color:var(--muted);margin-top:3px;}
-.stat-card.green{background:var(--green-soft);border-color:#a7f3d0;}.stat-card.green .num{color:var(--green);}
-.stat-card.dark{background:var(--accent);}.stat-card.dark .num{color:#fff;font-size:1.1em;}.stat-card.dark .lbl{color:#cde4f0;}
-.flow{display:flex;flex-wrap:nowrap;align-items:stretch;gap:16px;margin:1em 0;}
-.flow-step{flex:1 1 0;min-width:0;background:#fff;border:1.5px solid var(--accent);border-radius:5px;padding:6px 7px;font-size:.72em;line-height:1.32;text-align:center;display:flex;align-items:center;justify-content:center;position:relative;overflow-wrap:anywhere;}
-.flow-step.alt{background:var(--accent-soft);}
-.flow-step:not(:last-child)::after{content:"\2192";position:absolute;right:-13px;top:50%;transform:translateY(-50%);font-size:1.05em;color:var(--accent);z-index:1;}
-.compo-bar{display:flex;height:22px;border-radius:4px;overflow:hidden;margin:.65em 0 .38em;border:1px solid var(--border);}
-.compo-bar span{display:block;height:100%;}
-.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin:.25em 0 .65em;font-size:.79em;color:var(--muted);}
-.legend .item{display:flex;align-items:center;gap:5px;}
-.legend .swatch{width:10px;height:10px;border-radius:2px;flex:none;}
-.hbar{margin:.65em 0;}
-.hbar .row{display:grid;grid-template-columns:190px 1fr auto;align-items:center;gap:7px;margin-bottom:5px;font-size:.82em;}
-.hbar .track{background:#eef1f4;border-radius:3px;height:14px;overflow:hidden;}
-.hbar .fill{height:100%;background:var(--accent);border-radius:3px;}
-.hbar .fill.g{background:var(--green);}.hbar .fill.o{background:var(--accent3);}
-.hbar .val{font-variant-numeric:tabular-nums;color:var(--muted);min-width:62px;text-align:right;}
-.gantt{margin:.85em 0;font-size:.79em;}
-.gantt .row{display:grid;grid-template-columns:145px 1fr;align-items:center;gap:7px;margin-bottom:4px;}
-.gantt .lane{position:relative;height:15px;background:#eef1f4;border-radius:3px;}
-.gantt .bar{position:absolute;height:100%;border-radius:3px;background:var(--accent);}
-.gantt .bar.wgs{background:var(--green);}.gantt .bar.ia{background:var(--purple);}.gantt .bar.web{background:#D97706;}
-.gantt .scale{display:grid;grid-template-columns:145px 1fr;gap:7px;color:var(--muted);margin-top:3px;}
-.gantt .ticks{display:flex;justify-content:space-between;}
-.timeline{display:flex;margin:.9em 0;}
-.timeline .ev{flex:1;position:relative;padding-top:14px;text-align:center;font-size:.79em;}
-.timeline .ev::before{content:"";position:absolute;top:5px;left:0;right:0;height:2px;background:var(--border);}
-.timeline .ev::after{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--accent);}
-.timeline .ev .yr{font-weight:700;color:var(--accent);display:block;}
-body.paged{background:#e3e6ea;}
-.sheet{width:210mm;min-height:297mm;box-sizing:border-box;margin:0 auto 12mm;padding:13mm 15mm 10mm;background:#fff;box-shadow:0 1px 8px rgba(0,0,0,.18);display:flex;flex-direction:column;position:relative;}
-.sheet__body{flex:1 1 auto;}
-.sheet__footer{flex:none;margin-top:6px;padding-top:4px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:baseline;gap:9px;font-size:.72em;color:var(--muted);}
-.sheet__footer .pageno{margin-left:auto;font-variant-numeric:tabular-nums;}
-.sheet.is-overflowing{outline:2px dashed #d4351c;}
-.sheet .overflow-flag{display:none;}
-.sheet.is-overflowing .overflow-flag{display:block;position:absolute;top:4mm;right:4mm;background:#d4351c;color:#fff;font-size:.67em;padding:2px 5px;border-radius:3px;}
-.sheet--cover .sheet__body{display:flex;flex-direction:column;height:100%;}
-.cover-logo{padding-bottom:7mm;}
-.cover-accent-band{height:4px;background:var(--accent);border-radius:2px;margin-bottom:9mm;}
-.cover-center{flex:1;display:flex;flex-direction:column;justify-content:center;}
-.cover-center h1{font-family:var(--font-head);font-size:1.95em;color:var(--accent);margin:0 0 .22em;line-height:1.2;}
-.cover-subtitle{font-size:1.02em;color:var(--muted);font-style:italic;margin-bottom:3mm;}
-.cover-meta{margin-top:auto;border-top:1px solid var(--border);padding-top:6mm;}
-.cover-meta table{font-size:.86em;width:100%;}
-.cover-meta td{padding:3px 11px 3px 0;border:none;background:none;vertical-align:top;}
-.cover-meta td:first-child{font-weight:600;color:var(--accent);width:108px;}
-.sheet--toc h2{font-size:1.35em;margin-bottom:5mm;border:none;}
-nav.toc-doc ol{list-style:none;padding:0;margin:0;}
-nav.toc-doc li{margin-bottom:1px;}
-nav.toc-doc li.sub{padding-left:12px;}
-a.toc-e{display:flex;align-items:baseline;text-decoration:none;color:var(--text);padding:2px 2px;border-radius:3px;}
-a.toc-e:hover{background:var(--accent-soft);}
-.toc-t{flex:none;font-size:.88em;}li.sub .toc-t{font-size:.82em;color:var(--muted);}
-.toc-d{flex:1;border-bottom:1px dotted var(--border);margin:0 6px 3px;min-width:10px;}
-.toc-n{flex:none;font-variant-numeric:tabular-nums;font-size:.85em;color:var(--muted);min-width:17px;text-align:right;}
-.refs-list{font-size:.77em;line-height:1.48;color:var(--muted);}
-.refs-list li{margin-bottom:.45em;}
-.stag{display:inline-block;font-size:.7em;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#fff;background:var(--accent2);border-radius:3px;padding:1px 5px;margin-right:4px;vertical-align:middle;}
-@page sheet{size:A4;margin:0;}
-@media print{
-  body.paged{background:#fff;}
-  .sheet{page:sheet;width:210mm;min-height:0;height:auto;margin:0;padding:13mm 15mm 10mm;box-shadow:none;page-break-after:always;break-after:page;}
-  .sheet:last-child{page-break-after:auto;break-after:auto;}
-  .sheet.is-overflowing{outline:none;}.sheet .overflow-flag{display:none!important;}
-  .flow-step,.stat-card,.gantt .lane,.hbar .track{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+/* report.css — single stylesheet for professional reports.
+   Screen styles for reading + @media print rules for clean A4 PDF output.
+   When producing a final document, inline this file into a <style> block. */
+
+:root {
+  --accent: #1f4e79;          /* sober professional blue */
+  --accent-soft: #eaf0f6;
+  --text: #1a1a1a;
+  --muted: #555;
+  --border: #d9d9d9;
+  --callout-bg: #f4f7fb;
+  --font-body: "Segoe UI", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-head: Georgia, "Times New Roman", serif;
+  --max-width: 800px;
 }
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 16px;
+  margin: 0;
+  background: #f0f0f0;
+}
+
+/* The page wrapper mimics an A4 sheet on screen */
+.page {
+  max-width: var(--max-width);
+  margin: 24px auto;
+  background: #fff;
+  padding: 48px 56px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3 { font-family: var(--font-head); color: var(--accent); line-height: 1.25; }
+h1 { font-size: 2em; margin: 0 0 0.2em; }
+h2 { font-size: 1.4em; margin: 1.8em 0 0.5em; border-bottom: 2px solid var(--accent-soft); padding-bottom: 0.2em; }
+h3 { font-size: 1.15em; margin: 1.4em 0 0.4em; color: var(--text); }
+
+/* ---------- Document meta (title block) ---------- */
+.report-meta { color: var(--muted); font-size: 0.95em; margin-bottom: 1.5em; }
+.report-meta .subtitle { font-size: 1.1em; color: var(--text); font-style: italic; }
+
+/* ---------- Paragraphs & text ---------- */
+p { margin: 0 0 1em; }
+strong { color: #000; }
+a { color: var(--accent); }
+
+/* ---------- Executive summary ---------- */
+.summary {
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  margin: 1.5em 0;
+  border-radius: 0 4px 4px 0;
+}
+.summary h2 { margin-top: 0; border: none; }
+
+/* ---------- Callouts ("À retenir", "Point clé") ---------- */
+aside.callout {
+  background: var(--callout-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  padding: 12px 16px;
+  margin: 1.2em 0;
+  border-radius: 0 4px 4px 0;
+}
+aside.callout .label {
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78em;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin-bottom: 0.3em;
+}
+
+/* ---------- Lists ---------- */
+ul, ol { margin: 0 0 1em; padding-left: 1.4em; }
+li { margin-bottom: 0.3em; }
+
+/* ---------- Tables ---------- */
+table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 0.95em; }
+th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+thead th { background: var(--accent); color: #fff; }
+tbody tr:nth-child(even) { background: #f7f9fb; }
+
+/* ---------- Figures & captions ---------- */
+figure { margin: 1.2em 0; text-align: center; }
+figure img { max-width: 100%; height: auto; }
+figcaption, .caption {
+  font-size: 0.88em;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 0.4em;
+}
+
+/* ---------- Table of contents (inline) ---------- */
+nav.toc { background: #fafafa; border: 1px solid var(--border); padding: 12px 20px; margin: 1.5em 0; }
+nav.toc h2 { margin-top: 0; font-size: 1.1em; border: none; }
+nav.toc ol { padding-left: 1.2em; }
+
+/* ---------- Side table of contents (long dossiers, screen only) ---------- */
+.dossier { max-width: 1100px; margin: 24px auto; display: grid; grid-template-columns: 230px 1fr; gap: 0; background: #fff; box-shadow: 0 1px 8px rgba(0,0,0,.12); }
+.dossier > .page { max-width: none; margin: 0; box-shadow: none; }
+nav.toc-side { position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; padding: 32px 20px; background: #fafafa; border-right: 1px solid var(--border); font-size: 0.88em; }
+nav.toc-side h2 { font-size: 1em; border: none; margin: 0 0 0.6em; }
+nav.toc-side ol { list-style: none; padding-left: 0; margin: 0; }
+nav.toc-side ol ol { padding-left: 0.9em; }
+nav.toc-side a { color: var(--muted); text-decoration: none; display: block; padding: 2px 0; }
+nav.toc-side a:hover { color: var(--accent); }
+@media (max-width: 820px) { .dossier { grid-template-columns: 1fr; } nav.toc-side { display: none; } }
+
+/* ---------- References ---------- */
+.references ol { padding-left: 1.4em; }
+.references li { margin-bottom: 0.5em; font-size: 0.93em; }
+
+/* ---------- Footer ---------- */
+.report-footer { margin-top: 2.5em; padding-top: 1em; border-top: 1px solid var(--border); font-size: 0.85em; color: var(--muted); }
+
+/* ===================================================================
+   VISUAL COMPONENTS (see references/visuals.md)
+   Inline SVG / pure CSS — self-contained and print-safe.
+   =================================================================== */
+
+/* Stat cards — headline figures */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 1.4em 0; }
+.stat-card { background: var(--accent-soft); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; text-align: center; }
+.stat-card .num { font-family: var(--font-head); font-size: 1.7em; font-weight: 700; color: var(--accent); line-height: 1.1; }
+.stat-card .lbl { font-size: 0.82em; color: var(--muted); margin-top: 4px; }
+
+/* Flow diagram — process / architecture */
+.flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: 1.4em 0; }
+.flow-step { flex: 1 1 0; min-width: 120px; background: #fff; border: 1.5px solid var(--accent); border-radius: 6px; padding: 10px 12px; font-size: 0.86em; text-align: center; display: flex; align-items: center; justify-content: center; position: relative; }
+.flow-step.alt { background: var(--accent-soft); }
+.flow-step:not(:last-child) { margin-right: 22px; }
+.flow-step:not(:last-child)::after { content: "\203A"; position: absolute; right: -18px; top: 50%; transform: translateY(-50%); font-size: 1.6em; color: var(--accent); }
+
+/* Composition bar — 100% stacked share (e.g. admixture) */
+.compo-bar { display: flex; height: 30px; border-radius: 5px; overflow: hidden; margin: 1em 0 0.6em; border: 1px solid var(--border); }
+.compo-bar span { display: block; height: 100%; }
+
+/* Legend (shared by compo-bar, charts) */
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0.4em 0 1em; font-size: 0.85em; color: var(--muted); }
+.legend .item { display: flex; align-items: center; gap: 6px; }
+.legend .swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+
+/* Horizontal bar chart rows (CSS, label + bar + value) */
+.hbar { margin: 1em 0; }
+.hbar .row { display: grid; grid-template-columns: 180px 1fr auto; align-items: center; gap: 10px; margin-bottom: 7px; font-size: 0.88em; }
+.hbar .track { background: #eef1f4; border-radius: 4px; height: 18px; overflow: hidden; }
+.hbar .fill { height: 100%; background: var(--accent); border-radius: 4px; }
+.hbar .val { font-variant-numeric: tabular-nums; color: var(--muted); }
+
+/* Gantt — phases over a timeline */
+.gantt { margin: 1.2em 0; font-size: 0.84em; }
+.gantt .row { display: grid; grid-template-columns: 170px 1fr; align-items: center; gap: 10px; margin-bottom: 6px; }
+.gantt .lane { position: relative; height: 20px; background: #eef1f4; border-radius: 4px; }
+.gantt .bar { position: absolute; height: 100%; border-radius: 4px; background: var(--accent); }
+.gantt .bar.free { background: #0D9488; }
+.gantt .bar.ia { background: #7C3AED; }
+.gantt .scale { display: grid; grid-template-columns: 170px 1fr; gap: 10px; color: var(--muted); margin-top: 4px; }
+.gantt .ticks { display: flex; justify-content: space-between; }
+
+/* Timeline — historical / sequential markers */
+.timeline { display: flex; gap: 0; margin: 1.2em 0; }
+.timeline .ev { flex: 1; position: relative; padding-top: 18px; text-align: center; font-size: 0.84em; }
+.timeline .ev::before { content: ""; position: absolute; top: 6px; left: 0; right: 0; height: 2px; background: var(--border); }
+.timeline .ev::after { content: ""; position: absolute; top: 1px; left: 50%; transform: translateX(-50%); width: 11px; height: 11px; border-radius: 50%; background: var(--accent); }
+.timeline .ev .yr { font-weight: 700; color: var(--accent); display: block; }
+
+@media print {
+  .flow-step, .stat-card, .gantt .lane, .hbar .track { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .stat-grid, .flow, .gantt, .hbar, .compo-bar, .timeline { break-inside: avoid; page-break-inside: avoid; }
+}
+
+/* ===================================================================
+   A4 SHEET MODEL (paged layout) — see references/pagination.md
+   The document is split into explicit .sheet elements of exactly
+   210x297mm. On screen they look like stacked sheets of paper (the grey
+   gap marks the boundary to the next page); in print each .sheet is one
+   physical A4 page. Each sheet carries a footer with a page number.
+   Use this INSTEAD of the .page wrapper when print fidelity matters.
+   =================================================================== */
+
+body.paged { background: #e3e6ea; }
+
+.sheet {
+  width: 210mm;
+  min-height: 297mm;
+  box-sizing: border-box;
+  margin: 0 auto 12mm;          /* the bottom gap marks the next page */
+  padding: 16mm 18mm 12mm;
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.sheet__body { flex: 1 1 auto; }
+.sheet__footer {
+  flex: none;
+  margin-top: 10px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.78em;
+  color: var(--muted);
+}
+.sheet__footer .pageno { margin-left: auto; font-variant-numeric: tabular-nums; }
+
+/* Screen-only overflow warning: flagged by paginate.js when content
+   exceeds one A4 sheet, so the author knows to split the page. */
+.sheet.is-overflowing { outline: 2px dashed #d4351c; }
+.sheet .overflow-flag { display: none; }
+.sheet.is-overflowing .overflow-flag {
+  display: block; position: absolute; top: 4mm; right: 4mm;
+  background: #d4351c; color: #fff; font-size: 0.7em; padding: 2px 7px;
+  border-radius: 3px; font-family: var(--font-body);
+}
+
+/* ===================================================================
+   COVER PAGE (.sheet--cover)
+   Full-page title sheet. Not included in page numbering.
+   =================================================================== */
+.sheet--cover .sheet__body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.cover-logo { margin-bottom: auto; padding-bottom: 10mm; }
+.cover-logo svg { height: 58px; width: auto; }
+.cover-accent-band {
+  height: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+  margin-bottom: 10mm;
+}
+.cover-center { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.cover-center h1 {
+  font-family: var(--font-head);
+  font-size: 2.1em;
+  color: var(--accent);
+  margin: 0 0 0.3em;
+  line-height: 1.2;
+}
+.cover-center .cover-subtitle {
+  font-size: 1.15em;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 2mm;
+}
+.cover-meta {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 8mm;
+}
+.cover-meta table { font-size: 0.93em; width: 100%; }
+.cover-meta td { padding: 4px 14px 4px 0; border: none; background: none; vertical-align: top; }
+.cover-meta td:first-child { font-weight: 600; color: var(--accent); width: 110px; }
+
+/* ===================================================================
+   TABLE OF CONTENTS PAGE (.sheet--toc)
+   Clickable entries with dotted leaders and auto page numbers.
+   paginate.js fills in .toc-page-num spans automatically.
+   =================================================================== */
+.sheet--toc h2 { font-size: 1.5em; margin-bottom: 8mm; border: none; }
+
+nav.toc-doc { margin-top: 4mm; }
+nav.toc-doc ol { list-style: none; padding: 0; margin: 0; }
+nav.toc-doc li { margin-bottom: 1px; }
+nav.toc-doc li.toc-sub { padding-left: 16px; }
+
+/* The clickable row: title … dots … page number */
+a.toc-entry {
+  display: flex;
+  align-items: baseline;
+  text-decoration: none;
+  color: var(--text);
+  padding: 4px 2px;
+  border-radius: 3px;
+  gap: 0;
+}
+a.toc-entry:hover { background: var(--accent-soft); }
+a.toc-entry:hover .toc-title { color: var(--accent); }
+.toc-title { flex: none; font-size: 0.96em; }
+li.toc-sub .toc-title { font-size: 0.9em; color: var(--muted); }
+.toc-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--border);
+  margin: 0 8px 4px;
+  min-width: 20px;
+}
+.toc-page-num {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9em;
+  color: var(--muted);
+  min-width: 20px;
+  text-align: right;
+}
+
+@media print {
+  /* Cover and TOC: no page-break logic needed (handled by .sheet) */
+  .cover-logo svg, .cover-accent-band, .cover-center, .cover-meta { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a.toc-entry { color: var(--text) !important; background: none !important; }
+}
+
+@page sheet { size: A4; margin: 0; }   /* sheet supplies its own margins via padding */
+
+@media print {
+  body.paged { background: #fff; }
+  .sheet {
+    page: sheet;
+    width: 210mm; min-height: 0; height: auto;
+    margin: 0; padding: 16mm 18mm 12mm; box-shadow: none;
+    page-break-after: always; break-after: page;
+  }
+  .sheet:last-child { page-break-after: auto; break-after: auto; }
+  .sheet.is-overflowing { outline: none; }
+  .sheet .overflow-flag { display: none !important; }
+}
+
+/* ===================================================================
+   PRINT — A4, clean margins, sensible page breaks
+   =================================================================== */
+@page {
+  size: A4;
+  margin: 2cm;
+}
+
+@media print {
+  body { background: #fff; font-size: 11.5pt; }
+  .page { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+  .dossier { display: block; max-width: none; margin: 0; box-shadow: none; }
+  nav.toc-side { display: none !important; }
+
+  /* Avoid breaking inside these blocks */
+  h1, h2, h3 { page-break-after: avoid; break-after: avoid; }
+  table, figure, aside.callout, .summary { page-break-inside: avoid; break-inside: avoid; }
+  p { orphans: 3; widows: 3; }
+
+  /* Hide screen-only navigation helpers if any are added */
+  .no-print { display: none !important; }
+
+  a { color: #000; text-decoration: none; }
+}
+
+/* === Palette Génome Réunion — override de la palette standard du skill === */
+:root {
+  --accent:       #0F3A56;
+  --accent2:      #1E6E8C;
+  --accent-soft:  #eaf3f7;
+  --accent3:      #E8654A;
+  --green:        #0D9488;
+  --green-soft:   #f0fdf9;
+  --purple:       #7C3AED;
+}
+/* Gantt bars spécifiques au projet */
+.gantt .bar.wgs  { background: #0D9488; }
+.gantt .bar.web  { background: #D97706; }
+/* Callout vert projet */
+.callout-green {
+  background: var(--green-soft);
+  border: 1px solid #a7f3d0;
+  border-left: 4px solid var(--green);
+  padding: 12px 16px;
+  margin: 1.2em 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout-green .label {
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78em;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  margin-bottom: 0.3em;
+}
+/* Stat card variantes projet */
+.stat-card.green { background: var(--green-soft); border-color: #a7f3d0; }
+.stat-card.green .num { color: var(--green); }
+.stat-card.dark  { background: var(--accent); }
+.stat-card.dark .num { color: #fff; font-size: 1.1em; }
+.stat-card.dark .lbl { color: #cde4f0; }
+/* Section tag annexes */
+.stag {
+  display: inline-block;
+  font-size: 0.72em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  background: var(--accent2);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+
+/* ===================================================================
+   CORRECTIONS Genome Reunion — per audit CORRECTIONS_genome_reunion.md
+   =================================================================== */
+
+/* V2 + V6 — Flow min-width + word-break */
+.flow-step { min-width: 80px; overflow: hidden; word-break: break-word; hyphens: auto; }
+
+/* V3 — hbar fill colour variants */
+.hbar .fill.g { background: var(--green); }
+.hbar .fill.o { background: var(--accent3); }
+
+/* V4 — Bibliography list style */
+.refs-list { font-size: 0.82em; line-height: 1.5; color: var(--muted); padding-left: 1.4em; }
+.refs-list li { margin-bottom: 0.45em; }
+
+/* V5 — pre / code blocks */
+pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.8em;
+  line-height: 1.5;
+  background: #f4f4f4;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 13px;
+  margin: 0.8em 0;
+  overflow-x: auto;
+  white-space: pre;
+  word-break: normal;
+}
+@media print { pre { white-space: pre-wrap; } }
+code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.88em;
+  background: #f0f0f0;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+/* V7 — hbar label column */
+.hbar .row { grid-template-columns: 225px 1fr auto; font-size: 0.84em; }
+
+/* V8 — Gantt label column */
+.gantt .row   { grid-template-columns: 195px 1fr; }
+.gantt .scale { grid-template-columns: 195px 1fr; }
+
+/* V9 — Table cell word-break */
+td, th { word-break: break-word; overflow-wrap: break-word; }
+
+/* V12 — Conclusion pillar grid */
+.pillar-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; margin-top: .4em; font-size: .86em; }
+.pillar-grid .item { background: #fff; border: 1px solid #a7f3d0; border-radius: 4px; padding: 7px 9px; }
+
+/* ===================================================================
+   NAVIGATION TOOLBAR — No-print navigation bar with back button + print
+   =================================================================== */
+.docNavbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.docNavbar a, .docNavbar button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  color: var(--accent);
+  text-decoration: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.docNavbar a:hover, .docNavbar button:hover {
+  background: var(--accent-soft);
+}
+
+.docNavbar a {
+  color: var(--accent);
+}
+
+.docNavbar button {
+  color: var(--accent);
+}
+
+.docNavbarBackIcon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+@media print {
+  .docNavbar { display: none !important; }
+  body { padding-top: 0 !important; }
+}
+
+
 </style>
 </head>
-<body class="paged">
+<body class="paged" style="padding-top: 60px;">
+
+<!-- Navigation toolbar: back button + print button -->
+<nav class="docNavbar">
+  <a href="./" title="Retour à la page d'accueil">
+    <span class="docNavbarBackIcon">←</span>
+    <span>Retour</span>
+  </a>
+  <button onclick="window.print()" title="Imprimer le document">
+    <span>🖨</span>
+    <span>Imprimer</span>
+  </button>
+</nav>
 
 <section class="sheet sheet--cover">
 <div class="sheet__body">
-<div class="cover-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 22 410 64" fill="none" style="height:58px;width:auto;">
+<div class="cover-logo"><svg role="img" aria-label="Génome Réunion — Référentiel génomique" xmlns="http://www.w3.org/2000/svg" viewBox="0 22 410 64" fill="none">
   <g fill="none" stroke-width="5" stroke-linecap="round" transform="translate(18,28)">
     <path d="M0,11 C11,1 22,1 32,11 C42,21 53,21 63,11 C71,3 79,3 84,8" stroke="#0F3A56"/>
     <path d="M0,11 C11,1 22,1 32,11 C42,21 53,21 63,11 C71,3 79,3 84,8" stroke="#1E6E8C" transform="translate(0,16)"/>
@@ -152,40 +588,40 @@ Protocole de validation voilure r&#233;duite v1.1 &#183; 75+ r&#233;f&#233;rence
 <h2>Table des mati&#232;res</h2>
 <nav class="toc-doc">
 <ol>
-<li><a class="toc-e" href="#s1"><span class="toc-t">1. R&#233;sum&#233; ex&#233;cutif</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s2"><span class="toc-t">2. L&#8217;angle mort de la m&#233;decine de pr&#233;cision</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s2a"><span class="toc-t">2.1 Biais diagnostiques document&#233;s</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s2b"><span class="toc-t">2.2 In&#233;galit&#233;s pharmacog&#233;n&#233;tiques</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s2c"><span class="toc-t">2.3 Amplification par l&#8217;intelligence artificielle</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s3"><span class="toc-t">3. Singularit&#233; g&#233;n&#233;tique de La R&#233;union</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s3a"><span class="toc-t">3.1 Histoire migratoire et composition d&#8217;ascendance</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s3b"><span class="toc-t">3.2 Effets fondateurs et maladies rares locales</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s3c"><span class="toc-t">3.3 Inadaptation des outils g&#233;n&#233;tiques actuels</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s4"><span class="toc-t">4. Objectifs du projet</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s5"><span class="toc-t">5. Design g&#233;n&#233;ral &#8212; architecture en trois couches</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s6"><span class="toc-t">6. M&#233;thodologie d&#233;taill&#233;e</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s6a"><span class="toc-t">6.1 G&#233;notypage SNP et contr&#244;le qualit&#233;</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s6b"><span class="toc-t">6.2 Pools t&#233;moins &#8212; hi&#233;rarchie op&#233;rationnelle</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s6c"><span class="toc-t">6.3 PCA / ADMIXTURE &#8212; strat&#233;gie par niveaux</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s6d"><span class="toc-t">6.4 IBD, ROH et signatures fondatrices</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s6e"><span class="toc-t">6.5 Module familial et phasage SHAPEIT4</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s7"><span class="toc-t">7. Algorithme de s&#233;lection WGS &#8212; Score S_div V3.5</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s7a"><span class="toc-t">7.1 Score g&#233;o-ancestral S_div (noyau 322)</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s7b"><span class="toc-t">7.2 Bras de d&#233;couverte S_discovery_global (28)</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li class="sub"><a class="toc-e" href="#s7c"><span class="toc-t">7.3 Justification statistique de N&#160;=&#160;350&#160;WGS</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s8"><span class="toc-t">8. Protocole de validation &#224; voilure r&#233;duite v1.1</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s9"><span class="toc-t">9. Ressources produites</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s10"><span class="toc-t">10. Modules d&#8217;intelligence artificielle</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s11"><span class="toc-t">11. Organisation op&#233;rationnelle et gouvernance</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s12"><span class="toc-t">12. Budget et ressources humaines</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s13"><span class="toc-t">13. Chronogramme des 7 phases</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s14"><span class="toc-t">14. Impacts attendus</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s15"><span class="toc-t">15. Risques, limites et mitigations</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#s16"><span class="toc-t">16. Conclusion</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#a1"><span class="toc-t">Annexe A &#8212; Commandes bioinformatiques indicatives</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#a2"><span class="toc-t">Annexe B &#8212; Profils de validation (A, C, D)</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#a3"><span class="toc-t">Annexe C &#8212; Versioning de la m&#233;thodologie</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
-<li><a class="toc-e" href="#a4"><span class="toc-t">Annexe D &#8212; Bibliographie compl&#232;te (18 sections th&#233;matiques)</span><span class="toc-d"></span><span class="toc-n">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s1"><span class="toc-title">1. R&#233;sum&#233; ex&#233;cutif</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s2"><span class="toc-title">2. L&#8217;angle mort de la m&#233;decine de pr&#233;cision</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s2a"><span class="toc-title">2.1 Biais diagnostiques document&#233;s</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s2b"><span class="toc-title">2.2 In&#233;galit&#233;s pharmacog&#233;n&#233;tiques</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s2c"><span class="toc-title">2.3 Amplification par l&#8217;intelligence artificielle</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s3"><span class="toc-title">3. Singularit&#233; g&#233;n&#233;tique de La R&#233;union</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s3a"><span class="toc-title">3.1 Histoire migratoire et composition d&#8217;ascendance</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s3b"><span class="toc-title">3.2 Effets fondateurs et maladies rares locales</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s3c"><span class="toc-title">3.3 Inadaptation des outils g&#233;n&#233;tiques actuels</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s4"><span class="toc-title">4. Objectifs du projet</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s5"><span class="toc-title">5. Design g&#233;n&#233;ral &#8212; architecture en trois couches</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s6"><span class="toc-title">6. M&#233;thodologie d&#233;taill&#233;e</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s6a"><span class="toc-title">6.1 G&#233;notypage SNP et contr&#244;le qualit&#233;</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s6b"><span class="toc-title">6.2 Pools t&#233;moins &#8212; hi&#233;rarchie op&#233;rationnelle</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s6c"><span class="toc-title">6.3 PCA / ADMIXTURE &#8212; strat&#233;gie par niveaux</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s6d"><span class="toc-title">6.4 IBD, ROH et signatures fondatrices</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s6e"><span class="toc-title">6.5 Module familial et phasage SHAPEIT4</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s7"><span class="toc-title">7. Algorithme de s&#233;lection WGS &#8212; Score S_div V3.5</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s7a"><span class="toc-title">7.1 Score g&#233;o-ancestral S_div (noyau 322)</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s7b"><span class="toc-title">7.2 Bras de d&#233;couverte S_discovery_global (28)</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li class="sub"><a class="toc-entry" href="#s7c"><span class="toc-title">7.3 Justification statistique de N&#160;=&#160;350&#160;WGS</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s8"><span class="toc-title">8. Protocole de validation &#224; voilure r&#233;duite v1.1</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s9"><span class="toc-title">9. Ressources produites</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s10"><span class="toc-title">10. Modules d&#8217;intelligence artificielle</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s11"><span class="toc-title">11. Organisation op&#233;rationnelle et gouvernance</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s12"><span class="toc-title">12. Budget et ressources humaines</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s13"><span class="toc-title">13. Chronogramme des 7 phases</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s14"><span class="toc-title">14. Impacts attendus</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s15"><span class="toc-title">15. Risques, limites et mitigations</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#s16"><span class="toc-title">16. Conclusion</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#a1"><span class="toc-title">Annexe A &#8212; Commandes bioinformatiques indicatives</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#a2"><span class="toc-title">Annexe B &#8212; Profils de validation (A, C, D)</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#a3"><span class="toc-title">Annexe C &#8212; Versioning de la m&#233;thodologie</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
+<li><a class="toc-entry" href="#a4"><span class="toc-title">Annexe D &#8212; Bibliographie compl&#232;te (18 sections th&#233;matiques)</span><span class="toc-dots"></span><span class="toc-page-num">&#8212;</span></a></li>
 </ol>
 </nav>
 </div>
@@ -219,25 +655,38 @@ Protocole de validation voilure r&#233;duite v1.1 &#183; 75+ r&#233;f&#233;rence
 <p>Le g&#233;nome de r&#233;f&#233;rence humain GRCh38 a &#233;t&#233; &#233;labor&#233; &#224; partir d&#8217;un groupe restreint de donneurs majoritairement europ&#233;ens. En 2009, 96&#160;% des s&#233;quences g&#233;nomiques disponibles provenaient d&#8217;individus d&#8217;ascendance europ&#233;enne. En 2016, ce chiffre est encore de 80&#160;% pour les GWAS&#160;; en 2022, les individus d&#8217;ascendance africaine ne repr&#233;sentent plus que 1,1&#160;% du total, malgr&#233; l&#8217;effort des grandes initiatives de diversification.</p>
 
 <figure>
-<svg viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:560px;">
-  <text x="8" y="16" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">Composition ethnique de gnomAD v3 (~141&#160;456 individus) et GWAS Catalog 2022</text>
-  <rect x="8" y="24" width="440" height="24" rx="4" fill="#eaf3f7" stroke="#d9d9d9"/>
-  <rect x="8" y="24" width="349" height="24" rx="4" fill="#0F3A56" opacity=".92"/>
-  <rect x="357" y="24" width="35" height="24" fill="#1E6E8C" opacity=".88"/>
-  <rect x="392" y="24" width="27" height="24" fill="#0D9488" opacity=".85"/>
-  <rect x="419" y="24" width="19" height="24" rx="0 4 4 0" fill="#E8654A" opacity=".8"/>
-  <text x="60" y="40" font-family="Arial,sans-serif" font-size="11" fill="#fff" font-weight="700">Europ&#233;en 79&#160;%</text>
-  <text x="359" y="40" font-family="Arial,sans-serif" font-size="9" fill="#fff">8&#160;%</text>
-  <text x="394" y="40" font-family="Arial,sans-serif" font-size="8.5" fill="#fff">6&#160;%</text>
-  <text x="420" y="40" font-family="Arial,sans-serif" font-size="8" fill="#fff">4</text>
-  <rect x="8" y="60" width="12" height="11" rx="2" fill="#0F3A56"/><text x="24" y="70" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Europ&#233;en 79&#160;%</text>
-  <rect x="115" y="60" width="12" height="11" rx="2" fill="#1E6E8C"/><text x="131" y="70" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Africain 8&#160;%</text>
-  <rect x="210" y="60" width="12" height="11" rx="2" fill="#0D9488"/><text x="226" y="70" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Latino 6&#160;%</text>
-  <rect x="295" y="60" width="12" height="11" rx="2" fill="#E8654A"/><text x="311" y="70" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Asie Est 4&#160;% + autres 3&#160;%</text>
-  <text x="8" y="96" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">GWAS Catalog 2022 &#8212; Part d&#8217;ascendance africaine</text>
-  <rect x="8" y="103" width="440" height="17" rx="4" fill="#eaf3f7" stroke="#d9d9d9"/>
-  <rect x="8" y="103" width="4.8" height="17" rx="4 0 0 4" fill="#1E6E8C"/>
-  <text x="20" y="115" font-family="Arial,sans-serif" font-size="9.5" fill="#1E6E8C" font-weight="700">1,1&#160;% d&#8217;ascendance africaine &#8212; pour une population repr&#233;sentant ~18&#160;% de l&#8217;humanit&#233;</text>
+<svg viewBox="0 0 680 150" role="img" aria-label="Composition ethnique gnomAD et GWAS Catalog 2022" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+  <text x="8" y="16" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">Composition ethnique de gnomAD v3 (~141&#160;456&#160;individus) et GWAS Catalog 2022</text>
+  <!-- Background bar (full width = 540px) -->
+  <rect x="8" y="24" width="540" height="28" rx="4" fill="#eaf3f7" stroke="#d9d9d9"/>
+  <!-- European 79% = 426px -->
+  <rect x="8" y="24" width="426" height="28" rx="4 0 0 4" fill="#0F3A56" opacity=".92"/>
+  <!-- African 8% = 43px, starts at 434 -->
+  <rect x="434" y="24" width="43" height="28" fill="#1E6E8C" opacity=".88"/>
+  <!-- Latino 6% = 32px, starts at 477 -->
+  <rect x="477" y="24" width="32" height="28" fill="#0D9488" opacity=".85"/>
+  <!-- Asia East 4% + autres 3% = 39px, starts at 509 -->
+  <rect x="509" y="24" width="39" height="28" rx="0 4 4 0" fill="#E8654A" opacity=".8"/>
+  <!-- Labels inside bars -->
+  <text x="90" y="43" font-family="Arial,sans-serif" font-size="12" fill="#fff" font-weight="700">Europ&#233;en 79&#160;%</text>
+  <text x="437" y="42" font-family="Arial,sans-serif" font-size="9.5" fill="#fff" font-weight="600">8&#160;%</text>
+  <text x="480" y="42" font-family="Arial,sans-serif" font-size="9" fill="#fff">6&#160;%</text>
+  <text x="512" y="42" font-family="Arial,sans-serif" font-size="9" fill="#fff">7&#160;%</text>
+  <!-- Legend row -->
+  <rect x="8" y="64" width="13" height="12" rx="2" fill="#0F3A56"/>
+  <text x="26" y="75" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Europ&#233;en 79&#160;%</text>
+  <rect x="140" y="64" width="13" height="12" rx="2" fill="#1E6E8C"/>
+  <text x="158" y="75" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Africain 8&#160;%</text>
+  <rect x="255" y="64" width="13" height="12" rx="2" fill="#0D9488"/>
+  <text x="273" y="75" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Latino 6&#160;%</text>
+  <rect x="350" y="64" width="13" height="12" rx="2" fill="#E8654A"/>
+  <text x="368" y="75" font-family="Arial,sans-serif" font-size="9.5" fill="#555">Asie Est 4&#160;% + autres 3&#160;%</text>
+  <!-- GWAS Catalog section -->
+  <text x="8" y="100" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">GWAS Catalog 2022 &#8212; Part d&#8217;ascendance africaine</text>
+  <rect x="8" y="108" width="540" height="20" rx="4" fill="#eaf3f7" stroke="#d9d9d9"/>
+  <!-- 1.1% of 540 = 5.9px -->
+  <rect x="8" y="108" width="6" height="20" rx="4 0 0 4" fill="#1E6E8C"/>
+  <text x="22" y="122" font-family="Arial,sans-serif" font-size="9.5" fill="#1E6E8C" font-weight="700">1,1&#160;% d&#8217;ascendance africaine &#8212; pour une population repr&#233;sentant ~18&#160;% de l&#8217;humanit&#233;</text>
 </svg>
 <figcaption class="caption">Figure&#160;1&#160;: D&#233;s&#233;quilibre de repr&#233;sentativit&#233; dans les bases g&#233;nomiques mondiales. Sources&#160;: Karczewski et al.&#160;2020 (gnomAD)&#160;; Fatumo et al.&#160;2022 (GWAS&#160;Catalog).</figcaption>
 </figure>
@@ -251,7 +700,7 @@ Protocole de validation voilure r&#233;duite v1.1 &#183; 75+ r&#233;f&#233;rence
 <h3 id="s2c">2.3 Amplification par l&#8217;intelligence artificielle</h3>
 <p>Les mod&#232;les d&#8217;apprentissage profond en drug discovery (GNN, AlphaFold2, VAE) d&#233;pendent enti&#232;rement de la qualit&#233; et de la repr&#233;sentativit&#233; de leurs donn&#233;es d&#8217;entra&#238;nement. Dans TCGA, 82&#8211;83&#160;% des patients sont d&#8217;ascendance europ&#233;enne. Dans le GWAS&#160;Catalog, 90&#8211;95&#160;% le sont. Sans r&#233;f&#233;rentiel r&#233;unionnais, les outils&#160;IA de m&#233;decine de pr&#233;cision produiront des r&#233;sultats aussi biais&#233;s que les outils standards actuels&#160;&#8212; voire davantage, car leur d&#233;ploiement &#224; grande &#233;chelle amplifie structurellement les angles morts.</p>
 
-<div class="callout"><span class="lbl">&#192; retenir</span>Sans donn&#233;es locales, la m&#233;decine de pr&#233;cision n&#8217;est pr&#233;cise que pour les populations d&#233;j&#224; bien repr&#233;sent&#233;es. Pour La&#160;R&#233;union, cela implique des erreurs diagnostiques mesurables, des biais pharmacog&#233;n&#233;tiques et une inefficacit&#233; croissante des algorithmes d&#8217;IA biom&#233;dicale.</div>
+<aside class="callout"><span class="label">&#192; retenir</span>Sans donn&#233;es locales, la m&#233;decine de pr&#233;cision n&#8217;est pr&#233;cise que pour les populations d&#233;j&#224; bien repr&#233;sent&#233;es. Pour La&#160;R&#233;union, cela implique des erreurs diagnostiques mesurables, des biais pharmacog&#233;n&#233;tiques et une inefficacit&#233; croissante des algorithmes d&#8217;IA biom&#233;dicale.</aside>
 </section>
 </div>
 <footer class="sheet__footer"><span>G&#233;nome R&#233;union &#183; Document de synth&#232;se scientifique &#8212; diffusion restreinte</span></footer>
@@ -327,17 +776,66 @@ Protocole de validation voilure r&#233;duite v1.1 &#183; 75+ r&#233;f&#233;rence
 
 <section id="s5">
 <h2>5. Design g&#233;n&#233;ral &#8212; architecture en trois couches</h2>
-<div class="flow">
-<div class="flow-step alt">EFS R&#233;union<br>2&#160;500 donneurs<br><small>+&#160;100&#160;familles</small></div>
-<div class="flow-step">G&#233;notypage<br>GDA-8<br><small>~1,9&#160;M&#160;SNP</small></div>
-<div class="flow-step">QC &#183; PCA<br>ADMIXTURE<br>IBD &#183; ROH</div>
-<div class="flow-step">Score <code>S_div</code><br>&#8594; 350&#160;WGS<br><small>g&#233;o-ancestral</small></div>
-<div class="flow-step alt">POPgen<br>WGS 30&#215;<br><small style="color:#0D9488;font-weight:700">0&#160;&#8364;</small></div>
-<div class="flow-step">R&#233;f&#233;rentiel<br><small>variants &#183; imputation<br>phasage &#183; PGx</small></div>
-</div>
-<p class="caption">Figure&#160;3&#160;: Architecture globale du projet. Source&#160;: METHODOLOGY_selection_V3_5.md.</p>
+<figure>
+<svg viewBox="0 0 680 90" xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="Architecture en 6 étapes du projet Génome Réunion"
+     style="width:100%;max-width:680px;">
 
-<div class="callout-green"><span class="lbl">Point structurant</span>Le s&#233;quen&#231;age WGS des 350 individus est int&#233;gralement pris en charge par le consortium <strong>POPgen (0&#160;&#8364;)</strong>. Le co&#251;t projet porte sur le g&#233;notypage GDA-8 (~265&#160;k&#8364; en sous-traitance), l&#8217;extraction d&#8217;ADN (54&#160;k&#8364;), la conservation au CRB (128&#160;k&#8364;) et l&#8217;infrastructure IT (270&#8211;334&#160;k&#8364; selon sc&#233;nario).</div>
+  <!-- Step 1: EFS -->
+  <rect x="0" y="18" width="96" height="60" rx="5" fill="#eaf3f7" stroke="#0F3A56" stroke-width="1.5"/>
+  <text x="48" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0F3A56" font-weight="700">EFS R&#233;union</text>
+  <text x="48" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1a1a1a">2&#160;500 donneurs</text>
+  <text x="48" y="65" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#555">+&#160;100&#160;familles</text>
+
+  <!-- Arrow 1→2 -->
+  <text x="103" y="52" font-family="Arial,sans-serif" font-size="16" fill="#0F3A56">›</text>
+
+  <!-- Step 2: Génotypage -->
+  <rect x="112" y="18" width="96" height="60" rx="5" fill="#fff" stroke="#0F3A56" stroke-width="1.5"/>
+  <text x="160" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0F3A56" font-weight="700">G&#233;notypage</text>
+  <text x="160" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1a1a1a">GDA-8</text>
+  <text x="160" y="65" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#555">~1,9&#160;M&#160;SNP</text>
+
+  <!-- Arrow 2→3 -->
+  <text x="215" y="52" font-family="Arial,sans-serif" font-size="16" fill="#0F3A56">›</text>
+
+  <!-- Step 3: QC/PCA -->
+  <rect x="224" y="18" width="96" height="60" rx="5" fill="#eaf3f7" stroke="#0F3A56" stroke-width="1.5"/>
+  <text x="272" y="36" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0F3A56" font-weight="700">QC &#183; PCA</text>
+  <text x="272" y="49" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1a1a1a">ADMIXTURE</text>
+  <text x="272" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1a1a1a">IBD &#183; ROH</text>
+
+  <!-- Arrow 3→4 -->
+  <text x="327" y="52" font-family="Arial,sans-serif" font-size="16" fill="#0F3A56">›</text>
+
+  <!-- Step 4: Score S_div -->
+  <rect x="336" y="18" width="96" height="60" rx="5" fill="#fff" stroke="#0F3A56" stroke-width="1.5"/>
+  <text x="384" y="36" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0F3A56" font-weight="700">Score S_div</text>
+  <text x="384" y="49" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1a1a1a">&#8594;&#160;350&#160;WGS</text>
+  <text x="384" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#555">g&#233;o-ancestral</text>
+
+  <!-- Arrow 4→5 -->
+  <text x="439" y="52" font-family="Arial,sans-serif" font-size="16" fill="#0F3A56">›</text>
+
+  <!-- Step 5: POPgen -->
+  <rect x="448" y="18" width="96" height="60" rx="5" fill="#f0fdf9" stroke="#0D9488" stroke-width="1.5"/>
+  <text x="496" y="38" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0D9488" font-weight="700">POPgen</text>
+  <text x="496" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#1a1a1a">WGS&#160;30&#215;</text>
+  <text x="496" y="65" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#0D9488" font-weight="700">0&#160;&#8364;</text>
+
+  <!-- Arrow 5→6 -->
+  <text x="551" y="52" font-family="Arial,sans-serif" font-size="16" fill="#0F3A56">›</text>
+
+  <!-- Step 6: Référentiel -->
+  <rect x="560" y="18" width="120" height="60" rx="5" fill="#eaf3f7" stroke="#0F3A56" stroke-width="1.5"/>
+  <text x="620" y="36" text-anchor="middle" font-family="Arial,sans-serif" font-size="9.5" fill="#0F3A56" font-weight="700">R&#233;f&#233;rentiel</text>
+  <text x="620" y="49" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#1a1a1a">variants &#183; imputation</text>
+  <text x="620" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="8.5" fill="#1a1a1a">phasage &#183; PGx</text>
+</svg>
+<figcaption class="caption">Figure&#160;3&#160;: Architecture globale du projet en six &#233;tapes. Source&#160;: METHODOLOGY_selection_V3_5.md.</figcaption>
+</figure>
+
+<aside class="callout-green"><span class="label">Point structurant</span>Le s&#233;quen&#231;age WGS des 350 individus est int&#233;gralement pris en charge par le consortium <strong>POPgen (0&#160;&#8364;)</strong>. Le co&#251;t projet porte sur le g&#233;notypage GDA-8 (~265&#160;k&#8364; en sous-traitance), l&#8217;extraction d&#8217;ADN (54&#160;k&#8364;), la conservation au CRB (128&#160;k&#8364;) et l&#8217;infrastructure IT (270&#8211;334&#160;k&#8364; selon sc&#233;nario).</aside>
 
 <table>
 <thead><tr><th>Couche</th><th>N</th><th>R&#244;le</th><th>Statut</th></tr></thead>
@@ -373,7 +871,7 @@ Protocole de validation voilure r&#233;duite v1.1 &#183; 75+ r&#233;f&#233;rence
 </table>
 <p class="caption">Tableau 4 : Usage différencié des marqueurs SNP. Source : METHODOLOGY_selection_V3_5.md §5.4.</p>
 
-<div class="callout"><span class="lbl">Important</span>Les 1,9 M SNP bruts ne sont pas utilisés indistinctement. Le choix du jeu SNP est la première décision analytique à documenter et versionner, car il conditionne la qualité de toutes les analyses aval.</div>
+<aside class="callout"><span class="label">Important</span>Les 1,9 M SNP bruts ne sont pas utilisés indistinctement. Le choix du jeu SNP est la première décision analytique à documenter et versionner, car il conditionne la qualité de toutes les analyses aval.</aside>
 
 <h3 id="s6b">6.2 Pools témoins — hiérarchie opérationnelle</h3>
 <p>Les pools témoins ne remplacent pas la cohorte réunionnaise : ils ancrent les axes PCA dans un espace génétique interprétable et stabilisent les composantes ADMIXTURE. Ils sont organisés en trois niveaux :</p>
@@ -413,7 +911,8 @@ Protocole de validation voilure r&#233;duite v1.1 &#183; 75+ r&#233;f&#233;rence
 <h3 id="s6d">6.4 IBD, ROH et signatures fondatrices</h3>
 <p>L’inférence de parenté est réalisée avec <strong>KING-robust</strong>, retenu car robuste en contexte admixé — contrairement à PI_HAT qui est biaisé en présence de stratification. Le seuil d’exclusion du panel WGS est :</p>
 <pre>
-kinship_KING ≥ 0,0625  →  apparentement ≥ cousins germains → exclusion du noyau principal
+kinship_KING ≥ 0,0625 \
+  → apparentement ≥ cousins germains → exclusion du noyau principal
 (correspond à relatedness_R ≥ 0,125)
 </pre>
 
@@ -431,7 +930,8 @@ kinship_KING ≥ 0,0625  →  apparentement ≥ cousins germains → exclusion d
 <p>Les ROH (Runs of Homozygosity) mesurent l’autozygotie et détectent les signatures fondatrices. Le score individuel ROH utilisé dans <code>S_div</code> est :</p>
 <pre>ROH_score_diversity(i) = max(0, 1 − total_ROH_length(i) / 100 Mb)
 Version empirique (recommandée en sensibilité) :
-ROH_score_diversity_emp(i) = 1 − rank_percentile(total_ROH_length, secteur)</pre>
+ROH_score_diversity_emp(i) =
+    1 − rank_percentile(total_ROH_length, secteur)</pre>
 <p>Un ROH élevé isolé peut refléter une consanguinité récente individuelle. Un ROH partagé par plusieurs individus non proches, localisé géographiquement et associé à un haplotype commun, est plus informatif pour l’effet fondateur.</p>
 
 <h3 id="s6e">6.5 Module familial et phasage SHAPEIT4</h3>
@@ -458,8 +958,7 @@ ROH_score_diversity_emp(i) = 1 − rank_percentile(total_ROH_length, secteur)</p
 </pre>
 <p>La comparaison des trois sorties permettra de quantifier le gain réel du module familial et du panel WGS local sur la précision du phasage haplotypique réunionnais. Une quatrième sortie exploratoire avec SHAPEIT5 (pour les variants rares) pourra être envisagée en phase d’extension.</p>
 
-<div class="callout"><span class="lbl">Garde-fou analytique</span>Les familles nucléaires ne seront jamais traitées comme observations indépendantes dans l’estimation des fréquences. Elles constituent une ressource de phasage, pas un suréchantillonnage de la cohorte principale. Cette distinction est essentielle pour la rigueur scientifique et la défense devant un comité de relecture.</div>
-</div>
+<aside class="callout"><span class="label">Garde-fou analytique</span>Les familles nucléaires ne seront jamais traitées comme observations indépendantes dans l’estimation des fréquences. Elles constituent une ressource de phasage, pas un suréchantillonnage de la cohorte principale. Cette distinction est essentielle pour la rigueur scientifique et la défense devant un comité de relecture.</aside>
 <footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
 </section>
 
@@ -470,19 +969,20 @@ ROH_score_diversity_emp(i) = 1 − rank_percentile(total_ROH_length, secteur)</p
 
 <h3 id="s7a">7.1 Score géo-ancestral S_div (noyau principal — 322 WGS)</h3>
 <p>Le changement fondamental de V3.5 est le remplacement de la stratification strictement géographique par une stratification <strong>géo-ancestrale distributionnelle</strong>. La cellule de sélection devient :</p>
-<pre>cellule géo-ancestrale = secteur géographique × cluster d’ascendance génétique inférée</pre>
+<pre>cellule géo-ancestrale =
+  secteur géographique × cluster d’ascendance génétique inférée</pre>
 <p>Cette approche interdit la règle simpliste « secteur &#224; majorité d’ascendance X → sélectionner uniquement X ». L’objectif est de représenter la <strong>distribution interne de chaque secteur</strong> : profils majoritaires, minoritaires, mixtes, rares et fondateurs.</p>
 
 <p>Le score individuel au sein de chaque cellule (poids à optimiser empiriquement) :</p>
 <pre>
-S_div_geoancestry(i) = w_pca  × PCA_diversity(i)          [w=0,35 — distance au centroide PCA]
-                     + w_admix × ADMIX_diversity(i)         [w=0,30 — entropie H(q_k)]
-                     + w_ibd  × IBD_score_geoancestry(i)   [w=0,25 — 1 − max_j relatedness_R]
-                     + w_roh  × ROH_score_diversity(i)      [w=0,10 — max(0, 1−ROH/100 Mb)]
+S_div_geoancestry(i) = w_pca  × PCA_diversity(i)
+                     + w_admix × ADMIX_diversity(i)
+                     + w_ibd  × IBD_score_geoancestry(i)
+                     + w_roh  × ROH_score_diversity(i)
 </pre>
 
 <figure>
-<svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;">
+<svg viewBox="0 0 500 120" role="img" aria-label="Composition du score S_div V3.5" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px;">
   <text x="8" y="15" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">Composition du score S_div (poids de travail V3.5)</text>
   <!-- Barre de composition -->
   <rect x="8" y="24" width="440" height="30" rx="5" fill="#eaf3f7" stroke="#d9d9d9"/>
@@ -521,11 +1021,11 @@ S_div_geoancestry(i) = w_pca  × PCA_diversity(i)          [w=0,35 — distance 
 <h3 id="s7b">7.2 Bras de découverte — S_discovery_global (28 WGS)</h3>
 <p>Le bras découverte sélectionne 28 individus à l’échelle insulaire via un score distinct, non normalisé localement :</p>
 <pre>
-S_discovery_global(i) = a × PCA_global_outlier(i)      [profils éloignés dans l’espace PCA]
-                      + b × ADMIX_rarity_global(i)      [profils d’ascendance rares ou dominants]
-                      + c × IBD_independence_global(i)  [non-redondance avec le noyau]
-                      + d × Haplotype_utility(i)        [apport à l’imputation/phasage]
-                      + e × Founder_ROH_score(i)        [signature ROH/fondateur]
+S_discovery_global(i) = a × PCA_global_outlier(i)
+                      + b × ADMIX_rarity_global(i)
+                      + c × IBD_independence_global(i)
+                      + d × Haplotype_utility(i)
+                      + e × Founder_ROH_score(i)
 </pre>
 <p>Chaque composante est convertie en percentile global avant agrégation. La composante <code>Haplotype_utility</code> n’est activée que si le phasage SNP familial est disponible avant gel (sinon d=0). Les 28 individus sont répartis en quatre sous-bras :</p>
 <table>
@@ -551,28 +1051,28 @@ S_discovery_global(i) = a × PCA_global_outlier(i)      [profils éloignés dans
 <pre>P(détection) = 1 − (1 − f)^700</pre>
 
 <figure>
-<svg viewBox="0 0 480 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;">
+<svg viewBox="0 0 480 150" role="img" aria-label="Probabilité de détection selon MAF, 350 WGS" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:480px;">
   <text x="8" y="14" font-family="Arial,sans-serif" font-size="10.5" fill="#555" font-weight="600">Probabilité de détection selon MAF — panel de 350 WGS (700 haplotypes)</text>
-  <line x1="50" y1="22" x2="50" y2="108" stroke="#ccc" stroke-width="1"/>
-  <line x1="50" y1="108" x2="470" y2="108" stroke="#ccc" stroke-width="1"/>
-  <rect x="60" y="24" width="55" height="84" rx="3" fill="#0F3A56" opacity=".9"/>
-  <text x="87" y="21" font-family="Arial,sans-serif" font-size="8.5" fill="#0F3A56" text-anchor="middle">≫99,9 %</text>
-  <text x="87" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 5 %</text>
-  <rect x="128" y="24" width="55" height="84" rx="3" fill="#1E6E8C" opacity=".9"/>
-  <text x="155" y="21" font-family="Arial,sans-serif" font-size="8.5" fill="#1E6E8C" text-anchor="middle">≫99,9 %</text>
-  <text x="155" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 2 %</text>
-  <rect x="196" y="24" width="55" height="84" rx="3" fill="#0D9488" opacity=".9"/>
-  <text x="223" y="21" font-family="Arial,sans-serif" font-size="8.5" fill="#0D9488" text-anchor="middle">≫99,9 %</text>
-  <text x="223" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 1 %</text>
-  <rect x="264" y="52" width="55" height="56" rx="3" fill="#D97706" opacity=".9"/>
-  <text x="291" y="49" font-family="Arial,sans-serif" font-size="8.5" fill="#D97706" text-anchor="middle">~97 %</text>
-  <text x="291" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 0,5 %</text>
-  <rect x="332" y="82" width="55" height="26" rx="3" fill="#E8654A" opacity=".9"/>
-  <text x="359" y="79" font-family="Arial,sans-serif" font-size="8.5" fill="#E8654A" text-anchor="middle">~50 %</text>
-  <text x="359" y="122" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 0,1 %</text>
-  <line x1="264" y1="22" x2="264" y2="110" stroke="#d4351c" stroke-width="1" stroke-dasharray="4,2"/>
-  <text x="266" y="32" font-family="Arial,sans-serif" font-size="8" fill="#d4351c">Seuil opérationnel</text>
-  <text x="266" y="42" font-family="Arial,sans-serif" font-size="8" fill="#d4351c">MAF ≥ 1 % (fiable)</text>
+  <line x1="50" y1="30" x2="50" y2="116" stroke="#ccc" stroke-width="1"/>
+  <line x1="50" y1="116" x2="470" y2="116" stroke="#ccc" stroke-width="1"/>
+  <rect x="60" y="40" width="55" height="76" rx="3" fill="#0F3A56" opacity=".9"/>
+  <text x="87" y="37" font-family="Arial,sans-serif" font-size="8.5" fill="#0F3A56" text-anchor="middle">≫99,9 %</text>
+  <text x="87" y="131" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 5 %</text>
+  <rect x="128" y="40" width="55" height="76" rx="3" fill="#1E6E8C" opacity=".9"/>
+  <text x="155" y="37" font-family="Arial,sans-serif" font-size="8.5" fill="#1E6E8C" text-anchor="middle">≫99,9 %</text>
+  <text x="155" y="131" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 2 %</text>
+  <rect x="196" y="40" width="55" height="76" rx="3" fill="#0D9488" opacity=".9"/>
+  <text x="223" y="37" font-family="Arial,sans-serif" font-size="8.5" fill="#0D9488" text-anchor="middle">≫99,9 %</text>
+  <text x="223" y="131" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 1 %</text>
+  <rect x="264" y="68" width="55" height="48" rx="3" fill="#D97706" opacity=".9"/>
+  <text x="291" y="65" font-family="Arial,sans-serif" font-size="8.5" fill="#D97706" text-anchor="middle">~97 %</text>
+  <text x="291" y="131" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 0,5 %</text>
+  <rect x="332" y="98" width="55" height="18" rx="3" fill="#E8654A" opacity=".9"/>
+  <text x="359" y="95" font-family="Arial,sans-serif" font-size="8.5" fill="#E8654A" text-anchor="middle">~50 %</text>
+  <text x="359" y="131" font-family="Arial,sans-serif" font-size="8.5" fill="#555" text-anchor="middle">MAF 0,1 %</text>
+  <line x1="264" y1="30" x2="264" y2="118" stroke="#d4351c" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="266" y="46" font-family="Arial,sans-serif" font-size="8" fill="#d4351c">Seuil opérationnel</text>
+  <text x="266" y="56" font-family="Arial,sans-serif" font-size="8" fill="#d4351c">MAF ≥ 1 % (fiable)</text>
 </svg>
 <figcaption class="caption">Figure 6 : Probabilité de détection selon MAF dans un panel de 350 WGS. Source : METHODOLOGY_selection_V3_5.md §4.</figcaption>
 </figure>
@@ -589,7 +1089,7 @@ S_discovery_global(i) = a × PCA_global_outlier(i)      [profils éloignés dans
 </table>
 <p class="caption">Tableau 10 : Probabilités de détection selon MAF. Source : METHODOLOGY_selection_V3_5.md §4.</p>
 
-<div class="callout"><span class="lbl">Limite structurelle assumée</span>Les variants ultra-rares (MAF &lt; 0,5 %) et certains effets fondateurs très localisés nécessiteront des phases d’extension ultérieures. Le panel de 350 WGS est un <strong>référentiel de première génération</strong>, complémentaire des ressources internationales.</div>
+<aside class="callout"><span class="label">Limite structurelle assumée</span>Les variants ultra-rares (MAF &lt; 0,5 %) et certains effets fondateurs très localisés nécessiteront des phases d’extension ultérieures. Le panel de 350 WGS est un <strong>référentiel de première génération</strong>, complémentaire des ressources internationales.</aside>
 
 <section id="s8">
 <h2>8. Protocole de validation à voilure réduite v1.1</h2>
@@ -644,7 +1144,7 @@ S_discovery_global(i) = a × PCA_global_outlier(i)      [profils éloignés dans
 
 <p><strong>Timeline IA :</strong> M1–4 : collecte et labellisation ; M5–8 : Module 1 (GNN pathogénicité) ; M6–10 : Module 2 (PGx XGBoost) ; M8–12 : Modules 3 et 4 (admixture autoencoder + PRS) ; M13–18 : validation clinique et déploiement.</p>
 
-<div class="callout"><span class="lbl">À retenir</span>Les modules IA ne corrigent les biais que s’ils s’entraînent sur des données représentatives. <strong>Sans le référentiel réunionnais en amont, M1–M4 produiraient des résultats aussi biaisés que les outils standards actuels.</strong></div>
+<aside class="callout"><span class="label">À retenir</span>Les modules IA ne corrigent les biais que s’ils s’entraînent sur des données représentatives. <strong>Sans le référentiel réunionnais en amont, M1–M4 produiraient des résultats aussi biaisés que les outils standards actuels.</strong></aside>
 </section>
 </div>
 <footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
@@ -689,12 +1189,29 @@ S_discovery_global(i) = a × PCA_global_outlier(i)      [profils éloignés dans
 </div>
 <p class="caption">Figure 7 : Postes budgétaires comparés. Contingence 10 % + prestations 35 k€ s’ajoutent aux totaux finaux. Source : Plan_Genome_Reunion_Structure_AI.md §7.</p>
 
-<div class="stat-grid">
-<div class="stat-card dark"><div class="num">~1 474 000 €</div><div class="lbl">Optimal : Sc. 1 + Prop. 2 (36 mois)</div></div>
-<div class="stat-card"><div class="num">~1 403 000 €</div><div class="lbl">Avec cloud hybride HDS (−70 k€)</div></div>
-<div class="stat-card"><div class="num">~1 431 000 €</div><div class="lbl">Minimal : Sc. 1 + Prop. 3</div></div>
-<div class="stat-card"><div class="num">~1 754 000 €</div><div class="lbl">Maximal : Sc. 2 + Prop. 1</div></div>
+<div class="hbar" role="img" aria-label="Comparaison des quatre scénarios budgétaires">
+  <div class="row">
+    <div>Optimal — Sc. 1 + Prop. 2</div>
+    <div class="track"><div class="fill" style="width:84%"></div></div>
+    <div class="val" style="color:#0F3A56;font-weight:700">~1 474 000 €</div>
+  </div>
+  <div class="row">
+    <div>Cloud hybride HDS (−70 k€)</div>
+    <div class="track"><div class="fill g" style="width:80%"></div></div>
+    <div class="val">~1 403 000 €</div>
+  </div>
+  <div class="row">
+    <div>Minimal — Sc. 1 + Prop. 3</div>
+    <div class="track"><div class="fill g" style="width:82%"></div></div>
+    <div class="val">~1 431 000 €</div>
+  </div>
+  <div class="row">
+    <div>Maximal — Sc. 2 + Prop. 1</div>
+    <div class="track"><div class="fill o" style="width:100%"></div></div>
+    <div class="val">~1 754 000 €</div>
+  </div>
 </div>
+<p class="caption">Figure 7 (bis) : Comparaison des quatre scénarios budgétaires. Bar de référence = scénario maximal (1 754 000 €). Source : Plan_Genome_Reunion_Structure_AI.md §7.</p>
 </section>
 </div>
 <footer class="sheet__footer"><span>Génome Réunion · Document de synthèse scientifique — diffusion restreinte</span></footer>
@@ -811,12 +1328,11 @@ S_discovery_global(i) = a × PCA_global_outlier(i)      [profils éloignés dans
 <p><strong>Perspectives —</strong> Extensions WGS pour les variants ultra-rares (MAF &lt; 0,5 %) ; intégration progressive dans TOPMed, gnomAD et H3Africa ; coopération régionale avec Madagascar, Maurice, Comores et Seychelles dans le cadre de la Commission de l’Océan Indien ; formation régionale francophone en génomique. La Réunion, longtemps absente des bases mondiales, pourrait devenir un centre de référence pour les populations admixées et un modèle de génomique équitable dans l’espace indo-océanique.</p>
 
 <div class="callout-green" style="margin-top:1.2em;">
-<span class="lbl">Synthèse en trois piliers</span>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;font-size:.86em;margin-top:.4em;">
-<div style="background:#fff;border:1px solid #a7f3d0;border-radius:4px;padding:7px 9px;"><strong>2 500 SNP populationnels</strong><br>→ structure, sélection, recalibrage des fréquences</div>
-<div style="background:#fff;border:1px solid #a7f3d0;border-radius:4px;padding:7px 9px;"><strong>350 WGS optimisés (0 €)</strong><br>→ découverte, référence locale, imputation</div>
-<div style="background:#fff;border:1px solid #a7f3d0;border-radius:4px;padding:7px 9px;"><strong>100 familles nucléaires SNP</strong><br>→ phasage, transmission, haplotypes réunionnais</div>
-</div>
+<span class="label">Synthèse en trois piliers</span>
+<div class="pillar-grid">
+<div class="item"><strong>2 500 SNP populationnels</strong><br>→ structure, sélection, recalibrage des fréquences</div>
+<div class="item"><strong>350 WGS optimisés (0 €)</strong><br>→ découverte, référence locale, imputation</div>
+<div class="item"><strong>100 familles nucléaires SNP</strong><br>→ phasage, transmission, haplotypes réunionnais</div>
 </div>
 
 <div style="margin-top:1.2em;padding:8px 12px;background:#fafafa;border:1px solid var(--border);border-radius:4px;font-size:.78em;color:var(--muted);">
@@ -852,7 +1368,9 @@ plink2 --pfile reunion_qc_dense \
 plink2 --pfile reunion_qc_dense --maf 0.01 \
   --indep-pairwise 200kb 50 0.2 --out reunion_pruning
 plink2 --pfile reunion_qc_dense \
-  --extract reunion_pruning.prune.in --make-pgen --out reunion_qc_ldpruned
+  --extract reunion_pruning.prune.in \
+    --make-pgen \
+    --out reunion_qc_ldpruned
 </pre>
 
 <h3>A.2 PCA par niveaux progressifs</h3>
@@ -885,7 +1403,9 @@ done
 grep "CV error" admixture_unsup_K*.log
 
 # Supervisé avec pools témoins (exemple indicatif)
-admixture --supervised --seed=42 reunion_references_admixture.bed ${K_REF}
+admixture \
+  --supervised \
+  --seed=42 reunion_references_admixture.bed ${K_REF}
 </pre>
 
 <h3>A.4 Parenté KING et ROH</h3>
@@ -1010,7 +1530,7 @@ shapeit4 --input reunion_chr${CHR}.vcf.gz \
 <li>Popejoy AB, Fullerton SM. Genomics is failing on diversity. <em>Nature</em>, 2016;538:161–164.</li>
 <li>Wojcik GL et al. Genetic analyses of diverse populations improves discovery. <em>Nature</em>, 2019;570:514–518.</li>
 <li>Manrai AK et al. Genetic Misdiagnoses and the Potential for Health Disparities. <em>N Engl J Med</em>, 2016;375:655–665.</li>
-<li>Karczewski KJ et al. The mutational constraint spectrum from 141,456 humans [gnomAD]. <em>Nature</em>, 2020;581:434–443.</li>
+<li>Karczewski KJ et al. The mutational constraint spectrum from 141 456 humans [gnomAD]. <em>Nature</em>, 2020;581:434–443.</li>
 <li>Martin AR et al. Clinical use of current polygenic risk scores may exacerbate health disparities. <em>Nat Genet</em>, 2019;51:584–591.</li>
 </ol>
 
@@ -1030,12 +1550,12 @@ shapeit4 --input reunion_chr${CHR}.vcf.gz \
 <li>Wall JD et al. The GenomeAsia 100K Project. <em>Nature</em>, 2019;576:106–111.</li>
 <li>Bergström A et al. Insights from 929 diverse genomes [HGDP]. <em>Science</em>, 2020;367:eaay5012.</li>
 <li>Byrska-Bishop M et al. High-coverage 1000 Genomes + 602 trios. <em>Cell</em>, 2022;185:3426–3440.</li>
-<li>Chen S et al. Mutational constraint map from 76,156 genomes [gnomAD v4]. <em>Nature</em>, 2024;625:92–100.</li>
+<li>Chen S et al. Mutational constraint map from 76 156 genomes [gnomAD v4]. <em>Nature</em>, 2024;625:92–100.</li>
 </ol>
 
 <h3>D.4 Populations admixées et insulaires comparables</h3>
 <ol class="refs-list">
-<li>Naslavsky MS et al. Whole-genome sequencing of 1,171 admixed individuals from São Paulo. <em>Nat Commun</em>, 2022;13:1004.</li>
+<li>Naslavsky MS et al. Whole-genome sequencing of 1 171 admixed individuals from São Paulo. <em>Nat Commun</em>, 2022;13:1004.</li>
 <li>Nunes K et al. Admixture’s impact on Brazilian population evolution and health. <em>Science</em>, 2025;388:eadl3564. [cohorte 2 723 WGS, référence la plus proche de Génome Réunion]</li>
 <li>Gudbjartsson DF et al. Large-scale whole-genome sequencing of the Icelandic population [deCODE]. <em>Nat Genet</em>, 2015;47:435–444.</li>
 <li>Kurki MI et al. FinnGen provides genetic insights from a well-phenotyped isolated population. <em>Nature</em>, 2023;613:508–518.</li>
@@ -1082,7 +1602,7 @@ shapeit4 --input reunion_chr${CHR}.vcf.gz \
 <h3>D.9 Imputation et panels de référence</h3>
 <ol class="refs-list">
 <li>Browning BL et al. A One-Penny Imputed Genome from Next-Generation Reference Panels [Beagle 5]. <em>Am J Hum Genet</em>, 2018;103:338–348.</li>
-<li>Taliun D et al. Sequencing of 53,831 diverse genomes from NHLBI TOPMed. <em>Nature</em>, 2021;590:290–299.</li>
+<li>Taliun D et al. Sequencing of 53 831 diverse genomes from NHLBI TOPMed. <em>Nature</em>, 2021;590:290–299.</li>
 <li>Rubinacci S et al. Efficient phasing and imputation of low-coverage sequencing data [GLIMPSE]. <em>Nat Genet</em>, 2021;53:120–126.</li>
 <li>Marchini J, Howie B. Genotype imputation for genome-wide association studies. <em>Nat Rev Genet</em>, 2010;11:499–511.</li>
 </ol>
@@ -1151,41 +1671,126 @@ shapeit4 --input reunion_chr${CHR}.vcf.gz \
 </section>
 
 <script>
-(function(){"use strict";
-function paginate(){
-  var sheets=Array.prototype.slice.call(document.querySelectorAll(".sheet"));
-  var content=sheets.filter(function(s){return!s.classList.contains("sheet--cover")&&!s.classList.contains("sheet--toc");});
-  sheets.forEach(function(sheet){
-    var flag=sheet.querySelector(".overflow-flag");
-    if(!flag){flag=document.createElement("div");flag.className="overflow-flag";flag.textContent="Contenu trop long - a scinder";sheet.appendChild(flag);}
-    sheet.classList.toggle("is-overflowing",sheet.scrollHeight>sheet.clientHeight+2);
-    var footer=sheet.querySelector(".sheet__footer");if(!footer)return;
-    var no=footer.querySelector(".pageno");if(!no){no=document.createElement("span");no.className="pageno";footer.appendChild(no);}
-    if(sheet.classList.contains("sheet--cover")||sheet.classList.contains("sheet--toc")){no.textContent="";}
-    else{var idx=content.indexOf(sheet);no.textContent="Page "+(idx+1)+" / "+content.length;}
-  });
-  document.querySelectorAll("a.toc-e[href]").forEach(function(link){
-    var href=link.getAttribute("href");if(!href||href[0]!=="#")return;
-    var target=document.getElementById(href.slice(1));if(!target)return;
-    var el=target;var ts=null;
-    while(el&&el!==document.body){if(el.classList&&el.classList.contains("sheet")){ts=el;break;}el=el.parentNode;}
-    if(!ts)return;var idx=content.indexOf(ts);
-    var n=link.querySelector(".toc-n");
-    if(n)n.textContent=idx>=0?String(idx+1):"--";
-  });
-}
-function bindToc(){
-  document.querySelectorAll('a.toc-e[href^="#"]').forEach(function(link){
-    link.addEventListener("click",function(e){
-      var target=document.getElementById(this.getAttribute("href").slice(1));
-      if(!target)return;e.preventDefault();target.scrollIntoView({behavior:"smooth",block:"start"});
+/* paginate.js — A4 sheet pagination helper (see references/pagination.md).
+   Works with .sheet, .sheet--cover, .sheet--toc.
+     1. Numbers content sheets only (cover + TOC are excluded from count).
+     2. Flags any sheet whose content overflows A4 (screen only).
+     3. Populates .toc-page-num inside <a class="toc-entry"> links
+        by resolving each href="#id" to its parent sheet's page number.
+     4. Smooth-scrolls to target sheet when a TOC entry is clicked.
+   Inline at end of <body>. No dependency, no network. */
+(function () {
+  "use strict";
+
+  function paginate() {
+    var sheets = Array.prototype.slice.call(
+      document.querySelectorAll(".sheet")
+    );
+
+    /* Split: cover + toc sheets vs content sheets */
+    var contentSheets = sheets.filter(function (s) {
+      return (
+        !s.classList.contains("sheet--cover") &&
+        !s.classList.contains("sheet--toc")
+      );
     });
-  });
-}
-if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){paginate();bindToc();});}
-else{paginate();bindToc();}
-window.addEventListener("load",paginate);window.addEventListener("beforeprint",paginate);
+
+    /* --- Numbering + overflow detection --- */
+    sheets.forEach(function (sheet) {
+      /* Overflow flag (screen only) */
+      var flag = sheet.querySelector(".overflow-flag");
+      if (!flag) {
+        flag = document.createElement("div");
+        flag.className = "overflow-flag";
+        flag.textContent = "Contenu trop long pour une page A4 — à scinder";
+        sheet.appendChild(flag);
+      }
+      sheet.classList.toggle(
+        "is-overflowing",
+        sheet.scrollHeight > sheet.clientHeight + 2
+      );
+
+      /* Footer page label */
+      var footer = sheet.querySelector(".sheet__footer");
+      if (!footer) return;
+      var no = footer.querySelector(".pageno");
+      if (!no) {
+        no = document.createElement("span");
+        no.className = "pageno";
+        footer.appendChild(no);
+      }
+
+      if (
+        sheet.classList.contains("sheet--cover") ||
+        sheet.classList.contains("sheet--toc")
+      ) {
+        no.textContent = ""; /* no number on cover / TOC */
+      } else {
+        var idx = contentSheets.indexOf(sheet);
+        no.textContent =
+          "Page " + (idx + 1) + " / " + contentSheets.length;
+      }
+    });
+
+    /* --- TOC page numbers --- */
+    var tocEntries = document.querySelectorAll("a.toc-entry[href]");
+    tocEntries.forEach(function (link) {
+      var href = link.getAttribute("href");
+      if (!href || href.charAt(0) !== "#") return;
+      var target = document.getElementById(href.slice(1));
+      if (!target) return;
+      var targetSheet = target.closest
+        ? target.closest(".sheet")
+        : (function () {
+            var el = target;
+            while (el && el !== document.body) {
+              if (
+                el.classList &&
+                el.classList.contains("sheet")
+              )
+                return el;
+              el = el.parentNode;
+            }
+            return null;
+          })();
+      if (!targetSheet) return;
+      var contentIdx = contentSheets.indexOf(targetSheet);
+      var numEl = link.querySelector(".toc-page-num");
+      if (numEl) {
+        numEl.textContent =
+          contentIdx >= 0 ? String(contentIdx + 1) : "—";
+      }
+    });
+  }
+
+  /* --- Smooth scroll for TOC clicks (screen only) --- */
+  function bindTocLinks() {
+    document.querySelectorAll('a.toc-entry[href^="#"]').forEach(
+      function (link) {
+        link.addEventListener("click", function (e) {
+          var id = this.getAttribute("href").slice(1);
+          var target = document.getElementById(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    );
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      paginate();
+      bindTocLinks();
+    });
+  } else {
+    paginate();
+    bindTocLinks();
+  }
+  window.addEventListener("load", paginate);
+  window.addEventListener("beforeprint", paginate);
 })();
+
 </script>
 </body>
 </html>
