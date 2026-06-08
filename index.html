@@ -927,9 +927,1146 @@
                 <!-- Carte de mise en avant du budget optimal -->
                 <div class="highlightBox">
                     <p class="highlightLabel">Budget optimal recommandé</p>
+                    <p class="highlightValue"><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projet Génome Réunion — plan de mise en place du premier référentiel génomique de la population réunionnaise : besoins matériels, humains, intégration de l'IA et budget.">
+    <title>Projet Génome Réunion — Référentiel génomique de La Réunion</title>
+
+    <!-- Feuille de style externe (aucun CSS inline) -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+
+<body>
+
+    <!-- ============================================================= -->
+    <!-- BARRE DE NAVIGATION                                           -->
+    <!-- ============================================================= -->
+    <header class="siteHeader">
+        <div class="navContainer">
+
+            <!-- Logo / titre court du projet -->
+            <a class="navBrand" href="#hero">
+                <img class="navBrandLogo" src="images/genome-reunion-logo-horizontal-court.svg" alt="Génome Réunion — Référentiel génomique de La Réunion">
+            </a>
+
+            <!-- Bouton d'ouverture du menu sur mobile -->
+            <button class="navToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span class="navToggleBar"></span>
+                <span class="navToggleBar"></span>
+                <span class="navToggleBar"></span>
+            </button>
+
+            <!-- Liens d'ancrage vers les sections -->
+            <nav class="navMenu">
+                <ul class="navList">
+                    <li class="navItem"><a class="navLink" href="#architecture">Architecture</a></li>
+                    <li class="navItem"><a class="navLink" href="#phases">Phases</a></li>
+                    <li class="navItem"><a class="navLink" href="#materiel">Matériel</a></li>
+                    <li class="navItem"><a class="navLink" href="#humain">Ressources humaines</a></li>
+                    <li class="navItem"><a class="navLink" href="#ia">Intégration IA</a></li>
+                    <li class="navItem"><a class="navLink" href="#budget">Budget</a></li>
+                    <li class="navItem"><a class="navLink" href="#conclusion">Conclusion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ========================================================= -->
+        <!-- PAGE DE GARDE DU DOSSIER                                  -->
+        <!-- ========================================================= -->
+        <section class="coverPage" id="hero">
+
+            <!-- En-tête : type de document, titre, objet + visuel -->
+            <div class="coverTop">
+                <div class="coverHeading">
+                    <p class="coverDocType">Dossier de faisabilité · Évaluation des besoins</p>
+                    <h1 class="coverTitle">Projet Génome Réunion</h1>
+                    <p class="coverSubtitle">
+                        Mise en place du premier référentiel génomique local
+                        de la population réunionnaise.
+                    </p>
+                    <p class="coverContext">
+                        Une réponse à la sous-représentation des populations non-européennes
+                        dans les bases internationales (gnomAD, 1000&nbsp;Genomes).
+                    </p>
+                </div>
+
+                <!-- Visuel : entonnoir du référentiel (du général au sélectionné) -->
+                <div class="coverVisual">
+                    <svg class="heroLayersSvg" viewBox="0 0 320 280" role="img"
+                         aria-label="Schéma des trois couches du référentiel">
+                        <!-- Étape 1 : 2500 génotypages — la plus large, en haut -->
+                        <ellipse class="layerEllipse layerEllipseBase" cx="160" cy="70" rx="140" ry="40"></ellipse>
+                        <text class="layerLabel" x="160" y="75">2500 génotypages SNP</text>
+                        <!-- Étape 2 : 100 familles — intermédiaire -->
+                        <ellipse class="layerEllipse layerEllipseMid" cx="160" cy="148" rx="105" ry="32"></ellipse>
+                        <text class="layerLabel" x="160" y="153">100 familles nucléaires</text>
+                        <!-- Étape 3 : 350 WGS — la plus petite, en bas -->
+                        <ellipse class="layerEllipse layerEllipseTop" cx="160" cy="215" rx="70" ry="26"></ellipse>
+                        <text class="layerLabel" x="160" y="220">350 WGS (POPgen)</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Métadonnées du dossier -->
+            <dl class="coverMeta">
+                <div class="coverMetaItem">
+                    <dt>Objet</dt>
+                    <dd>Besoins matériels, humains et intégration de l'IA</dd>
+                </div>
+                <div class="coverMetaItem">
+                    <dt>Date</dt>
+                    <dd>Mai 2026</dd>
+                </div>
+                <div class="coverMetaItem">
+                    <dt>Durée du projet</dt>
+                    <dd>36 mois</dd>
+                </div>
+                <div class="coverMetaItem">
+                    <dt>Séquençage WGS</dt>
+                    <dd>Pris en charge par POPgen (0 €)</dd>
+                </div>
+            </dl>
+
+            <!-- Synthèse décisionnelle pour l'évaluateur -->
+            <div class="decisionSummary">
+                <h2 class="decisionSummaryTitle">En bref — ce que ce document vous demande</h2>
+                <p class="decisionSummaryIntro">Le projet nécessite une décision sur trois points :</p>
+                <ol class="decisionList">
+                    <li><strong>Génotypage</strong> — sous-traiter <span class="decisionCost">(265 000 €)</span> ou acquérir un iScan <span class="decisionCost">(479 000 €)</span> ?</li>
+                    <li><strong>Infrastructure IT</strong> — cloud hybride OPEX <span class="decisionCost">(270 000 €)</span> ou on-premise CAPEX <span class="decisionCost">(334 000 €)</span> ?</li>
+                    <li><strong>Ressources humaines</strong> — quelle proposition de montage d'équipe retenir ?</li>
+                </ol>
+                <table class="decisionTable">
+                    <thead>
+                        <tr>
+                            <th>Scénario</th>
+                            <th>Génotypage</th>
+                            <th>Infrastructure</th>
+                            <th>Budget total 36 mois</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="decisionRowOptimal">
+                            <td><strong>Optimal</strong></td>
+                            <td>Sous-traitance</td>
+                            <td>Cloud hybride</td>
+                            <td><strong>~1 403 000 €</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maximal</strong></td>
+                            <td>iScan neuf</td>
+                            <td>On-premise</td>
+                            <td><strong>~1 709 000 €</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="decisionNote">Le séquençage WGS des 350 individus est pris en charge gratuitement par POPgen.</p>
+            </div>
+
+            <!-- Navigation interne du dossier -->
+            <div class="heroActions">
+                <a class="buttonPrimary" href="#architecture">Méthodologie</a>
+                <a class="buttonSecondary" href="#budget">Budget détaillé</a>
+                <a class="buttonSecondary" href="dossier.html">Dossier complet (PDF)</a>
+            </div>
+
+            <!-- Bannière lien externe vers la présentation complète du projet -->
+            <a class="projectBanner" href="https://patrick-mun.github.io/genome_reunion/" target="_blank" rel="noopener">
+                <span class="projectBannerLabel">Voir la présentation complète du projet</span>
+                <span class="projectBannerArrow" aria-hidden="true">→</span>
+            </a>
+
+            <!-- Consigne : les sections ci-dessous sont dépliables -->
+            <p class="foldHint">
+                <span class="foldHintIcon" aria-hidden="true">▾</span>
+                Cliquez sur le titre d'une section pour déplier son contenu détaillé.
+            </p>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION ARCHITECTURE / CHIFFRES CLÉS                      -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock" id="architecture">
+            <div class="sectionInner">
+              <details class="sectionFold">
+                <summary class="sectionFoldSummary">
+                    <span class="sectionFoldTitle">Architecture de la solution</span>
+                    <span class="sectionFoldKey">3 couches · ~2 800 génotypages</span>
+                    <span class="sectionFoldChevron" aria-hidden="true">▾</span>
+                </summary>
+                <div class="sectionFoldBody">
+                <p class="sectionIntro">
+                    La méthodologie repose sur trois couches complémentaires.
+                    Le séquençage WGS des 350 individus est pris en charge par le
+                    consortium POPgen — son coût pour le laboratoire est nul.
+                </p>
+
+                <!-- Schéma de flux du référentiel en SVG -->
+                <div class="flowWrapper">
+                    <svg class="flowSvg" viewBox="0 0 760 360" role="img"
+                         aria-label="Flux de construction du référentiel génomique">
+
+                        <!-- Étape 1 : génotypage -->
+                        <rect class="flowBox flowBoxInput" x="40" y="20" width="300" height="60" rx="8"></rect>
+                        <text class="flowBoxText" x="190" y="46">2500 individus · puce GDA-8</text>
+                        <text class="flowBoxSub" x="190" y="66">1,9M SNP</text>
+
+                        <!-- Étape 1 bis : familles -->
+                        <rect class="flowBox flowBoxInput" x="420" y="20" width="300" height="60" rx="8"></rect>
+                        <text class="flowBoxText" x="570" y="46">100 familles nucléaires</text>
+                        <text class="flowBoxSub" x="570" y="66">~300 individus SNP</text>
+
+                        <!-- Flèches descendantes -->
+                        <line class="flowArrow" x1="190" y1="80" x2="190" y2="120"></line>
+                        <line class="flowArrow" x1="570" y1="80" x2="570" y2="120"></line>
+
+                        <!-- Étape 2 : analyses -->
+                        <rect class="flowBox flowBoxProcess" x="180" y="120" width="400" height="56" rx="8"></rect>
+                        <text class="flowBoxText" x="380" y="146">PCA · ADMIXTURE · IBD · ROH</text>
+                        <text class="flowBoxSub" x="380" y="166">Sélection hybride géo-ancestrale</text>
+
+                        <line class="flowArrow" x1="380" y1="176" x2="380" y2="216"></line>
+
+                        <!-- Étape 3 : WGS POPgen -->
+                        <rect class="flowBox flowBoxFree" x="200" y="216" width="360" height="56" rx="8"></rect>
+                        <text class="flowBoxText" x="380" y="242">350 WGS sélectionnés → POPgen</text>
+                        <text class="flowBoxSubFree" x="380" y="262">Séquençage GRATUIT (0 €)</text>
+
+                        <line class="flowArrow" x1="380" y1="272" x2="380" y2="312"></line>
+
+                        <!-- Étape 4 : référentiel -->
+                        <rect class="flowBox flowBoxOutput" x="160" y="312" width="440" height="40" rx="8"></rect>
+                        <text class="flowBoxTextLight" x="380" y="337">Référentiel variants + imputation + phasage réunionnais</text>
+                    </svg>
+                </div>
+
+                <!-- Contexte explicatif des trois couches -->
+                <p class="contextText">
+                    La première couche génotype 2500 individus représentatifs de
+                    La Réunion sur puce SNP : elle décrit la structure de la
+                    population (composantes principales, proportions d'ascendance).
+                    La deuxième couche ajoute 100 familles nucléaires, indispensables
+                    pour reconstruire les haplotypes par phasage. La troisième couche
+                    sélectionne 350 individus pour un séquençage complet (WGS), qui
+                    sert de vérité de terrain pour découvrir les variants et imputer
+                    le reste de la cohorte.
+                </p>
+                <div class="calloutBox">
+                    <span class="calloutIcon" aria-hidden="true">✓</span>
+                    <p class="calloutText">
+                        <strong>Point structurant du budget :</strong> le séquençage
+                        WGS des 350 individus est pris en charge gratuitement par le
+                        consortium POPgen. Le coût biologique restant pour le
+                        laboratoire porte donc essentiellement sur le génotypage SNP
+                        des ~2800 puces.
+                    </p>
+                </div>
+
+                <!-- Tableau des chiffres clés -->
+                <h3 class="subHeading">Chiffres clés du projet</h3>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Paramètre</th>
+                                <th scope="col">Valeur</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Cohorte populationnelle</td><td>2500 individus</td></tr>
+                            <tr><td>Module familial</td><td>100 familles (~300 individus)</td></tr>
+                            <tr><td>Sélection WGS</td><td>350 individus</td></tr>
+                            <tr><td>Séquençage WGS</td><td>POPgen — coût 0 €</td></tr>
+                            <tr><td>Puce SNP</td><td>GDA-8, ~1,9M SNP (Illumina)</td></tr>
+                            <tr><td>Total génotypages</td><td>~2800 puces</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Composantes de la plateforme sous forme de cartes -->
+                <h3 class="subHeading">Composantes de la plateforme</h3>
+                <div class="cardGrid">
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Génotypage</h4>
+                        <p class="featureCardText">Puce GDA-8 via iScan (Illumina).</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Analyse génomique</h4>
+                        <p class="featureCardText">PCA, ADMIXTURE, IBD, ROH — PLINK2, KING, SHAPEIT.</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Sélection WGS</h4>
+                        <p class="featureCardText">Score hybride géo-ancestral S_div (pipeline Python).</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Pipelines bioinfo</h4>
+                        <p class="featureCardText">QC, alignement, calling — Nextflow / Snakemake.</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Base de données</h4>
+                        <p class="featureCardText">Variants, métadonnées, fréquences — PostgreSQL + MongoDB.</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Interface clinique</h4>
+                        <p class="featureCardText">Portail web et API — Django (full Python).</p>
+                    </article>
+                    <article class="featureCard">
+                        <h4 class="featureCardTitle">Modules IA</h4>
+                        <p class="featureCardText">Pathogénicité, PGx, admixture, risque — PyTorch + TensorFlow.</p>
+                    </article>
+                </div>
+                </div>
+              </details>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION PHASES                                            -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock sectionAlt" id="phases">
+            <div class="sectionInner">
+              <details class="sectionFold">
+                <summary class="sectionFoldSummary">
+                    <span class="sectionFoldTitle">Phases de mise en place</span>
+                    <span class="sectionFoldKey">7 phases · 36 mois</span>
+                    <span class="sectionFoldChevron" aria-hidden="true">▾</span>
+                </summary>
+                <div class="sectionFoldBody">
+                <p class="sectionIntro">
+                    Sept phases s'enchaînent et se chevauchent sur 36 mois, des panels
+                    témoins jusqu'au portail web clinique.
+                </p>
+
+                <!-- Frise verticale des phases -->
+                <ol class="timelineList">
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 0</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Panels témoins</h3>
+                            <p class="timelineMeta">Semaines 1-12 · parallèle</p>
+                            <p class="timelineText">Accès et harmonisation des panels témoins (1000G, EGA, MGUA…).</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 1</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Validation externe</h3>
+                            <p class="timelineMeta">Semaines 1-10</p>
+                            <p class="timelineText">Validation externe et simulation sur 1000G high-coverage.</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 2</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Cohorte Réunion SNP</h3>
+                            <p class="timelineMeta">Semaines 11-20</p>
+                            <p class="timelineText">QC des 2500, PCA / ADMIXTURE puis sélection des 350 WGS.</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 3</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Module familial</h3>
+                            <p class="timelineMeta">Parallèle à la phase 2</p>
+                            <p class="timelineText">100 familles nucléaires + phasage haplotypique réunionnais.</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 4</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">WGS POPgen</h3>
+                            <p class="timelineMeta">Mois 8-22</p>
+                            <p class="timelineText">Séquençage POPgen, traitement et base de données variants.</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 5</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Modules IA</h3>
+                            <p class="timelineMeta">Mois 17-30</p>
+                            <p class="timelineText">Développement et validation des quatre modules IA (pathogénicité, PGx, admixture, PRS).</p>
+                        </div>
+                    </li>
+                    <li class="timelineItem">
+                        <span class="timelinePhase">Phase 6</span>
+                        <div class="timelineBody">
+                            <h3 class="timelineTitle">Portail web & validation clinique</h3>
+                            <p class="timelineMeta">Mois 27-36</p>
+                            <p class="timelineText">Portail web Django, mise en production et validation clinique finale.</p>
+                        </div>
+                    </li>
+                </ol>
+                </div>
+              </details>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION BESOINS MATÉRIELS                                 -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock" id="materiel">
+            <div class="sectionInner">
+              <details class="sectionFold">
+                <summary class="sectionFoldSummary">
+                    <span class="sectionFoldTitle">Besoins matériels</span>
+                    <span class="sectionFoldKey">Génotypage 265 000 – 479 000 €</span>
+                    <span class="sectionFoldChevron" aria-hidden="true">▾</span>
+                </summary>
+                <div class="sectionFoldBody">
+                <p class="sectionIntro">
+                    Le génotypage iScan constitue le principal coût biologique.
+                    Deux scénarios mutuellement exclusifs, le CHU ne disposant pas
+                    d'iScan en propre.
+                </p>
+                <p class="contextText">
+                    Le choix entre ces deux scénarios dépend de la stratégie à long
+                    terme du CHU. La sous-traitance (scénario 1) est la plus rapide,
+                    la moins chère pour ce projet, mais ne laisse aucun actif au
+                    laboratoire. L'acquisition d'un iScan neuf (scénario 2) coûte le
+                    plus cher ici, mais l'instrument s'amortit sur les projets futurs.
+                    Sélectionnez un onglet pour détailler chaque scénario.
+                </p>
+
+                <!-- Onglets de scénarios pilotés par le fichier JS -->
+                <div class="scenarioTabs">
+                    <div class="scenarioTabList" role="tablist" aria-label="Scénarios de génotypage">
+                        <button class="scenarioTab scenarioTabActive" type="button"
+                                role="tab" aria-selected="true" data-scenario="1">
+                            Scénario 1 · Sous-traitance
+                        </button>
+                        <button class="scenarioTab" type="button"
+                                role="tab" aria-selected="false" data-scenario="2">
+                            Scénario 2 · iScan à acquérir
+                        </button>
+                    </div>
+
+                    <!-- Panneau scénario 1 -->
+                    <div class="scenarioPanel scenarioPanelActive" role="tabpanel" data-scenario="1">
+                        <p class="scenarioDesc">
+                            Le prestataire (CNG Évry, GenomEast, CNRGH…) fournit tout :
+                            puces, réactifs, hybridation, scan et extraction IDAT.
+                            Le CHU ne paie qu'à la facture.
+                        </p>
+                        <div class="tableScroll">
+                            <table class="dataTable">
+                                <thead>
+                                    <tr><th scope="col">Poste</th><th scope="col">Quantité</th><th scope="col">Tarif</th><th scope="col">Total</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>GDA-8 — cohorte populationnelle</td><td>2500</td><td>~90 €/éch.</td><td>225 000 €</td></tr>
+                                    <tr><td>GDA-8 — module familial</td><td>300</td><td>~90 €/éch.</td><td>27 000 €</td></tr>
+                                    <tr><td>Réplicats QC (+5%)</td><td>140</td><td>~90 €/éch.</td><td>12 600 €</td></tr>
+                                    <tr class="dataTableTotal"><td>Total scénario 1</td><td>2940</td><td>—</td><td>~265 000 €</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panneau scénario 2 -->
+                    <div class="scenarioPanel" role="tabpanel" data-scenario="2" hidden>
+                        <p class="scenarioDesc">
+                            Le CHU n'a pas d'iScan et souhaite l'internaliser durablement.
+                            L'instrument amortit son coût sur les projets futurs.
+                        </p>
+                        <div class="tableScroll">
+                            <table class="dataTable">
+                                <thead>
+                                    <tr><th scope="col">Poste</th><th scope="col">Coût</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>iScan System (scanner neuf)</td><td>150 000 €</td></tr>
+                                    <tr><td>AutoLoader 2.x + ILASS</td><td>70 000 €</td></tr>
+                                    <tr><td>Installation + qualification IQ/OQ/PQ</td><td>15 000 €</td></tr>
+                                    <tr><td>Maintenance 1ère année</td><td>18 000 €</td></tr>
+                                    <tr><td>Consommables (puces GDA-8 + réactifs Infinium)</td><td>226 000 €</td></tr>
+                                    <tr class="dataTableTotal"><td>Total scénario 2</td><td>~479 000 €</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructure informatique -->
+                <h3 class="subHeading">Infrastructure informatique</h3>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr><th scope="col">Composant</th><th scope="col">Qté</th><th scope="col">Total</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Serveurs CPU (analyse QC/PCA)</td><td>2</td><td>16 000 €</td></tr>
+                            <tr><td>Serveurs HPC GPU (pipelines)</td><td>4</td><td>100 000 €</td></tr>
+                            <tr><td>Serveurs GPU A100 (IA/ML)</td><td>2</td><td>80 000 €</td></tr>
+                            <tr><td>Stockage NVMe 100TB (NAS)</td><td>2</td><td>60 000 €</td></tr>
+                            <tr><td>Réseau 10/25Gbps + switch</td><td>1</td><td>18 000 €</td></tr>
+                            <tr><td>UPS + climatisation</td><td>1</td><td>20 000 €</td></tr>
+                            <tr><td>Sécurité + sauvegarde offsite</td><td>1</td><td>15 000 €</td></tr>
+                            <tr><td>Logiciels + licences</td><td>1</td><td>25 000 €</td></tr>
+                            <tr class="dataTableTotal"><td>Total infrastructure IT</td><td>—</td><td>334 000 €</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Alternative : infrastructure cloud hybride -->
+                <h3 class="subHeading">Alternative : infrastructure cloud hybride</h3>
+                <p class="contextText">
+                    L'infrastructure ci-dessus peut être portée dans le cloud plutôt
+                    qu'achetée en propre. Pour des données génomiques (données de santé),
+                    la contrainte structurante est réglementaire : l'hébergement doit
+                    être assuré par un prestataire certifié HDS (Hébergeur de Données de
+                    Santé) et les données rester dans l'Union européenne.
+                </p>
+                <p class="contextText">
+                    Le modèle recommandé est hybride : stockage HDS souverain pour les
+                    données sensibles et calcul GPU mobilisé à la demande (burst) pour
+                    les entraînements IA, plutôt que d'immobiliser des serveurs souvent
+                    inactifs. Ce modèle transforme un investissement (CAPEX) en charges
+                    récurrentes (OPEX).
+                </p>
+
+                <!-- Détail du coût cloud hybride sur 36 mois -->
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr><th scope="col">Poste</th><th scope="col">Détail</th><th scope="col">Coût (36 mois)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Stockage HDS + sauvegarde</td><td>~100-120 TB, souverain certifié HDS</td><td>~90 000 €</td></tr>
+                            <tr><td>Compute CPU + base de données managée</td><td>VMs permanentes (QC, PCA, portail, BD)</td><td>~55 000 €</td></tr>
+                            <tr><td>Compute GPU à la demande</td><td>Entraînements IA + pipelines (burst)</td><td>~40 000 €</td></tr>
+                            <tr><td>Sécurité, conformité HDS, support</td><td>—</td><td>~25 000 €</td></tr>
+                            <tr><td>Logiciels + licences</td><td>—</td><td>~25 000 €</td></tr>
+                            <tr><td>Poste local minimal</td><td>Postes de travail + cache NAS</td><td>~20 000 €</td></tr>
+                            <tr><td>Réseau + egress</td><td>Transferts, accès cliniciens</td><td>~15 000 €</td></tr>
+                            <tr class="dataTableTotal"><td>Total cloud hybride</td><td>—</td><td>~270 000 €</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Graphique SVG : comparaison CAPEX on-premise vs OPEX cloud -->
+                <!-- Échelle : 400K à y=60, 200K à y=155, base 0 à y=250 (0,475 px/K€). -->
+                <div class="chartWrapper">
+                    <svg class="barChartSvg" viewBox="0 0 640 300" role="img"
+                         aria-label="Comparaison du coût d'infrastructure on-premise et cloud hybride">
+
+                        <!-- Axe horizontal de base -->
+                        <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
+
+                        <!-- Graduations de référence (en K€) -->
+                        <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
+                        <text class="chartGridLabel" x="50" y="64">400K</text>
+                        <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
+                        <text class="chartGridLabel" x="50" y="159">200K</text>
+
+                        <!-- On-premise (CAPEX) : 334 K€ -->
+                        <rect class="barRect barRectOne" x="170" y="91" width="120" height="159"></rect>
+                        <text class="barValue" x="230" y="81">334 K€</text>
+                        <text class="barLabel" x="230" y="270">On-premise (CAPEX)</text>
+
+                        <!-- Cloud hybride (OPEX) : 270 K€ -->
+                        <rect class="barRect barRectTwo" x="380" y="122" width="120" height="128"></rect>
+                        <text class="barValue" x="440" y="112">270 K€</text>
+                        <text class="barLabel" x="440" y="270">Cloud hybride (OPEX)</text>
+                    </svg>
+                </div>
+
+                <div class="calloutBox">
+                    <span class="calloutIcon" aria-hidden="true">💡</span>
+                    <p class="calloutText">
+                        <strong>Impact budget :</strong> retenir le cloud hybride
+                        (~270 000 €) à la place de l'infrastructure on-premise
+                        (334 000 €) réduit le sous-total de 64 000 €, soit −70 400 €
+                        une fois la contingence de 10% appliquée. Le budget optimal
+                        passe d'environ 1 474 000 € à <strong>~1 403 000 €</strong>.
+                        Les tableaux du budget conservent l'hypothèse on-premise par défaut.
+                    </p>
+                </div>
+
+                <!-- Graphique SVG : évolution du stockage -->
+                <h3 class="subHeading">Évolution du stockage (TB)</h3>
+                <div class="chartWrapper">
+                    <svg class="lineChartSvg" viewBox="0 0 640 300" role="img"
+                         aria-label="Courbe d'évolution du stockage par phase">
+
+                        <!-- Axes -->
+                        <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
+                        <line class="chartAxis" x1="60" y1="40" x2="60" y2="250"></line>
+
+                        <!-- Lignes de grille horizontales -->
+                        <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
+                        <text class="chartGridLabel" x="50" y="64">100</text>
+                        <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
+                        <text class="chartGridLabel" x="50" y="159">50</text>
+
+                        <!-- Courbe d'évolution -->
+                        <polyline class="lineSeries"
+                                  points="110,246 230,231 350,193 470,136 590,60"></polyline>
+
+                        <!-- Points de données -->
+                        <circle class="linePoint" cx="110" cy="246" r="5"></circle>
+                        <circle class="linePoint" cx="230" cy="231" r="5"></circle>
+                        <circle class="linePoint" cx="350" cy="193" r="5"></circle>
+                        <circle class="linePoint" cx="470" cy="136" r="5"></circle>
+                        <circle class="linePoint" cx="590" cy="60" r="5"></circle>
+
+                        <!-- Étiquettes de l'axe horizontal -->
+                        <text class="chartXLabel" x="110" y="270">Phase 0</text>
+                        <text class="chartXLabel" x="230" y="270">Phase 1</text>
+                        <text class="chartXLabel" x="350" y="270">Phase 2</text>
+                        <text class="chartXLabel" x="470" y="270">Phase 3</text>
+                        <text class="chartXLabel" x="590" y="270">Phase 4+</text>
+                    </svg>
+                </div>
+
+                <!-- Graphique SVG : comparaison du coût matériel des deux scénarios -->
+                <!-- Totaux = génotypage GDA-8 + iScan (Sc.2) + infrastructure IT, -->
+                <!-- alignés sur le tableau récapitulatif du budget.               -->
+                <h3 class="subHeading">Coût matériel total par scénario</h3>
+                <div class="chartWrapper">
+                    <svg class="barChartSvg" viewBox="0 0 640 300" role="img"
+                         aria-label="Comparaison du budget matériel total des deux scénarios">
+
+                        <!-- Axe horizontal de base -->
+                        <line class="chartAxis" x1="60" y1="250" x2="620" y2="250"></line>
+
+                        <!-- Graduations de référence (en K€) -->
+                        <line class="chartGrid" x1="60" y1="60" x2="620" y2="60"></line>
+                        <text class="chartGridLabel" x="50" y="64">1000K</text>
+                        <line class="chartGrid" x1="60" y1="155" x2="620" y2="155"></line>
+                        <text class="chartGridLabel" x="50" y="159">500K</text>
+
+                        <!-- Barre scénario 1 : 599K€ (génotypage 265 + IT 334) -->
+                        <rect class="barRect barRectOne" x="170" y="136" width="120" height="114"></rect>
+                        <text class="barValue" x="230" y="126">599K€</text>
+                        <text class="barLabel" x="230" y="270">Sc.1 Sous-traitance</text>
+
+                        <!-- Barre scénario 2 : 813K€ (génotypage 226 + iScan 253 + IT 334) -->
+                        <rect class="barRect barRectThree" x="380" y="95" width="120" height="155"></rect>
+                        <text class="barValue" x="440" y="85">813K€</text>
+                        <text class="barLabel" x="440" y="270">Sc.2 iScan à acquérir</text>
+                    </svg>
+                </div>
+                <p class="contextText">
+                    Ces totaux n'additionnent que les postes strictement matériels :
+                    génotypage GDA-8, système iScan (scénario 2 uniquement) et
+                    infrastructure informatique (334 K€). Ils sont ainsi directement
+                    raccord avec le tableau récapitulatif du budget. Les coûts RH, la
+                    prestation web et la contingence s'ajoutent ensuite pour atteindre
+                    le budget total du projet.
+                </p>
+                </div>
+              </details>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION RESSOURCES HUMAINES                               -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock sectionAlt" id="humain">
+            <div class="sectionInner">
+              <details class="sectionFold">
+                <summary class="sectionFoldSummary">
+                    <span class="sectionFoldTitle">Ressources humaines</span>
+                    <span class="sectionFoldKey">3 propositions · 485 000 – 565 000 €</span>
+                    <span class="sectionFoldChevron" aria-hidden="true">▾</span>
+                </summary>
+                <div class="sectionFoldBody">
+                <p class="sectionIntro">
+                    Projet de 36 mois. Tous les coûts sont exprimés en coût employeur,
+                    charges patronales comprises (~43% du brut). Trois propositions de
+                    montage d'équipe.
+                </p>
+                <p class="contextText">
+                    Les trois propositions partagent une équipe socle invariante,
+                    pilotée par un coordinateur scientifique (IR2) qui valide les
+                    analyses génomiques et encadre les profils juniors, et appuyée par
+                    un technicien de laboratoire à 100% (réception, extraction ADN, QC
+                    et préparation des envois — 2 200 €/mois brut, soit 113 256 € CC
+                    sur 36 mois). Elles se distinguent par les leviers d'optimisation
+                    budgétaire mobilisés :
+                    stages et CDD pour la proposition 1, alternance et thèse CIFRE
+                    pour les propositions 2 et 3. Plus l'optimisation est poussée,
+                    plus le coût baisse, mais plus la charge de supervision et la
+                    complexité administrative augmentent.
+                </p>
+                <div class="calloutBox">
+                    <span class="calloutIcon" aria-hidden="true">★</span>
+                    <p class="calloutText">
+                        <strong>Recommandation :</strong> la proposition 2
+                        (alternance + CIFRE) offre le meilleur équilibre coût/risque.
+                        L'alternance des moins de 26 ans est quasi-exonérée de charges
+                        patronales et la subvention ANRT de 14 000 €/an réduit de
+                        moitié le coût du doctorant.
+                    </p>
+                </div>
+                <div class="calloutBox calloutBoxWarn">
+                    <span class="calloutIcon" aria-hidden="true">!</span>
+                    <p class="calloutText">
+                        <strong>Condition bloquante :</strong> le dispositif CIFRE
+                        impose un partenaire privé (startup génomique, laboratoire
+                        d'analyses ou éditeur logiciel médical). Sans partenaire, le
+                        doctorat CIFRE est remplacé par un contrat doctoral classique
+                        (+23 000 € sur trois ans).
+                    </p>
+                </div>
+
+                <!-- Cartes de propositions RH -->
+                <div class="propositionGrid">
+                    <article class="propositionCard">
+                        <h3 class="propositionTitle">Proposition 1</h3>
+                        <p class="propositionSubtitle">Stages + CDD + contrat doctoral</p>
+                        <p class="propositionPrice">565 000 €</p>
+                        <p class="propositionDelta">−17% vs référence</p>
+                        <p class="propositionText">
+                            Montage le plus simple, sans délai administratif particulier.
+                            Stagiaires Epitech convertis en CDD IE1.
+                        </p>
+                    </article>
+
+                    <article class="propositionCard propositionCardFeatured">
+                        <span class="propositionBadge">Recommandée</span>
+                        <h3 class="propositionTitle">Proposition 2</h3>
+                        <p class="propositionSubtitle">Alternance + CIFRE</p>
+                        <p class="propositionPrice">524 000 €</p>
+                        <p class="propositionDelta">−23% vs référence</p>
+                        <p class="propositionText">
+                            Meilleur équilibre coût/risque. Alternance quasi-exonérée de
+                            charges et CIFRE subventionné par l'ANRT (14 000 €/an).
+                        </p>
+                    </article>
+
+                    <article class="propositionCard">
+                        <h3 class="propositionTitle">Proposition 3</h3>
+                        <p class="propositionSubtitle">Maximum alternance</p>
+                        <p class="propositionPrice">485 000 €</p>
+                        <p class="propositionDelta">−29% vs référence</p>
+                        <p class="propositionText">
+                            Budget minimal : trois alternants + CIFRE + coordinateur à
+                            80% ETP. Supervision intensive requise.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- Graphique SVG : répartition du budget RH (Proposition 2) -->
+                <h3 class="subHeading">Répartition du budget RH — Proposition 2</h3>
+                <div class="chartWrapper">
+                    <svg class="hbarChartSvg" viewBox="0 0 640 290" role="img"
+                         aria-label="Répartition du budget RH de la proposition 2 par poste">
+
+                        <!-- Coordinateur IR2 : 38% -->
+                        <text class="hbarLabel" x="10" y="37">Coordinateur IR2</text>
+                        <rect class="hbarTrack" x="230" y="20" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillOne" x="230" y="20" width="182" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="420" y="37">197 340 € · 38%</text>
+
+                        <!-- Doctorant CIFRE : 18% -->
+                        <text class="hbarLabel" x="10" y="83">Doctorant CIFRE</text>
+                        <rect class="hbarTrack" x="230" y="66" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillTwo" x="230" y="66" width="88" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="326" y="83">95 292 € · 18%</text>
+
+                        <!-- Technicien de laboratoire 100% : 22% -->
+                        <text class="hbarLabel" x="10" y="129">Technicien labo</text>
+                        <rect class="hbarTrack" x="230" y="112" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillSix" x="230" y="112" width="104" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="342" y="129">113 256 € · 22%</text>
+
+                        <!-- Alternant Data Engineer : 12% -->
+                        <text class="hbarLabel" x="10" y="175">Alternant Data Eng.</text>
+                        <rect class="hbarTrack" x="230" y="158" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillThree" x="230" y="158" width="60" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="298" y="175">65 150 € · 12%</text>
+
+                        <!-- Alternant IA : 8% -->
+                        <text class="hbarLabel" x="10" y="221">Alternant IA</text>
+                        <rect class="hbarTrack" x="230" y="204" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillFour" x="230" y="204" width="40" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="278" y="221">43 300 € · 8%</text>
+
+                        <!-- Stage DevOps : 2% -->
+                        <text class="hbarLabel" x="10" y="267">Stage DevOps</text>
+                        <rect class="hbarTrack" x="230" y="250" width="380" height="24" rx="4"></rect>
+                        <rect class="hbarFill hbarFillFive" x="230" y="250" width="9" height="24" rx="4"></rect>
+                        <text class="hbarValue" x="247" y="267">9 540 € · 2%</text>
+                    </svg>
+                </div>
+
+                <!-- Tableau comparatif des propositions -->
+                <h3 class="subHeading">Comparaison des propositions</h3>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Critère</th>
+                                <th scope="col">Référence</th>
+                                <th scope="col">Prop. 1</th>
+                                <th scope="col">Prop. 2</th>
+                                <th scope="col">Prop. 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Coût total CC</td><td>680 000 €</td><td>565 000 €</td><td>524 000 €</td><td>485 000 €</td></tr>
+                            <tr><td>Réduction</td><td>—</td><td>−17%</td><td>−23%</td><td>−29%</td></tr>
+                            <tr><td>Complexité admin.</td><td>Faible</td><td>Faible</td><td>Modérée</td><td>Élevée</td></tr>
+                            <tr><td>Risque supervision</td><td>Faible</td><td>Modéré</td><td>Modéré</td><td>Élevé</td></tr>
+                            <tr><td>Délai de démarrage</td><td>1-2 mois</td><td>1-2 mois</td><td>2-3 mois</td><td>3-4 mois</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+              </details>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION INTÉGRATION IA                                    -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock" id="ia">
+            <div class="sectionInner">
+              <details class="sectionFold">
+                <summary class="sectionFoldSummary">
+                    <span class="sectionFoldTitle">Intégration de l'IA</span>
+                    <span class="sectionFoldKey">4 modules cliniques</span>
+                    <span class="sectionFoldChevron" aria-hidden="true">▾</span>
+                </summary>
+                <div class="sectionFoldBody">
+                <p class="sectionIntro">
+                    Quatre modules d'IA valorisent cliniquement le référentiel
+                    génomique réunionnais.
+                </p>
+                <p class="contextText">
+                    L'IA intervient en surcouche du référentiel : une fois les
+                    variants réunionnais catalogués et leurs fréquences locales
+                    établies, ces modules transforment la donnée brute en aide à la
+                    décision clinique. L'enjeu central est la recalibration sur la
+                    population réunionnaise : les modèles génériques, entraînés sur
+                    des cohortes majoritairement européennes, perdent en précision sur
+                    une population métissée. Chaque module est donc évalué par rapport
+                    à une cible mesurable (par exemple AUC ≥ 0,85 pour la
+                    pathogénicité).
+                </p>
+
+                <div class="cardGrid">
+                    <article class="moduleCard">
+                        <span class="moduleNumber">01</span>
+                        <h3 class="moduleTitle">Pathogénicité des variants</h3>
+                        <p class="moduleText">
+                            Graph Neural Networks entraînés sur ClinVar, COSMIC et
+                            variants locaux. Cible : AUC ≥ 0,85.
+                        </p>
+                    </article>
+                    <article class="moduleCard">
+                        <span class="moduleNumber">02</span>
+                        <h3 class="moduleTitle">Pharmacogénétique × admixture</h3>
+                        <p class="moduleText">
+                            Random Forest + XGBoost sur CYP2C19, CYP2D6, CYP3A4/5,
+                            SLCO1B1. Recommandation thérapeutique personnalisée.
+                        </p>
+                    </article>
+                    <article class="moduleCard">
+                        <span class="moduleNumber">03</span>
+                        <h3 class="moduleTitle">Analyse d'admixture</h3>
+                        <p class="moduleText">
+                            Autoencoders + clustering HDBSCAN sur scores ADMIXTURE,
+                            PCA, IBD et ROH. Profils par individu.
+                        </p>
+                    </article>
+                    <article class="moduleCard">
+                        <span class="moduleNumber">04</span>
+                        <h3 class="moduleTitle">Polygenic Risk Score</h3>
+                        <p class="moduleText">
+                            PRS recalibrés localement (diabète T2, HTA, cardiopathies)
+                            pour une prévention stratifiée.
+                        </p>
+                    </article>
+                </div>
+
+                <!-- Pile technique IA -->
+                <h3 class="subHeading">Stack technique IA / MLOps</h3>
+                <div class="stackGrid">
+                    <div class="stackColumn">
+                        <h4 class="stackColumnTitle">Frameworks</h4>
+                        <ul class="stackList">
+                            <li class="stackTag">PyTorch 2.x</li>
+                            <li class="stackTag">TensorFlow 2.x</li>
+                            <li class="stackTag">scikit-learn</li>
+                            <li class="stackTag">XGBoost</li>
+                        </ul>
+                    </div>
+                    <div class="stackColumn">
+                        <h4 class="stackColumnTitle">MLOps</h4>
+                        <ul class="stackList">
+                            <li class="stackTag">MLflow</li>
+                            <li class="stackTag">Kubeflow</li>
+                            <li class="stackTag">ONNX Runtime</li>
+                            <li class="stackTag">Prometheus + Grafana</li>
+                        </ul>
+                    </div>
+                    <div class="stackColumn">
+                        <h4 class="stackColumnTitle">Déploiement</h4>
+                        <ul class="stackList">
+                            <li class="stackTag">Docker + Kubernetes</li>
+                            <li class="stackTag">GitLab CI/CD</li>
+                            <li class="stackTag">Django</li>
+                            <li class="stackTag">ELK Stack</li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+              </details>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION BUDGET                                            -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock sectionAlt" id="budget">
+            <div class="sectionInner">
+              <details class="sectionFold">
+                <summary class="sectionFoldSummary">
+                    <span class="sectionFoldTitle">Chronogramme et budget</span>
+                    <span class="sectionFoldKey">~1,40 – 1,71 M€ · 36 mois</span>
+                    <span class="sectionFoldChevron" aria-hidden="true">▾</span>
+                </summary>
+                <div class="sectionFoldBody">
+                <p class="sectionIntro">
+                    Combinaison optimale : sous-traitance (scénario 1) +
+                    proposition RH 2 → environ 1 474 000 € sur 36 mois.
+                </p>
+                <p class="contextText">
+                    Le budget total se compose de quatre grands postes : le génotypage
+                    SNP et l'extraction d'ADN (coût biologique principal), la
+                    conservation des échantillons biologiques au CRB, l'infrastructure
+                    informatique (serveurs de calcul et stockage) et les ressources
+                    humaines (~30 à 40% du total).
+                    Le séquençage WGS, pris en charge par POPgen, n'apparaît qu'à 0 €.
+                    Le tableau ci-dessous croise chaque scénario de génotypage avec la
+                    proposition RH recommandée ; une contingence de 10% couvre les aléas.
+                </p>
+
+                <!-- Carte de mise en avant du budget optimal -->
+                <div class="highlightBox">
+                    <p class="highlightLabel">Budget optimal recommandé</p>
                     <p class="highlightValue">~1 474 000 €</p>
                     <p class="highlightDetail">
                         Sous-traitance + alternance/CIFRE · WGS POPgen gratuit · sur 36 mois
+                    </p>
+                </div>
+
+                <!-- Tableau récapitulatif (Proposition RH 2) -->
+                <h3 class="subHeading">Récapitulatif — Proposition RH 2</h3>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Catégorie</th>
+                                <th scope="col">Sc.1 Sous-traité</th>
+                                <th scope="col">Sc.2 iScan à acquérir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Génotypage GDA-8</td><td>265 000 €</td><td>226 000 €</td></tr>
+                            <tr><td>Système iScan</td><td>0 €</td><td>253 000 €</td></tr>
+                            <tr><td>Infrastructure IT</td><td>334 000 €</td><td>334 000 €</td></tr>
+                            <tr><td>WGS POPgen</td><td>0 €</td><td>0 €</td></tr>
+                            <tr><td>Extraction ADN</td><td>54 000 €</td><td>54 000 €</td></tr>
+                            <tr><td>Stockage biologique (CRB)</td><td>127 676 €</td><td>127 676 €</td></tr>
+                            <tr><td>RH Prop. 2 (CC)</td><td>524 000 €</td><td>524 000 €</td></tr>
+                            <tr><td>Prestation web + formation</td><td>35 000 €</td><td>35 000 €</td></tr>
+                            <tr><td>Contingence (10%)</td><td>133 968 €</td><td>155 368 €</td></tr>
+                            <tr class="dataTableTotal"><td>Total</td><td>~1 474 000 €</td><td>~1 709 000 €</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Jalons clés -->
+                <h3 class="subHeading">Jalons clés</h3>
+                <ul class="milestoneList">
+                    <li class="milestoneItem"><span class="milestoneMonth">M3</span> Infrastructure IT opérationnelle</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M5</span> Génotypage des 2500 individus lancé</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M9</span> Liste 350 WGS gelée → envoi POPgen</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M14</span> Module familial phasé + haplotypes</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M22</span> Premiers VCF/BAM + base variants v1</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M26</span> Modules IA 1+2 validés (AUC ≥ 0,85)</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M30</span> Modules IA 3+4 opérationnels</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M34</span> Portail web clinique en production</li>
+                    <li class="milestoneItem"><span class="milestoneMonth">M36</span> Validation clinique + publication</li>
+                </ul>
+
+                <!-- Métriques de succès -->
+                <h3 class="subHeading">Métriques de succès</h3>
+                <p class="contextText">
+                    Le projet est jugé sur des cibles vérifiables, couvrant aussi bien
+                    la collecte des données que la performance des modèles et leur
+                    adoption clinique.
+                </p>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Métrique</th>
+                                <th scope="col">Cible</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Collecte</td><td>≥ 2500 individus</td><td>Représentativité géo-ancestrale validée</td></tr>
+                            <tr><td>Sélection WGS</td><td>350 WGS</td><td>Sélection stricte ou hybride 322+28</td></tr>
+                            <tr><td>Couverture variants</td><td>MAF ≥ 1% fiable</td><td>Seuil opérationnel première génération</td></tr>
+                            <tr><td>AUC pathogénicité</td><td>≥ 0,85</td><td>Module 1 sur jeu de validation local</td></tr>
+                            <tr><td>Latence API</td><td>&lt; 500 ms</td><td>Requêtes cliniques en production</td></tr>
+                            <tr><td>Publications</td><td>≥ 3 articles</td><td>Peer-reviewed, année 2</td></tr>
+                            <tr><td>Adoption clinique</td><td>≥ 5 centres</td><td>Intégration diagnostique CHU + partenaires</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Analyse des risques -->
+                <h3 class="subHeading">Analyse des risques</h3>
+                <p class="contextText">
+                    Les principaux risques portent sur les délais d'accès aux panels
+                    témoins, la représentativité de l'échantillon et le recrutement
+                    des profils bioinformatiques. Chacun fait l'objet d'une mesure de
+                    mitigation explicite.
+                </p>
+                <div class="tableScroll">
+                    <table class="dataTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Risque</th>
+                                <th scope="col">Probabilité</th>
+                                <th scope="col">Impact</th>
+                                <th scope="col">Mitigation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Délai accès panels EGA (DAC)</td>
+                                <td><span class="levelBadge levelBadgeHigh">Élevée</span></td>
+                                <td>4-12 semaines de retard Ph.0</td>
+                                <td>Socle 1000G public en repli</td>
+                            </tr>
+                            <tr>
+                                <td>Biais représentativité EFS</td>
+                                <td><span class="levelBadge levelBadgeMid">Modérée</span></td>
+                                <td>Résultats biaisés</td>
+                                <td>Audit EFS préalable (vs INSEE)</td>
+                            </tr>
+                            <tr>
+                                <td>Défaillance iScan</td>
+                                <td><span class="levelBadge levelBadgeLow">Faible</span></td>
+                                <td>Downtime 1-2 semaines</td>
+                                <td>SLA Illumina + plateforme de secours</td>
+                            </tr>
+                            <tr>
+                                <td>Qualité ADN dégradée</td>
+                                <td><span class="levelBadge levelBadgeMid">Modérée</span></td>
+                                <td>Taux d'échec génotypage ↑</td>
+                                <td>+5% réplicats, QC post-extraction</td>
+                            </tr>
+                            <tr>
+                                <td>Datadrift modèles IA</td>
+                                <td><span class="levelBadge levelBadgeMid">Modérée</span></td>
+                                <td>Perte de précision dans le temps</td>
+                                <td>Monitoring + réentraînement semestriel</td>
+                            </tr>
+                            <tr>
+                                <td>Recrutement bioinformaticiens</td>
+                                <td><span class="levelBadge levelBadgeHigh">Élevée</span></td>
+                                <td>Délai M2-M3</td>
+                                <td>Partenariats INSERM / université</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+              </details>
+            </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- SECTION CONCLUSION                                        -->
+        <!-- ========================================================= -->
+        <section class="sectionBlock" id="conclusion">
+            <div class="sectionInner">
+                <h2 class="sectionTitle">Conclusion</h2>
+                <p class="contextText">
+                    Le projet Génome Réunion constitue la première base de données
+                    génomiques locale adaptée à la population réunionnaise. Il combine
+                    une architecture scientifique en trois couches, un budget maîtrisé
+                    grâce à la gratuité du séquençage WGS, et une surcouche d'IA qui
+                    en assure la valorisation clinique.
+                </p>
+                <ul class="conclusionList">
+                    <li class="conclusionItem">
+                        <span class="conclusionMark" aria-hidden="true">✓</span>
+                        <p class="conclusionText">
+                            Le génotypage iScan (~226-265 K€ selon le scénario) est le
+                            principal coût biologique, complété par l'extraction d'ADN
+                            (54 000 €) et la conservation des échantillons au CRB
+                            (127 676 €) ; le WGS POPgen est gratuit.
+                        </p>
+                    </li>
+                    <li class="conclusionItem">
+                        <span class="conclusionMark" aria-hidden="true">✓</span>
+                        <p class="conclusionText">
+                            Les ressources humaines (485-565 K€ charges comprises,
+                            technicien de laboratoire inclus) représentent environ
+                            30 à 37% du budget total selon la proposition.
+                        </p>
+                    </li>
+                    <li class="conclusionItem">
+                        <span class="conclusionMark" aria-hidden="true">✓</span>
+                        <p class="conclusionText">
+                            La combinaison optimale (achat matériel + proposition RH 2)
+                            ramène le budget à environ ~1 709 000 € € sur 36 mois.
+                        </p>
+                    </li>
+                    <li class="conclusionItem">
+                        <span class="conclusionMark" aria-hidden="true">✓</span>
+                        <p class="conclusionText">
+                            L'IA valorise le référentiel sur trois axes cliniques :
+                            pathogénicité, pharmacogénétique et risque polygénique.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================= -->
+    <!-- PIED DE PAGE                                                  -->
+    <!-- ============================================================= -->
+    <footer class="siteFooter">
+        <div class="footerInner">
+            <p class="footerTitle">Projet Génome Réunion</p>
+            <p class="footerText">
+                Première base de données génomiques locale adaptée à la population
+                réunionnaise.
+            </p>
+            <p class="footerMeta">
+                Document généré : Mai 2026 · Basé sur METHODOLOGY_selection_V3_5 + Projet Génome PMU
+            </p>
+        </div>
+    </footer>
+
+    <!-- Script externe (aucun JS inline) -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>~1 709 000 €</p>
+                    <p class="highlightDetail">
+                       Achat matériel + alternance/CIFRE · WGS POPgen gratuit · sur 36 mois
                     </p>
                 </div>
 
